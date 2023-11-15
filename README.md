@@ -1,4 +1,4 @@
-# 쇼핑목 프로젝트
+# 쇼핑몰 프로젝트
 SpringBoot 쇼핑몰 & 관리자모드 기반 챗봇 구현 Project
 
 ## Cloth Keeper👔
