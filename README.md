@@ -10,6 +10,10 @@ SpringBoot 쇼핑몰 & 관리자모드 기반 챗봇 구현 Project
 * MacOS
 * SpringBoot
 
+### ⚙️ ERD
+<img width="608" alt="1차 DB" src="https://github.com/anna1843/ClothKeeper/assets/133622218/ba7213ca-d8fa-4757-8203-1c51a8918652">
+
+
 # 1차 팀 회의
 
 ````
