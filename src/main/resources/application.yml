@@ -1,0 +1,104 @@
+server:
+  port: 8095
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://project1.cxg8vdlfu0la.ap-southeast-2.rds.amazonaws.com:3306/dev
+    username: admin
+    password: '00000000'
+
+  #    url: jdbc:mysql://localhost:3306/test2
+#    url: jdbc:mysql://localhost:3306/springdb
+#    username: root
+#    password: '1234'
+
+  mail:
+    # google smtp server 사용
+    host: smtp.gmail.com
+    port: 587
+    username: songwc333@gmail.com
+    password: lqbppyxhkethghnb
+    properties: # 이메일 구성에 대한 추가 속성
+      mail:
+        smtp:
+          auth: true # SMTP 서버에 인증 필요한 경우 true로 지정한다. Gmail SMTP 서버는 인증을 요구하기 때문에 true로 설정해야 한다.
+          connectiontimeout: 5000 # 클라이언트가 SMTP 서버와의 연결을 설정하는 데 대기해야 하는 시간(Millisecond). 연결이 불안정한 경우 대기 시간이 길어질 수 있기 때문에 너무 크게 설정하면 전송 속도가 느려질 수 있다.
+          timeout: 5000 # 클라이언트가 SMTP 서버로부터 응답을 대기해야 하는 시간(Millisecond). 서버에서 응답이 오지 않는 경우 대기 시간을 제한하기 위해 사용된다.
+          writetimeout: 5000 # 클라이언트가 작업을 완료하는데 대기해야 하는 시간(Millisecond). 이메일을 SMTP 서버로 전송하는 데 걸리는 시간을 제한하는데 사용된다.
+          starttls: # SMTP 서버가 TLS를 사용하여 안전한 연결을 요구하는 경우 true로 설정한다. TLS는 데이터를 암호화하여 안전한 전송을 보장하는 프로토콜이다.
+            enable: true
+            required: true
+          ssl:
+            trust: smtp.gmail.com
+            protocols: TLSv1.2
+
+    auth-code-expiration-millis: 1800000 # 30*60*1000 = 30분
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update # DDL?? ??
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
+  # yaml/yml ?? - Thymeleaf ??
+
+  thymeleaf:
+    cache: false
+    check-template-location: true
+    #    prefix: classpath:/templates/
+    #    suffix: .html
+    enabled: true
+
+
+    #live reload 설정 배포시 주석
+    #    prefix: file:src/main/resources/templates/
+
+    #live reload 설정 배포시 주석
+    devtools:
+      livereload:
+        enabled: true
+      thymeleaf:
+        cache: false
+      restart:
+        enabled: true
+
+
+  #application-oauth2
+  profiles:
+    include: oauth2
+
+  # code.aiaru@gmail.com
+  servlet:
+    multipart:
+      # 단일 파일에 대한 최대 허용 크기.
+      max-file-size: 10MB
+      # 전체 HTTP 요청에 대한 최대 허용 크기.
+      max-request-size: 50MB
+
+# code.aiaru@gmail.com
+# 파일 쪽 본인 이메일 쓰시고 디렉토리 설정해주시면 깔끔해질 것 같습니다. (깃 커밋 시 본인 설정 주석처리)
+file:
+  #productImgUploadDir: C:\Users\bin77\Desktop\새 폴더\ # 상품이미지 경로 (절대경로로 설정해주세요)
+  #reviewImgUploadDir:  C:\Users\bin77\Desktop\새 폴더\  # 리뷰이미지 경로 (절대경로로 설정해주세요)
+
+  #  code.aiaru@gmail.com
+#    productImgUploadDir: C:\Users\code.aiaru\Desktop\coding\saveFiles\productImg\
+#    reviewImgUploadDir: C:\Users\code.aiaru\Desktop\coding\saveFiles\reviewImg\
+
+  #  songwc3@gmail.com
+  productImgUploadDir: C:\Users\Administrator\Desktop\coding\saveFiles\productImg\ # 상품이미지 경로 (절대경로로 설정해주세요)
+  reviewImgUploadDir: C:\Users\Administrator\Desktop\coding\saveFiles\reviewImg\   # 리뷰이미지 경로 (절대경로로 설정해주세요)
+  profileImgUploadDir: C:\Users\Administrator\Desktop\coding\saveFiles\profileImg\ # 프로필 이미지 경로
+
+  #rladpwls1843@gmail.com
+  #productImgUploadDir: C:\Users\Documents\projectImg\saveFiles\productImg\ # 상품이미지 경로 (절대경로로 설정해주세요)
+  #reviewImgUploadDir: C:\Users\Documents\projectImg\saveFiles\reviewImg\  # 리뷰이미지 경로 (절대경로로 설정해주세요)
+
+  #server
+  #productImgUploadDir: /home/ubuntu/projectImg/saveFiles/productImg/
+  #reviewImgUploadDir: /home/ubuntu/projectImg/saveFiles/reviewImg/
+  #profileImgUploadDir: /home/ubuntu/projectImg/saveFiles/profileImg/

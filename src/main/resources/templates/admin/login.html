@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="title">
+    <title>로그인</title>
+</th:block>
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/member/login.css}">
+</th:block>
+<th:block layout:fragment="javascript">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/member/tempPasswordLogin.js}" defer="defer"></script>
+</th:block>
+<div th:replace="~{fragments/common/header :: headerFragment}"></div>
+<th:block layout:fragment="container">
+    <div class="container">
+        <div class="login">
+            <div class="login-con">
+                <div class="title">
+                    <h1>관리자 로그인</h1>
+                </div>
+                <div class="login-form">
+                    <!-- enctype="multipart/form-data" 뭔지 자세히 알아보기 -->
+                    <form th:action="@{/admin/login/post}" enctype="multipart/form-data" method="post">
+                        <ul>
+                            <li>
+                                <label for="memberEmail">이메일</label>
+                                <input type="email"  name="memberEmail" id="memberEmail" required="required" placeholder="이메일 입력">
+                            </li>
+                            <li>
+                                <label for="memberPassword">비밀번호</label>
+                                <input type="password" name="memberPassword" id="memberPassword" required="required" placeholder="비밀번호 입력">
+                            </li>
+                            <li class="submit">
+                                <input type="submit" value="로그인" class="Btn">
+                            </li>
+                        </ul>
+                        <ul>
+                        <div class="find">
+                            <div class="email">
+                            <li>
+                                <a th:href="@{/forgot-email}">이메일 찾기</a>
+                            </li>
+                            </div>
+                            <div class="pw">
+                            <li>
+                                <a th:href="@{/tempPassword}">비밀번호 찾기</a>
+                            </li>
+                            </div>
+                        </div>
+                        <div class="sns-con">
+                            <li class="sns">
+                                <a th:href="@{/oauth2/authorization/google}"><img th:src="@{/images/google.png}" alt="google"></a>
+                                <a th:href="@{/oauth2/authorization/naver}"><img th:src="@{/images/naver.png}" alt="naver"></a>
+                                <a th:href="@{/oauth2/authorization/kakao}"><img th:src="@{/images/kakao.png}" alt="kakao"></a>
+                            </li>
+                        </div>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+</html>

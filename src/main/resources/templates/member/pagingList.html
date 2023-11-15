@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <title>pagingList</title>
+  <link rel="stylesheet" th:href="@{/css/member/pagingList.css}">
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: headerFragment}"></div>
+<div class="container">
+  <div class="pagingList">
+    <div class="pagingList-con">
+      <div class="boardList-table">
+        <h1>회원 목록</h1>
+        <div class="search">
+          <form th:action="@{/member/pagingList}" method="get">
+            <select name="subject" id="subject">
+              <option value="memberEmail">이메일</option>
+              <option value="memberName">이름</option>
+              <option value="memberNickName">닉네임</option>
+              <option value="memberPhone">휴대전화번호</option>
+              <option value="memberBirth">생년월일</option>
+              <option value="memberStreetAddress">도로명주소</option>
+              <option value="memberDetailAddress">상세주소</option>
+              <option value="role">권한</option>
+            </select>                                   <!-- MemberController의 @RequestParam의 String 'search' 값 그대로 입력하면 됨 -->
+            <input type="text" name="search" id="search" th:value="${param.search}" placeholder="검색어를 입력하세요"> <!-- th:value="${param.search}" : 검색어 입력후 실행하고 입력한 검색어 그대로 유지 -->
+            <input type="submit" value="검색">
+          </form>
+        </div>
+      <table style="width:1700px;" align="center" border="1";>
+        <thead>
+        <tr>
+          <th colspan="12">
+            현재 로그인 사용자 : <span th:text="${myUserDetails.memberEntity.memberEmail}"></span>,
+            권한 : <span th:text="${myUserDetails.memberEntity.role}"></span>
+          </th>
+        </tr>
+        <tr>
+          <th>이미지</th>
+          <th>회원번호</th>
+          <th>이메일</th>
+          <th>이름</th>
+          <th>닉네임</th>
+          <th>휴대전화번호</th>
+          <th>생년월일</th>
+          <th>주소</th>
+          <th>권한</th>
+          <th>가입일</th>
+          <th>정보수정일</th>
+          <th>상세보기</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="member : ${memberList}">
+          <td><div id="image-preview"><img th:src="${member.imageUrl}" alt="프로필 이미지" style="width: 50px; height: 50px;"></div></td>
+          <td th:text="${member.memberId}"></td>
+          <td th:text="${member.memberEmail}"></td>
+          <td th:text="${member.memberName}"></td>
+          <td th:text="${member.memberNickName}"></td>
+          <td th:text="${member.memberPhone}"></td>
+          <td th:text="${member.memberBirth}"></td>
+          <td th:text="${member.memberStreetAddress + ', ' + member.memberDetailAddress}"></td>
+          <td th:text="${member.role}"></td>
+          <td th:text="${#temporals.format(member.createTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+          <td th:text="${#temporals.format(member.updateTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+          <td>
+            <a th:href="@{/member/detail/{memberId}(memberId=${member.memberId})}">보기</a> <!-- /id=member.id -->
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="paging">
+        <ul>
+          <li>
+            <!-- 현재페이지가  첫번째 페이지이면 span표시 -->
+            <span th:if="${1==memberList.pageable.pageNumber+1}" class="span0">처음</span>
+            <!-- 처음 페이지가 아니면  a -->
+            <span th:unless="${1==memberList.pageable.pageNumber+1}">
+              <a th:href="@{/member/pagingList(page=0, search=${param.search}, subject=${param.subject})}" class="span1">처음</a>
+            </span>
+          </li>
+          <li>
+            <!-- 이전페이지가  첫번째 페이지이면   span표시 -->
+            <span th:if="${1==memberList.pageable.pageNumber+1}"  class="span0">이전</span>
+            <span th:unless="${1==memberList.pageable.pageNumber+1}">
+              <!--boardList.pageable.pageNumber 현재페이지 -1 -->
+              <a th:href="@{/member/pagingList(page=${memberList.pageable.pageNumber-1}, search=${param.search}, subject=${param.subject})}" class="span1">이전</a>
+            </span>
+          </li>
+          <!--페이지 번호-->
+          <li th:each="i: ${#numbers.sequence(startPage, endPage)}" class="block">
+            <span th:if="${i==memberList.pageable.pageNumber+1}" th:text="${i}" class="now"></span>
+            <a th:unless="${i==memberList.pageable.pageNumber+1}"
+               th:href="@{/member/pagingList(page=${i-1}, search=${param.search}, subject=${param.subject})}" th:text="${i}"></a>
+          </li>
+          <li>
+            <!-- 현재페이지가 마지막 페이지이면   span표시 -->
+            <span th:if="${memberList.totalPages ==memberList.pageable.pageNumber+1}"  class="span0">다음</span>
+            <!-- 현재페이지가 마지막 페이지아니면    a 표시 현재페이지 +1 -->
+            <span th:unless="${memberList.totalPages ==memberList.pageable.pageNumber+1}">
+               <a th:href="@{/member/pagingList(page=${memberList.pageable.pageNumber+1}, search=${param.search}, subject=${param.subject})}"   class="span1">다음</a>
+            </span>
+          </li>
+          <li>
+            <!-- 현재페이지가 마지막 페이지이면   span표시 -->
+            <span th:if="${memberList.totalPages ==memberList.pageable.pageNumber+1}"  class="span0">마지막</span>
+            <!-- 현재페이지가 마지막 페이지가 아니면 마지막 페이지로 이동 해라  a -->
+            <span th:unless="${memberList.totalPages ==memberList.pageable.pageNumber+1}">
+              <a th:href="@{/member/pagingList(page=${memberList.totalPages-1}, search=${param.search}, subject=${param.subject})}"  class="span1">마지막</a>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+</body>
+</html>

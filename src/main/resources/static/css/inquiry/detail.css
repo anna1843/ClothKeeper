@@ -1,0 +1,336 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/header.css);
+@import url(/css/common/footer.css);
+/* .conatiner */
+.container{
+    width: 100%;
+}
+/* .container > .deatil */
+.container .detail{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px;
+    box-sizing: border-box;
+}
+.container .detail .detail-con{
+    flex-basis: 1200px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.container .detail .detail-con .title{
+    width: 1000px;
+    border-bottom: 4px solid #7285d3;
+    text-align: start;
+    padding: 5px;
+}
+.container .detail .detail-con .board-con{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+.container .detail .detail-con .board-con .top{
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid yellow; */
+}
+.container .detail .detail-con .board-con .top .top-title{
+    border-bottom: 2px solid #7285d3a4;
+    display: flex;
+    justify-content: start;
+    padding: 10px 0 20px 0;
+    gap: 10px;
+    font-size: 20px;
+}
+.container .detail .detail-con .board-con .top .top-title span.titleSpan{
+    font-weight: bold;
+}
+.container .detail .detail-con .board-con .top .top-title span.typeSpan{
+    padding: 0 10px;
+    border-right: 1px solid #cccccc;
+}
+.container .detail .detail-con .board-con .top .top-bottom{
+    width: 900px;
+    border-bottom: 2px solid #7285d3a4;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.container .detail .detail-con .board-con .top .top-bottom .left{
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.container .detail .detail-con .board-con .top .top-bottom .right{
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.container .detail .detail-con .board-con .middle{
+    display: flex;
+    justify-content: start;
+    box-sizing: border-box;
+}
+.container .detail .detail-con .board-con .middle textarea{
+    width: 900px;
+    height: 300px;
+    padding: 10px;
+    resize: none;
+    background: transparent;
+    outline: none;
+    font-size: 18px;
+}
+.container .detail .detail-con .board-con .bottom{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+.container .detail .detail-con .board-con .bottom .bottom-top{
+    width: 900px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    gap: 10px;
+}
+/* delete의 a */
+.container .detail .detail-con .board-con .bottom .bottom-top .delete{
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.container .detail .detail-con .board-con .bottom .bottom-top .delete a{
+    width: 300px;
+    height: 20px;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 0px;
+    height: 20px;
+    transition: all 0.3s;
+    border-top: 1px solid #f5d4d4;
+    border-right: 1px solid #f5d4d4;
+    border-left: 20px solid #f5d4d4;
+    border-bottom: 1px solid #f5d4d4;
+}
+.container .detail .detail-con .board-con .bottom .bottom-top .delete a:hover{
+    border-left-width: 1px;
+}
+/* list목록으로 가는 a */
+.container .detail .detail-con .board-con .bottom .bottom-top .list{
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.container .detail .detail-con .board-con .bottom .bottom-top .list a{
+    width: 300px;
+    height: 20px;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 0px;
+    height: 20px;
+    transition: all 0.3s;
+    border-top: 1px solid #C7D3F4;
+    border-right: 1px solid #C7D3F4;
+    border-left: 20px solid #C7D3F4;
+    border-bottom: 1px solid #C7D3F4;
+}
+.container .detail .detail-con .board-con .bottom .bottom-top .list a:hover{
+    border-left-width: 1px;
+}
+/* bottom */
+.container .detail .detail-con .board-con .bottom .bottom-bottom{
+    width: 900px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+.container .detail .detail-con .board-con .bottom .bottom-bottom .update{
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.container .detail .detail-con .board-con .bottom .bottom-bottom .update a{
+    width: 400px;
+    height: 20px;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 0px;
+    height: 20px;
+    transition: all 0.3s;
+    border-top: 1px solid #C7D3F4;
+    border-right: 1px solid #C7D3F4;
+    border-left: 20px solid #C7D3F4;
+    border-bottom: 1px solid #C7D3F4;
+}
+.container .detail .detail-con .board-con .bottom .bottom-bottom .update a:hover{
+    border-left-width: 1px;
+}
+
+/* reply */
+.container .detail .detail-con .reply-con{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+.container .detail .detail-con .reply-con .title{
+    width: 1000px;
+    border-bottom: 4px solid #7285d3;
+    text-align: start;
+    padding: 5px;
+}
+.container .detail .detail-con .reply-con .reply-write{
+    padding: 10px;
+    box-sizing: border-box;
+    justify-content: center;
+}
+.container .detail .detail-con .reply-con .reply-write form{
+    margin: auto;
+    text-align: center;
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    box-sizing: border-box;
+}
+.container .detail .detail-con .reply-con .reply-write form>ul{
+    width: inherit;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.container .detail .detail-con .reply-con .reply-write form>ul>li{
+    width: 900px;
+}
+.container .detail .detail-con .reply-con .reply-write form>ul>li:not(.Btn){
+    display: flex;
+    justify-content: start;
+    margin-bottom: 15px;
+    /* text-align: center;
+    align-items: center; */
+    box-sizing: border-box;
+}
+.container .detail .detail-con .reply-con .reply-write form>ul>li:not(.Btn) textarea{
+    width: 900px;
+    height: 300px;
+    padding: 10px;
+    box-shadow: inset 0px -2px 4px -1px #8c9cdb;
+    border: none;
+    resize: none;
+}
+.container .detail .detail-con .reply-con .reply-write form>ul>li.Btn input{
+    width: 400px;
+    height: 35px;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 10px;
+    background: #4b66c79e;
+    border: none;
+    color: white;
+    outline: none;
+    gap: 10px;
+    cursor: pointer;
+}
+.container .detail .detail-con .reply-con .reply-write form>ul>li.Btn input:hover{
+    box-sizing: border-box;
+    background: #4b66c7;
+    box-shadow: 0 10px 10px 0 #cccccc;
+}
+
+/* reply */
+.container .detail .detail-con .replyList{
+    padding: 10px;
+    /* box-sizing: border-box; */
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0px -2px 4px -1px #8c9cdb;
+    display: flex;
+}
+.container .detail .detail-con .replyList .replyCon{
+    width: 900px;
+}
+.container .detail .detail-con .replyList .replyCon>ul{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+.container .detail .detail-con .replyList .replyCon>ul>li.writer{
+    padding: 10px;
+    font-size: 20px;
+}
+.container .detail .detail-con .replyList .replyCon>ul>li.create{
+    padding: 5px;
+    text-align: end;
+    border-bottom: 1px solid #4b66c7;
+}
+.container .detail .detail-con .replyList .replyCon>ul .content{
+    width: 900px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+}
+.container .detail .detail-con .replyList .replyCon>ul .content span{
+    width: 900px;
+    min-height: 100px;
+    padding: 0 0 30px 0;
+    font-size: 18px;
+
+}
+.container .detail .detail-con .replyList .replyCon>ul .content .Btn{
+    display: grid;
+    justify-items: end;
+    padding: 10px;
+    gap: 6px;
+}
+
+.container .detail .detail-con .replyList .replyCon>ul .content .Btn input{
+    width: 250px;
+    height: 25px;
+    font-size: 16px;
+    background: none;
+    border-radius: 10px;
+    border: 2px solid #7285d3;
+}
+.container .detail .detail-con .replyList .replyCon>ul .content input:hover{
+    color: white;
+    background: #7285d3;
+}
+
+.container .detail .detail-con .replyList .replyCon>ul .show textarea{
+    width: 900px;
+    min-height: 100px;
+    padding: 0 0 30px 0;
+    font-size: 18px;
+}
+.container .detail .detail-con .replyList .replyCon>ul .show input{
+    width: 250px;
+    height: 25px;
+    font-size: 16px;
+    background: none;
+    border-radius: 10px;
+    border: 2px solid #7285d3;
+}
+.container .detail .detail-con .replyList .replyCon>ul .show input:hover{
+    color: white;
+    background: #7285d3;
+}

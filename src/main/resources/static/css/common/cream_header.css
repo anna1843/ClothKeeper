@@ -1,0 +1,118 @@
+/*header시작*/
+.header{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid; */
+  box-sizing: border-box;
+}
+/*nav시작*/
+.header .nav{
+  flex-basis: 1600px;
+  /* border: 1px solid; */
+  box-sizing: border-box;
+
+}
+/*top-nav*/
+.header .nav .top-nav{  
+  /* border: 1px solid; */
+  box-sizing: border-box;  
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header .nav .top-nav .top-menu{  
+  /* border: 1px solid; */
+  box-sizing: border-box;    
+}
+
+.header .nav .top-nav .top-menu>ul{  
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;;
+}
+
+.header .nav .top-nav .top-menu>ul >li {  
+  padding: 5px 10px;
+}
+.header .nav .top-nav .top-menu>ul >li a {  
+  font-size: 12px;
+}
+
+
+/*middle-nav*/
+.header .nav .middle-nav{  
+  /* border: 1px solid; */
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;  
+}
+.header .nav .middle-nav h1.logo{  
+  flex-basis: 120px;
+}
+.header .nav .middle-nav h1.logo image{  
+  width:100% ;
+  height: auto;
+  display: block;
+}
+.header .nav .middle-nav .middle-menu{  
+  padding: 5px;  
+  box-sizing: border-box;
+}
+.header .nav .middle-nav .middle-menu ul{  
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;;
+}
+.header .nav .middle-nav .middle-menu ul >li {  
+ padding: 10px;
+}
+.header .nav .middle-nav .middle-menu ul >li a {  
+ font-size: 20px;
+ letter-spacing: 3px;
+}
+.header .nav .middle-nav .middle-menu ul >li:nth-child(1) a{  
+  font-weight: bold;
+  line-height: 30px;
+ }
+ .header .nav .middle-nav .middle-menu ul >li a img {  
+  width:30px ;
+  height: auto;
+  display: block;
+ }
+
+/*bottom-nav*/
+.header .nav .bottom-nav{  
+  /* width: 100%; */
+  /* border: 1px solid; */
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  /* justify-content: space-evenly; */
+}
+
+.header .nav .bottom-nav .gnb{  
+  /* flex:1; */
+ padding: 10px 0 ;
+ box-sizing: border-box;
+}
+
+.header .nav .bottom-nav .gnb>ul{  
+ display: flex;
+ justify-content: space-between;
+ gap: 5px;
+}
+.header .nav .bottom-nav .gnb>ul>li{  
+  line-height: 20px;
+ }
+.header .nav .bottom-nav .gnb>ul>li a{  
+  
+  padding: 5px 10px;
+ }
+
+ .header .nav .bottom-nav .gnb>ul>li:nth-child(1) a{
+  font-weight: bold;
+  color: #ca0f3b;
+ }
+ 

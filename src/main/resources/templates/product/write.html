@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>write</title>
+  <link rel="stylesheet" th:href="@{/css/product/write.css}">
+  <script th:src="@{/js/product/write.js}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: headerFragment}"></div>
+<div class="container">
+  <form action="/product/write" id="product-form" method="post" enctype="multipart/form-data">
+
+        <!-- 송원철 -->
+        <span th:if="${false}" th:text="${member.memberId}"></span> <!-- th:if="${false}" 입력 시 안보이게 처리 -->
+        <!----------->
+
+    <div class="root">
+
+      <div class="image_section">
+  
+        <div class="image-expand_area" id="imagePreviewExpand-box">
+          <img src="/images/product/iconmonstr-photo-camera-13.svg" alt="미리보기 화면" class="image-expand__img-alt" id="imagePreviewExpand">
+        </div>
+      
+        <div class="image-preview_area" id="image-container">
+          <input type="file" id="fileInput" style="display: none;" multiple>
+          <div class="image-upload-instruction_box">
+            <div class="image-upload-instruction_text">클릭이나 드래그로 이미지를 첨부</div>
+          </div>
+          <ul class="image-preview_ul" id="image-preview-box-container"></ul>
+        </div>
+      
+      </div>
+
+      <div class="division_section"></div>
+    
+      <div class="category_area">
+        <div class="common-input_box">
+          <input type="text" name="productCategoryName" class="product_input" id="productCategoryName" placeholder="카테고리명을 입력해주세요." autocomplete="off">
+          <label for="productCategoryName" class="product_input_label"><span>* </span>카테고리명</label>
+          <div class="product_input_hole__category"></div>
+          <div id="autocomplete_div__category" class="--displayFalse">
+            <ul id="autocomplete_ul__category" class="autocomplete-text-ul"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="brand_area">
+        <div class="common-input_box">
+          <input type="text" name="productBrandName" class="product_input" id="productBrandName" placeholder="브랜드명을 입력해주세요." autocomplete="off">
+          <label for="productBrandName" class="product_input_label"><span>* </span>브랜드명</label>
+          <div class="product_input_hole__brand"></div>
+          <div id="autocomplete_div__brand" class="--displayFalse">
+            <ul id="autocomplete_ul__brand" class="autocomplete-text-ul"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-name_area">
+        <div class="common-input_box">
+          <input type="text" name="productName" class="product_input" id="productName" placeholder="상품명을 입력해주세요.">
+          <label for="productName" class="product_input_label"><span>* </span>상품명</label>
+          <div class="product_input_hole__product-name"></div>
+        </div>
+      </div>
+
+      <div class="color_area">
+        <div class="common-input_box">
+          <div class="color-input_box" id="productColor">
+            <input type="radio" name="productColor" id="colorRadioBtn01"  value="black" checked>
+            <label for="colorRadioBtn01" class="color_radio-btn_label --black"></label>
+            <input type="radio" name="productColor" id="colorRadioBtn02"  value="red">
+            <label for="colorRadioBtn02" class="color_radio-btn_label --red"></label>
+            <input type="radio" name="productColor" id="colorRadioBtn03"  value="pink">
+            <label for="colorRadioBtn03" class="color_radio-btn_label --pink"></label>
+            <input type="radio" name="productColor" id="colorRadioBtn04"  value="orange">
+            <label for="colorRadioBtn04" class="color_radio-btn_label --orange"></label>
+            <input type="radio" name="productColor" id="colorRadioBtn05"  value="yellow">
+            <label for="colorRadioBtn05" class="color_radio-btn_label --yellow"></label>
+            <input type="radio" name="productColor" id="colorRadioBtn06"  value="green">
+            <label for="colorRadioBtn06" class="color_radio-btn_label --green"></label>
+            <input type="radio" name="productColor" id="colorRadioBtn07"  value="skyblue">
+            <label for="colorRadioBtn07" class="color_radio-btn_label --skyblue"></label>
+            <input type="radio" name="productColor" id="colorRadioBtn08"  value="navy">
+            <label for="colorRadioBtn08" class="color_radio-btn_label --navy"></label>
+            <input type="radio" name="productColor" id="colorRadioBtn09"  value="purple">
+            <label for="colorRadioBtn09" class="color_radio-btn_label --purple"></label>
+            <input type="radio" name="productColor" id="colorRadioBtn10"  value="white">
+            <label for="colorRadioBtn10" class="color_radio-btn_label --white"></label>
+          </div>
+          <label for="productColor" class="product_input_label"><span>* </span>상품색상</label>
+        </div>
+      </div>
+
+      <div class="size_area">
+        <div class="common-input_box">
+          <input type="text" name="productSize" class="product_input" id="productSize" placeholder="상품사이즈를 입력해주세요.">
+          <label for="productSize" class="product_input_label"><span>* </span>상품사이즈</label>
+          <div class="product_input_hole__size"></div>
+        </div>
+      </div>
+
+      <div class="price_area">
+        <div class="common-input_box">
+          <input type="text" name="productPrice" class="product_input" id="productPrice" inputNumbersOnly koreanCurrency placeholder="상품가격을 입력해주세요.">
+          <label for="productPrice" class="product_input_label"><span>* </span>상품가격</label>
+          <div class="product_input_hole__price"></div>
+        </div>
+      </div>
+
+      <div class="stock_area">
+        <div class="common-input_box">
+          <input type="text" name="productStock" class="product_input" id="productStock" inputNumbersOnly placeholder="상품재고량을 입력해주세요.">
+          <label for="productStock" class="product_input_label"><span>* </span>상품재고량</label>
+          <div class="product_input_hole__stock"></div>
+        </div>
+      </div>
+
+      <div class="display_area">
+        <div class="common-input_box" id="productDisplayInputs">
+          <div class="display-input_box">
+            <input type="radio" id="displayBtn1" name="isProductDisplayed" value="true" checked>
+            <label for="displayBtn1" class="displayBtn1">노출</label>
+            <input type="radio" id="displayBtn2" name="isProductDisplayed" value="false">
+            <label for="displayBtn2" class="displayBtn2">비노출</label>
+          </div>
+          <label for="productDisplayInputs" class="product_input_label"><span>* </span>상품노출여부</label>
+        </div>
+      </div>
+
+      <div class="description_area">
+        <div class="common-input_box">
+          <div class="description-input_box">
+            <textarea name="productDescription" id="productDescription" placeholder="상품설명을 입력해주세요."></textarea>
+            <label for="productDescription" class="product_input_label"><span>* </span>상품설명</label>
+            <div class="product_input_hole__description"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="submit_area">
+        <div class="submit-input_box">
+          <input type="submit" value="판매글작성" class="submit_input" id="productSubmit">
+          <label for="productSubmit" class="submit_input_label">판매글 작성</label>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+</body>
+</html>

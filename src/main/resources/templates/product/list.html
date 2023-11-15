@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <!--  chatbot-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/product/list.css}">
+    <script th:src="@{/js/product/list.js}"></script>
+    <!--  chatbot-->
+    <script th:src="@{/js/chatbot/chatbot.js}" type="text/javascript" defer="defer"></script>
+
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: headerFragment}"></div>
+
+<script th:inline="javascript">
+    let lastProductId = [[${lastProductId_from_server}]];
+</script>
+
+<div class="container" id="container">
+    <div class="menu-bar">
+
+        <div class="filter-text_box" id="filter-text_box">
+            <span class="filter_text">Filters</span>
+        </div>
+        <div class="applied-filter_area">
+            <div class="applied-filter_box"></div>
+        </div>
+        <div class="productSearchText">
+            Search
+        </div>
+        <div class="productSearchInput">
+            <input type="text" placeholder="상품명을 입력하세요" class="searchKeyword" id="searchKeyword">
+            <button id="searchButton" class="searchButton"></button>
+        </div>
+
+        <form id="filters">
+            <!-- 카테고리 -->
+            <div class="productCategoryText">
+                Categories
+            </div>
+            <div class="productCategorySelector">
+                <div class="categoryNames-con">
+                    <input type="checkbox" name="categories" id="categoryCheckBtn1" value="모자">
+                    <span class="categoryNames">모자</span>
+                    <label for="categoryCheckBtn1" class="categoryCheckBtn"></label>
+                </div>
+                <div class="categoryNames-con">
+                    <input type="checkbox" name="categories" id="categoryCheckBtn2" value="상의">
+                    <span class="categoryNames">상의</span>
+                    <label for="categoryCheckBtn2" class="categoryCheckBtn"></label>
+                </div>
+                <div class="categoryNames-con">
+                    <input type="checkbox" name="categories" id="categoryCheckBtn3" value="하의">
+                    <span class="categoryNames">하의</span>
+                    <label for="categoryCheckBtn3" class="categoryCheckBtn"></label>
+                </div>
+                <div class="categoryNames-con">
+                    <input type="checkbox" name="categories" id="categoryCheckBtn4" value="신발">
+                    <span class="categoryNames">신발</span>
+                    <label for="categoryCheckBtn4" class="categoryCheckBtn"></label>
+                </div>
+                <div class="categoryNames-con">
+                    <input type="checkbox" name="categories" id="categoryCheckBtn5" value="아우터">
+                    <span class="categoryNames">아우터</span>
+                    <label for="categoryCheckBtn5" class="categoryCheckBtn"></label>
+                </div>
+                <div class="categoryNames-con">
+                    <input type="checkbox" name="categories" id="categoryCheckBtn6" value="패션잡화">
+                    <span class="categoryNames">패션잡화</span>
+                    <label for="categoryCheckBtn6" class="categoryCheckBtn"></label>
+                </div>
+                <div class="categoryNames-con">
+                    <input type="checkbox" name="categories" id="categoryCheckBtn7" value="가방">
+                    <span class="categoryNames">가방</span>
+                    <label for="categoryCheckBtn7" class="categoryCheckBtn"></label>
+                </div>
+            </div>
+            <!-- 브랜드 -->
+            <div class="productBrandText">
+                Brands
+            </div>
+            <div class="productBrandSelector">
+                <div class="brandNames-con">
+                    <input type="checkbox" name="brands" id="brandCheckBtn1" value="Nike">
+                    <span class="brandNames">Nike</span>
+                    <label for="brandCheckBtn1" class="brandCheckBtn"></label>
+                </div>
+                <div class="brandNames-con">
+                    <input type="checkbox" name="brands" id="brandCheckBtn2" value="Adidas">
+                    <span class="brandNames">Adidas</span>
+                    <label for="brandCheckBtn2" class="brandCheckBtn"></label>
+                </div>
+                <div class="brandNames-con">
+                    <input type="checkbox" name="brands" id="brandCheckBtn3" value="New Balance">
+                    <span class="brandNames">New Balance</span>
+                    <label for="brandCheckBtn3" class="brandCheckBtn"></label>
+                </div>
+                <div class="brandNames-con">
+                    <input type="checkbox" name="brands" id="brandCheckBtn4" value="Puma">
+                    <span class="brandNames">Puma</span>
+                    <label for="brandCheckBtn4" class="brandCheckBtn"></label>
+                </div>
+                <div class="brandNames-con">
+                    <input type="checkbox" name="brands" id="brandCheckBtn5" value="Converse">
+                    <span class="brandNames">Converse</span>
+                    <label for="brandCheckBtn5" class="brandCheckBtn"></label>
+                </div>
+                <div class="brandNames-con">
+                    <input type="checkbox" name="brands" id="brandCheckBtn6" value="Vans">
+                    <span class="brandNames">Vans</span>
+                    <label for="brandCheckBtn6" class="brandCheckBtn"></label>
+                </div>
+                <div class="brandNames-con">
+                    <input type="checkbox" name="brands" id="brandCheckBtn7" value="Fila">
+                    <span class="brandNames">Fila</span>
+                    <label for="brandCheckBtn7" class="brandCheckBtn"></label>
+                </div>
+                <div class="brandNames-con">
+                    <input type="checkbox" name="brands" id="brandCheckBtn8" value="Asics">
+                    <span class="brandNames">Asics</span>
+                    <label for="brandCheckBtn8" class="brandCheckBtn"></label>
+                </div>
+            </div>
+            <!-- 색상 -->
+            <div class="productColorText">
+                Colors
+            </div>
+            <div class="productColorSelector" id="productColor">
+                <input type="checkbox" name="colors" id="colorCheckBtn1"  value="black">
+                <label for="colorCheckBtn1" class="colorCheckBtn --black"></label>
+                <input type="checkbox" name="colors" id="colorCheckBtn2"  value="red">
+                <label for="colorCheckBtn2" class="colorCheckBtn --red"></label>
+                <input type="checkbox" name="colors" id="colorCheckBtn3"  value="pink">
+                <label for="colorCheckBtn3" class="colorCheckBtn --pink"></label>
+                <input type="checkbox" name="colors" id="colorCheckBtn4"  value="orange">
+                <label for="colorCheckBtn4" class="colorCheckBtn --orange"></label>
+                <input type="checkbox" name="colors" id="colorCheckBtn5"  value="yellow">
+                <label for="colorCheckBtn5" class="colorCheckBtn --yellow"></label>
+                <input type="checkbox" name="colors" id="colorCheckBtn6"  value="green">
+                <label for="colorCheckBtn6" class="colorCheckBtn --green"></label>
+                <input type="checkbox" name="colors" id="colorCheckBtn7"  value="skyblue">
+                <label for="colorCheckBtn7" class="colorCheckBtn --skyblue"></label>
+                <input type="checkbox" name="colors" id="colorCheckBtn8"  value="navy">
+                <label for="colorCheckBtn8" class="colorCheckBtn --navy"></label>
+                <input type="checkbox" name="colors" id="colorCheckBtn9"  value="purple">
+                <label for="colorCheckBtn9" class="colorCheckBtn --purple"></label>
+                <input type="checkbox" name="colors" id="colorCheckBtn10"  value="white">
+                <label for="colorCheckBtn10" class="colorCheckBtn --white"></label>
+            </div>
+
+        </form>
+
+    </div>
+    <div class="product-list-container" id="product-list-container">
+        <div class="product-list" id="product-list"></div>
+    </div>
+</div>
+<!--chatbot-->
+<div class="chatbot" >
+</div>
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+</body>
+</html>

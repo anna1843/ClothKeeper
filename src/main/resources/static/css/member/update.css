@@ -1,0 +1,102 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/header.css);
+@import url(/css/common/footer.css);
+/* 페이지 컨테이너 */
+.container {
+    width: 100%;
+    padding: 20px;
+}
+
+/* 네비게이션 및 업데이트 컨테이너 */
+.container .nav {
+    display: flex;
+    justify-content: center;
+}
+
+.container .update-con {
+    width: 100%;
+    max-width: 800px;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* 제목 스타일 */
+.container .title h1 {
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+}
+
+/* 폼 스타일 */
+.container form ul {
+    list-style: none;
+    padding: 0;
+}
+
+.container form ul li {
+    margin-bottom: 10px;
+}
+
+.container form label {
+    display: block;
+    font-weight: bold;
+}
+
+.container form input[type="text"],
+.container form input[type="email"],
+.container form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.container form select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.container form .error {
+    color: red;
+    margin-top: 5px;
+}
+
+.container form input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.container form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.container a {
+    text-decoration: none;
+    margin-right: 10px;
+    font-size: 16px;
+}
+button[type="button"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+button[type="button"]:hover {
+    background-color: #0056b3;
+}
+a button[type="button"] {
+    color: white;
+}

@@ -1,0 +1,120 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/header.css);
+@import url(/css/common/footer.css);
+/*chatbot*/
+@import url(/css/common/chatbot.css);
+
+/* container */
+.container{
+    width: 100%;
+}
+.container .join{
+    width: 100%;
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+.container .join .join-con{
+    flex-basis: 800px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 50px;
+    /* background-color: #FFF2F2; */
+}
+/* 제목 */
+.container .join .join-con .title{
+    padding: 20px;
+    gap: 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid #7285d3a4;
+}
+.container .join .join-con .title h1 img{
+    padding-top: 15px;
+    width: 40px;
+    height: inherit;
+    display: inline-block;
+    align-items: center;
+}
+/* button */
+.container .join .join-con .button{
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px;
+    box-sizing: border-box;
+    text-align: center;
+}
+/*  일반 회원가입 버튼 */
+.container .join .join-con .button .joinBtn{
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    box-sizing: border-box;
+    align-items: center;
+    text-align: center;
+}
+.container .join .join-con .button .joinBtn .jBtn{
+    width: 120px;
+    height: 30px;
+    flex: 1;
+    padding: 30px ;
+    box-sizing: border-box;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 15px;
+    border-top: 1px solid #7285d3;
+    border-right: 1px solid #7285d3;
+    border-left: 30px solid #7285d3;
+    border-bottom: 1px solid #7285d3;
+    transition: all 0.3s;
+    /* background: transparent; */
+    background-color: white;
+    box-shadow: 0px 1px 1px 0px #8C9CDB, inset 0px -2px 4px -1px #8c9cdb98;
+}
+.container .join .join-con .button .jBtn:hover{
+    border-left-width: 4px;
+}
+/* 간편 회원가입 버튼 */
+.container .join .join-con .button .semiBtn{
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    box-sizing: border-box;
+    align-items: center;
+    text-align: center;
+}
+.container .join .join-con .button .semiBtn .sBtn{
+    width: 120px;
+    height: 30px;
+    flex: 1;
+    padding: 30px ;
+    box-sizing: border-box;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 15px;
+    border-top: 1px solid #7285d3;
+    border-right: 1px solid #7285d3;
+    border-left: 30px solid #7285d3;
+    border-bottom: 1px solid #7285d3;
+    transition: all 0.3s;
+    /* background: transparent; */
+    background-color: white;
+    box-shadow: 0px 1px 1px 0px #8C9CDB, inset 0px -2px 4px -1px #8c9cdb98;
+}
+.container .join .join-con .button .sBtn:hover{
+    border-left-width: 4px;
+}

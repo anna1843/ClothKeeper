@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항 목록 페이지</title>
+    <link rel="stylesheet" th:href="@{/css/notice/list.css}">
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: headerFragment}"></div>
+<div class="List">
+    <div class="List-con">
+        <div class="List-title">
+            <div class="title">
+                <h1>공지사항 <img th:src="@{/images/notice.png}" alt="notice"></h1>
+            </div>
+        </div>
+        <div class="search">
+            <div class="form">
+                <form th:action="@{/notice/list(page=0 ,search=${param.search} ,select=${param.select})}" method="get">
+                    <select name="select" id="select" class="select">
+<!--                        param값을 가져와서 검색-->
+                        <option th:value="''" th:selected="${#strings.isEmpty(param.select)}">전체</option>
+                        <option th:value="noticeTitle" th:selected="${#strings.equals(param.select, 'noticeTitle')}">제목</option>
+                        <option th:value="noticeContent" th:selected="${#strings.equals(param.select, 'noticeContent')}">내용</option>
+                    </select>
+                    <input type="text" name="search" id="search" th:value="${param.search}" placeholder="검색어를 입력하세요." class="input">
+                    <button type="submit">
+                        <img th:src="@{/images/zoom.png}" alt="검색" class="zoom">
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="type">
+                <ul>
+                    <li>
+                        <span>
+                            <a th:href="@{/notice/list(page=0 ,search=${param.search} ,select=${param.select})}">전체</a>
+                        </span>
+                    </li>
+                    <li>
+                        <span>
+                            <a th:href="@{/notice/list/{type}(type='product')}">상품</a>
+                        </span>
+                    </li>
+                    <li>
+                        <span>
+                            <a th:href="@{/notice/list/{type}(type='delivery')}">배송</a>
+                        </span>
+                    </li>
+                    <li>
+                       <span>
+                            <a th:href="@{/notice/list/{type}(type='event')}">이벤트</a>
+                        </span>
+                    </li>
+                    <li>
+                        <span>
+                            <a th:href="@{/notice/list/{type}(type='holiday')}">공휴일</a>
+                        </span>
+                    </li>
+                </ul>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th class="th_type">구분</th>
+                <th class="th_title">제목</th>
+                <th class="th_writer">작성자</th>
+                <th class="create">생성시간</th>
+                <th class="update">수정시간</th>
+                <th class="hit">조회수</th>
+                <th class="detail">보기</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="notice: ${noticeList}">
+                <td th:text="${notice.notType}"></td>
+                <td th:text="${notice.noticeTitle}"></td>
+                <td th:text="${notice.notWriter}"></td>
+                <td th:text="${#temporals.format(notice.createTime,'yyyy.MM.dd')}"></td>
+                <td th:text="${#temporals.format(notice.updateTime,'yyyy.MM.dd')}"></td>
+                <td th:text="${notice.notHit}"></td>
+                <td><a th:href="@{/notice/detail/{id}(id=${notice.notId})}">상세보기</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="page">
+            <ul>
+                <li>
+                    <span th:if="${1 == noticeList.pageable.pageNumber+1}" style="font-weight:bold" class="span0"></span>
+                    <span th:unless="${1 == noticeList.pageable.pageNumber+1}">
+                        <a th:href="@{/notice/list(page=0, search=${param.search}, select=${param.select})}" class="span1">처음</a>
+                        <!--처음으로 이동-->
+                    </span>
+                </li>
+                <li>
+                    <span th:if="${1 == noticeList.pageable.pageNumber+1}" style="font-weight:bold" class="span0"></span>
+                    <span th:unless="${1 == noticeList.pageable.pageNumber+1}">
+                        <a th:href="@{/notice/list(page=${noticeList.pageable.pageNumber-1}, search=${param.search}, select=${param.select})}" class="=span1">이전</a>
+                        <!--이전페이지로 이동-->
+                    </span>
+                </li>
+                <li>
+                    <!--블럭 처리-->
+                    <li th:each="i: ${#numbers.sequence(startPage, endPage)}" class="block">
+                        <span th:if="${i == noticeList.pageable.pageNumber+1}" th:text="${i}" class="now"></span>
+                        <a th:unless="${i == noticeList.pageable.pageNumber+1}" th:href="@{/notice/list(page=${i - 1}, search=${param.search}, select=${param.select})}" th:text="${i}"></a>
+                    </li>
+                </li>
+                <li>
+                    <span th:if="${noticeList.totalPages == noticeList.pageable.pageNumber + 1}" class="span0">끝</span>
+                    <span th:unless="${noticeList.totalPages == noticeList.pageable.pageNumber + 1}">
+                        <a th:href="@{/notice/list(page=${noticeList.pageable.pageNumber + 1}, search=${param.search}, select=${param.select})}" classa="span1">다음</a>
+                    </span>
+                </li>
+                <li>
+                    <!--현재 페이지가 마지막 페이지이면 span표시-->
+                    <span th:if="${noticeList.totalPages == noticeList.pageable.pageNumber + 1}" class="span0">END</span>
+                    <span th:unless="${noticeList.totalPages == noticeList.pageable.pageNumber + 1}">
+                        <a th:href="@{/notice/list(page=${noticeList.totalPages-1}, search=${param.search}, select=${param.select})}" class="span1">마지막</a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+</html>

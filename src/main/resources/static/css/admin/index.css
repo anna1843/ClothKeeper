@@ -1,0 +1,174 @@
+@import url(/css/common/reset.css);
+@import url(/css/admin/common/header.css);
+@import url(/css/admin/common/sidebar.css);
+
+
+/*catfather49@gmail.com*/
+
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  html,body{
+    background: #F0F2F5; /* footer 있던 곳*/
+    width: 100%;
+    min-height:100%;
+  }
+  ul,li{
+    list-style: none;
+  }
+  a{
+    text-decoration: none;
+    color: #000;
+  }
+
+  table {
+    width: 100%;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+  }
+  th, td {
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+  }
+
+  button{
+    border: 0;
+    background-color: transparent;
+  }
+
+
+
+ /* main ============================================================================*/
+
+.main{
+  background-color: #F0F2F5;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+
+.container .main-section1 > ul {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.container .main-section1 > ul > li {
+  width: 200px;
+  text-align: left;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #bcbcbc;
+}
+
+.sec1-title{
+  font-weight: bold;
+}
+
+.sec1-item{
+  padding: 10px;
+}
+
+.sec1-item > li{
+  margin-bottom: 9px;
+}
+
+
+
+
+/* main-section2 */
+
+.main-section2 .workList {
+
+  margin: 30px auto;
+  background-color: white;
+  border: 1px solid #bcbcbc;
+  padding: 10px;
+}
+
+.main-section2 .workList .workList-title{
+ font-weight: bold;
+}
+
+.main-section2 .workList > ul{
+  display: flex;
+  padding: 10px;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.main-section2 .workList > ul  .workList-item-number{
+  margin-left: 10px;
+  color: red;
+}
+
+
+/* main-section3  */
+
+.main-section3{
+  display: flex;
+  justify-content: space-between
+}
+
+
+/* main-sec3 > 베스트 상품 */
+.productBest{
+  width: 45%;
+  background-color: white;
+  border: 1px solid #bcbcbc;
+  padding: 10px;
+}
+
+.productBest .productBest-title{
+  font-weight: bold;
+}
+
+.productBest > ul{
+  padding: 10px;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr;
+}
+
+.productBest > ul > li{
+  margin-bottom: 5px;
+}
+
+/* main-sec3 > 일자별 요약 */
+
+.byDateStatus{
+  width: 45%;
+  background-color: white;
+  border: 1px solid #bcbcbc;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.byDateStatus .byDateStatus-top{
+  padding: 10px;
+}
+.byDateStatus .byDateStatus-top .byDateStatus-title{
+  font-weight: bold;
+}
+
+.byDateStatus-table{
+  text-align: center;
+
+}
+
+  /* footer */
+
+  .footer{
+    background-color: #cdd4ef;
+  }

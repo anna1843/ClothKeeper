@@ -1,0 +1,205 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/header.css);
+@import url(/css/common/footer.css);
+/* container */
+.container{
+    width: 100%;
+}
+.container .update{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+.container .update .update-con{
+    flex-basis: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    box-sizing: border-box;
+    gap: 30px;
+}
+/* title */
+.container .update .update-con .title{
+    padding: 20px;
+    gap: 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid #7285d3a4;
+}
+/* 작성 form */
+.container .update .update-con .update-form{
+    padding: 10px;
+    box-sizing: border-box;
+    justify-content: center;
+}
+.container .update .update-con .update-form form{
+    margin: auto;
+    text-align: center;
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    box-sizing: border-box;
+}
+.container .update .update-con .update-form form>ul{
+    width: inherit;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+/* Btn과 내용 제외 li */
+.container .update .update-con .update-form form>ul>li:not(.Btn):not(.contentLi){
+    width: 900px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    text-align: center;
+    align-items: center;
+    box-sizing: border-box;
+}   
+/* 내용 li */
+.container .update .update-con .update-form form>ul>li.contentLi{
+    width: 900px;
+    display: flex;
+    justify-content: start;
+    margin-bottom: 15px;
+    /* text-align: center;
+    align-items: center; */
+    box-sizing: border-box;
+}
+/* 내용의 label 제외 */
+.container .update .update-con .update-form form>ul>li label:not(.contentLabel){
+    width: 120px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+}
+/* 내용 label을 감싸는 div */
+.container .update .update-con .update-form form>ul>li .content{
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+}
+.container .update .update-con .update-form form>ul>li .content label{
+    width: 120px;
+    height: 30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+/* 내용 작성 textarea */
+.container .update .update-con .update-form form>ul>li.contentLi textarea{
+    width: 780px;
+    height: 300px;
+    padding: 10px;
+    box-shadow: inset 0px -2px 4px -1px #8c9cdb;
+    border: 1px solid #8c9cdb;
+    resize: none;
+}
+/* button제외 input + readonly가 아닌 input제외 */
+.container .update .update-con .update-form form>ul>li:not(.Btn) input:not(.writeInput){
+    width: 780px;
+    height: 20px; 
+    padding: 10px;
+    /* box-shadow: inset 0px -2px 4px -1px #8c9cdb; */
+    border-bottom: 2px solid #cccccc;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+}
+.container .update .update-con .update-form form>ul>li:not(.Btn) input.writeInput{
+    width: 780px;
+    height: 20px; 
+    padding: 10px;
+    box-shadow: inset 0px -2px 4px -1px #8c9cdb;
+    border: 1px solid #8c9cdb;
+}
+/* select */
+.container .update .update-con .update-form form>ul>li select{
+    width: 780px;
+    height: 30px;
+    /* appearance: none;
+    box-shadow: inset 0px -2px 4px -1px #8c9cdb;
+    border: none; */
+}
+.container .update .update-con .update-form form>ul>li select:focus {
+    border: 1px solid #8c9cdb;
+    outline: none;
+}
+.container .update .update-con .update-form form>ul>li.Btn{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* border: 2px solid yellow; */
+}
+.container .update .update-con .update-form form>ul>li.Btn .button{
+    width: 200px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    box-sizing: border-box;
+    /* border: 2px solid red; */
+}
+.container .update .update-con .update-form form>ul>li.Btn .button input{
+    width: 150px;
+    height: 30px;
+    display: flex;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #8C9CDB;
+    border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 1px 0px #8C9CDB, inset 0px -2px 4px -1px #8c9cdb98;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.3s;
+    background: transparent;
+}
+.container .update .update-con .update-form form>ul>li.Btn .button input:hover{
+    background-color: #DADFF3;
+    color: white;
+}
+.container .update .update-con .update-form form>ul>li.Btn .button a{
+    width: 150px;
+    height: 30px;
+    display: flex;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #8C9CDB;
+    border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 1px 0px #8C9CDB, inset 0px -2px 4px -1px #8c9cdb98;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.3s;
+    background: transparent;
+}
+.container .update .update-con .update-form form>ul>li.Btn .button a:hover{
+    background-color: #DADFF3;
+    color: white;
+}

@@ -1,0 +1,209 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/header.css);
+@import url(/css/common/footer.css);
+/* notice.list */
+.List{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.List .List-con{
+    flex-basis: 1300px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/* title */
+.List .List-con .List-title{
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #7285d3a4;
+}
+.List .List-con .List-title h1 img{
+    padding-top: 10px;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    align-items: center;
+}
+/* search */
+.List .List-con .search{
+    height: 50px;
+    display: flex;
+    padding: 10px 0 0 10px;
+    box-sizing: border-box;
+    justify-content: center;
+}
+.List .List-con .search .form{
+    margin: auto;
+    text-align: center;
+}
+.List .List-con .search form{
+    width: 700px;
+    border: 1px solid #7285d3;
+    border-radius: 10px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    /* gap: 10px; */
+    box-sizing: border-box;
+    /* box-shadow: 2px #cccccc; */
+}
+.List .List-con .search form .select{
+    width: 200px;
+    border-radius: 10px;
+    border: none;
+    /* padding: 1px; */
+    font-size: 15px;
+    text-align: center;
+}
+.List .List-con .search form .select:focus{
+
+}
+.List .List-con .search form .input:focus{
+    outline: none;
+}
+.List .List-con .search form .input{
+    width: 475px;
+    border: none;
+    padding: 0 0 0 10px;
+}
+.List .List-con .search form button .zoom{
+    height: 25px;
+    width: 25px;
+    object-fit: cover;
+    cursor: pointer;
+    background: transparent;
+}
+ /* type */
+.List .List-con .type{
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    padding: 10px;
+    height: 100px;
+    align-items: center;
+}
+.List .List-con .type ul{
+    flex-basis: 1400px;
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    /* align-items: center; */
+}
+.List .List-con .type >ul>li{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex: 2;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #8C9CDB;
+    border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 1px 0px #8C9CDB, inset 0px -2px 4px -1px #8c9cdb98;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.3s;
+}
+.List .List-con .type >ul>li:hover{
+    background-color: #DADFF3;
+    color: white;
+}
+.List .List-con .type >ul>li span{
+    gap: 5px;
+    vertical-align: middle;
+    display: table-cell;
+    padding: 20px;
+    text-align: center;
+    align-items: center;
+}
+.List .List-con .type >ul>li a{
+  font-size:20px;
+  align-items: center;
+  display: block;
+  padding: 30px;
+}
+.List .List-con .type >ul>li a:hover{
+    color: white;
+}
+/* list table */
+table, th, td{
+    border-collapse: collapse;
+    border: 1px solid #A8AABC;
+    border-left: none;
+    border-right: none;
+    text-align: center;
+
+}
+.List .List-con table{
+    width: 100%;
+}
+.List .List-con table thead tr th{
+    border-top: 2px solid #7286D3;
+    font-size: 17px;
+    padding: 10px;
+}
+/* .List .List-con table thead tr:nth-child(2) th{
+    background-color: #7286D3;
+    font-size: 20px;
+    padding: 10px;
+} */
+.List .List-con table tbody tr td{
+    padding: 10px 0;
+}
+.List .List-con table tbody tr td .title{
+    text-align: left;
+}
+/* page */
+.List .List-con .page{
+    padding: 10px 0;
+    box-sizing: borer-box;
+    display: flex;
+    justify-content: center;
+}
+.List .List-con .page >ul{
+    flex-basis: 400px;
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+    align-items: flex-end;
+}
+.List .List-con .page >ul>li{
+}
+.List .List-con .page >ul>li.block{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+.List .List-con .page > ul> li.block a{
+    font-weight:bold;
+    padding:0 10px;
+    display:block;
+}
+.List .List-con .page > ul> li span{
+   font-size:15px;
+}
+.List .List-con .page > ul> li a{
+  font-size:12px;
+  font-weight:bold;
+}
+.List .List-con .page > ul> li span.span0{
+  color: #9E8BFF;
+  font-weight:bold;
+  padding:2px 10px;
+  border-radius:5px;
+}
+.List .List-con .pages > ul> li span a.span1{
+  padding:2px 10px;
+  font-weight: bold;
+  color: #9E8BFF;
+}

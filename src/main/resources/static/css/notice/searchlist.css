@@ -1,0 +1,145 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/header.css);
+@import url(/css/common/footer.css);
+.List{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.List .List-con{
+    flex-basis: 1300px;
+    min-height: 500px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.List .List-con .List-title{
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+}
+.List .List-con .List-title .title table {
+    border-top: none;
+}
+.List .List-con .List-title .title table tr td{
+    font-weight: bold;
+    border-top: none;
+    border-bottom: 2px solid #7286D3;
+}
+.List .List-con .search{
+    padding: 0 0 0 10px;
+    box-sizing: border-box;
+    justify-content: center;
+    /* line-height: 20px; */
+}
+.List .List-con .search .form{
+    margin: auto;
+    text-align: center;
+}
+.List .List-con .search form{
+    width: 700px;
+    border: 1px solid #7285d3;
+    border-radius: 10px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    /* gap: 10px; */
+    box-sizing: border-box;
+    /* box-shadow: 2px #cccccc; */
+}
+.List .List-con .search form .select{
+    width: 200px;
+    border-radius: 10px;
+    border: none;
+    /* padding: 1px; */
+    font-size: 15px;
+    text-align: center;
+}
+.List .List-con .search form .select:focus{
+
+}
+.List .List-con .search form input:focus{
+    outline: none;
+}
+.List .List-con .search form input:nth-child(1){
+    flex: 5;
+    border: 0;
+    padding: 0 0 0 10px;
+}
+.List .List-con .search form input:nth-child(2){
+    flex: 1;
+    border: 0;
+    padding: 0 10px;
+    border-radius: 10%;
+    width: 25px;
+    height: 25px;
+}
+.List .List-con .type{
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    padding: 10px;
+}
+.List .List-con .type ul{
+    flex-basis: 1400px;
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    /* align-items: center; */
+}
+.List .List-con .type >ul>li{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex: 2;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #8C9CDB;
+    border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 1px 0px #8C9CDB, inset 0px -2px 4px -1px #8c9cdb98;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.List .List-con .type >ul>li span{
+    gap: 5px;
+    vertical-align: middle;
+    display: table-cell;
+    padding: 20px;
+    text-align: center;
+    align-items: center;
+}
+.List .List-con .type >ul>li a{
+    font-size:20px;
+    align-items: center;
+}
+table, th, td{
+    border-collapse: collapse;
+    border: 1px solid #A8AABC;
+    border-left: none;
+    border-right: none;
+    text-align: center;
+}
+.List .List-con table{
+    width: 100%;
+}
+.List .List-con table thead tr th{
+    border-top: 2px solid #7286D3;
+    font-size: 17px;
+    padding: 10px;
+}
+/* .List .List-con table thead tr:nth-child(2) th{
+    background-color: #7286D3;
+    font-size: 20px;
+    padding: 10px;
+} */
+.List .List-con table tbody tr td{
+    padding: 10px 0;
+}
+.List .List-con table tbody tr td .title{
+    text-align: left;
+}

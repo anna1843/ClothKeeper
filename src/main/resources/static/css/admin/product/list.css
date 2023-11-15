@@ -1,0 +1,258 @@
+@import url(/css/common/reset.css);
+@import url(/css/admin/common/header.css);
+@import url(/css/admin/common/sidebar.css);
+
+table {
+  width: 100%;
+  border-top: 1px solid #444444;
+  border-collapse: collapse;
+}
+th, td {
+  border-bottom: 1px solid #444444;
+  padding: 10px;
+}
+
+button{
+  border: 0;
+  background-color: transparent;
+}
+
+html{
+      background-color: #F0F2F5;
+}
+
+/* table,th,td{
+    border-collapse: collapse;
+    border: 1px solid #cccccc;
+    text-align: center;
+} */
+
+
+.main_wrap{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+  border-top: 1px solid white;
+  border-collapse: collapse;
+}
+th, td {
+  border-bottom: 1px solid white;
+  padding: 10px;
+  text-align: center;
+}
+th{
+  background-color: #4b66c7ae;
+}
+
+tbody tr:nth-child(2n) {
+  background-color: #bbdefb;
+}
+tbody tr:nth-child(2n+1) {
+  background-color: #e3f2fd;
+}
+tr{
+    height: 30px;
+}
+
+/*예진*/
+table tr td a:hover{
+    color: white;
+}
+
+
+.product {
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+.product .table_id {
+    width: 5%;
+    text-align: center;
+}
+.product .table_title {
+    width: 40%;
+    text-align: center;
+}
+.product .table_writer {
+    width: 15%;
+    text-align: center;
+}
+.product .table_date {
+    width: 15%;
+    text-align: center;
+}
+/*예진*/
+.product .table_detail {
+    width: 15%;
+    text-align: center;
+}
+/*예진*/
+.product .table_delete {
+    width: 15%;
+    text-align: center;
+}
+
+.main_wrap .searchBar_wrap{
+  width: 100%;
+  margin: 10px 0;
+}
+
+/* 예진 */
+/* .main_wrap .searchBar_wrap{
+    margin: 10px 0;
+} */
+
+.main_wrap .searchBar_wrap .searchBar{
+    /* 예진 */
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+}
+/* .main_wrap .searchBar_wrap .searchBar > input{
+ margin: 10px 0;
+} */
+/* 예진 */
+.main_wrap .searchBar_wrap .searchBar > input{
+    height: 30px;
+    width: 500px;
+    margin: 10px 0;
+}
+.main_wrap .searchBar_wrap .searchBar > input:focus{
+
+    border: 1.5px solid #7285d3;
+    outline: none;
+}
+/* .searchBar_wrap .searchBar .searchBarBtn{
+  width: 92px;
+    height: 30px;
+    flex: 1;
+    box-sizing: border-box;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 15px;
+    border-top: 1px solid #7285d3;
+    border-right: 1px solid #7285d3;
+    border-left: 20px solid #7285d3;
+    border-bottom: 1px solid #7285d3;
+    transition: all 0.3s;
+    background: transparent;
+    box-shadow: 0px 1px 1px 0px #8C9CDB, inset 0px -2px 4px -1px #8c9cdb98;
+} */
+/* 예진 */
+/* .searchBar_wrap .searchBar .searchBarBtn
+{
+    width: 92px;
+    height: 30px;
+    flex: 1;
+    box-sizing: border-box;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 15px;
+    border-top: 1px solid #7285d3;
+    border-right: 1px solid #7285d3;
+    border-left: 20px solid #7285d3;
+    border-bottom: 1px solid #7285d3;
+    transition: all 0.3s;
+    background: transparent;
+    box-shadow: 0px 1px 1px 0px #8C9CDB, inset 0px -2px 4px -1px #8c9cdb98;
+    position: absolute;
+    right: 1px;
+}
+.searchBar_wrap .searchBar .searchBarBtn:hover{
+  border-left-width: 4px;
+} */
+/* 검색 버튼 2안 */
+.searchBar_wrap .searchBar .searchBarBtn{
+    width: 92px;
+    height: 40px;
+    border-radius: 0 5px 5px 0;
+    text-align: center;
+    font-size: 18px;
+    background: #4b66c79e;
+    border: none;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+}
+.searchBar_wrap .searchBar .searchBarBtn:hover{
+    box-sizing: border-box;
+    background: #4b66c7;
+    box-shadow: 0 10px 10px 0 #cccccc;
+}
+
+
+/* 이 밑으로는 페이징 처리 로직이 포함되어 있으니 작업전에 물어봐주세요. */
+.searchBar_wrap{
+    width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+}
+.searchBar_wrap .searchBar {
+    /* align-items: center;
+    margin-left: 20px; */
+}
+
+.searchBar input[type="text"] {
+    padding: 5px 10px;
+    margin-right: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+.pagination_wrap {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    /* border: 1px solid #cccccc; */
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+.invisible {
+    visibility: hidden;
+}
+.pagination a, .pagination strong {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+.pagination strong {
+    background-color: #ddd;
+}
+
+.toFirstPage, .toPrev10Page, .toNext10Page, .toLastPage {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+
+
+

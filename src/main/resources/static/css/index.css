@@ -1,0 +1,338 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/header.css);
+@import url(/css/common/footer.css);
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
+@font-face {
+    font-family: 'intelone-mono-font-family-regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/intelone-mono-font-family-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* .container */
+/* reset.css에 없나요 = 만들게요... */
+*
+{
+  margin: 0;
+  padding: 0;
+}
+html,body{
+  width: 100%;
+  min-height:100%;
+}
+ul,li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+  color: #000;
+}
+html{
+  scroll-behavior: smooth;
+}
+
+/* 이동 스크롤 버튼 */
+.moveBtn{
+  position: fixed;
+  bottom: 6rem;
+  right: 2rem;
+  /* width: 30px;
+  height: 65px; */
+  width: 40px;
+  height: 80px;
+
+  border: 2px solid #E5E0FF;
+  border-radius: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  box-shadow: #BAADFF 0px 25px 50px -10px,
+   #BAADFF 0px 15px 30px -15px,
+    #BAADFF 0px -1px 3px 0px inset;
+}
+/* header버튼 */
+.moveBtn .top{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding-bottom: 3px;
+}
+.moveBtn .top .topBtn{
+  /* width: 20px;
+  height: 20px; */
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid #C8BEFF;
+  box-shadow: #CDD4EF 0px 1px 3px,
+   #CDD4EF 0px 1px 2px;
+  text-align: center;
+  transition: all 0.3s;
+}
+.moveBtn .top .topBtn a{
+  /* width: 20px;
+  height: 20px; */
+  width: 30px;
+  height: 30px;
+  
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.moveBtn .top .topBtn .moveBtnTop{
+  /* width: 20px;
+  height: 20px; */
+  width: 30px;
+  height: 30px;
+  
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.moveBtn .top .topBtn .moveBtnTop .img:not(.chat){
+    /* width: 20px;
+    height: 20px; */
+  
+    width: 30px;
+    height: 30px;  
+}
+.moveBtn .top .topBtn .moveBtnBotton .img:not(.chat){
+    /* width: 20px;
+    height: 20px; */
+
+    width: 30px;
+    height: 30px;
+}
+/* header 마우스 올릴 경우 */
+.moveBtn .top .topBtn:hover{
+  /* width: 20px;
+  height: 20px; */
+  width: 30px;
+  height: 30px;
+
+  border-radius: 50%;
+  text-shadow: 0px 0px 2px #644BDE;
+  background-color: #C8BEFF;
+  border: 2px solid #4f429071;
+  box-shadow: white 0px 1px 3px, white 0px 1px 2px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.moveBtn .top .topBtn a:hover{
+  color: white;
+  text-shadow: 0px 0px 2px #644BDE;
+}
+/* footer 버튼 */
+.moveBtn .bottom{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-top: 1px ridge #CDD4EF;
+  padding-top: 3px;
+}
+.moveBtn .bottom .bottomBtn{
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid #C8BEFF;
+  box-shadow: #CDD4EF 0px 1px 3px,#CDD4EF 0px 1px 2px;
+  text-align: center;
+  transition: all 0.3s;
+}
+.moveBtn .bottom .bottomBtn a{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.moveBtn .bottom .bottomBtn .moveBtnBotton{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+/* footer 마우스 올릴경우 */
+.moveBtn .bottom .bottomBtn:hover{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  text-shadow: 0px 0px 2px #644BDE;
+  background-color: #C8BEFF;
+  border: 2px solid #4f429071;
+  box-shadow: white 0px 1px 3px, white 0px 1px 2px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.moveBtn .bottom .bottomBtn a:hover{
+  text-shadow: 0px 0px 2px #644BDE;
+  color: white;
+}
+
+/* chatbot 임시 설정*/
+.chatbot{
+  position: fixed;
+  bottom: 2.5rem;
+  right: 1.64rem;
+  width: 50px;
+  height: 50px;
+   background:url("/images/chatbot2.png") no-repeat 50%/cover;
+   cursor:pointer;
+}
+
+
+.container{
+    width: 100%;
+}
+.container .index{
+    width: 100%;
+}
+.container .index .index-con{
+    width: 100%;
+}
+.container .index .index-con .sections{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container .index .index-con .sections .section.sec1{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: url(/images/sec1Bg_0.jpg) no-repeat 50%/cover;
+}
+.container .index .index-con .sections .section-sec1 .con{
+    flex-basis: 1920px;
+    height: 600px;
+    /* border: 1px solid; */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: #ffffff;;
+    /* background: url(/images/sec1Bg_0.jpg) no-repeat 50%/cover; */
+  }
+
+
+
+  /*메인 섹션 2번쨰*/
+
+  .container .index .index-con .sections .section-sec2{
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 50px;
+  }
+
+  .section-sec2 > ul{
+
+     display: grid;
+     grid-template-columns: repeat(4, 1fr);
+     grid-template-rows: repeat(2,minmax(200px, auto));
+     grid-auto-rows: minmax(150px, auto);
+     gap: 10px;
+     margin-top: 10px;
+
+  }
+
+  .section-sec2 > ul > li{
+      flex-basis: 1600px;
+      box-sizing: border-box;
+      padding: 20px 10px;
+      text-align: center;
+      background-color: white;
+
+      border: 1px solid #8C9CDB;
+      border-radius: 10px;
+      box-sizing: border-box;
+      box-shadow: 0px 1px 1px 0px #8C9CDB, inset 0px -2px 4px -1px #8c9cdb98;
+  }
+
+
+
+  .sections .section-sec2 .sec2-title > span{
+    font-family: 'intelone-mono-font-family-regular';
+    margin-left: 10px;
+  }
+
+  .sections .section-sec2 .sec2-title .title-eng{
+    font-size: 25px;
+    font-weight: bolder;
+    margin-bottom: 10px;
+    color: #7286d3;
+
+  }
+
+  .sections .section-sec2 .sec2-title .title-kor{
+    font-size: 15px;
+    color: gray;
+  }
+
+
+  .sections .section-sec2 > ul > li > .top-sec{
+
+  }
+
+  .sections .section-sec2 > ul > li > .top-sec > img{
+    border-radius: 10px;
+  }
+
+  .sections .section-sec2 > ul > li > .bottom-sec{
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+
+  }
+
+
+
+  .sections .section-sec2 > ul > li > .bottom-sec > div{
+    font-family: 'intelone-mono-font-family-regular';
+  }
+
+
+
+  .sections .section-sec2 > ul > li > .bottom-sec > .brand{
+
+
+  }
+
+  .sections > .section-sec2 >  ul > li > .bottom-sec .title{
+    font-weight: bolder;
+    font-size: 16px;
+    color: #8EA7E9;
+  }
+
+  .sections .section-sec2 > ul > li > .bottom-sec .description{
+    font-weight: 100;
+    font-size: 14px;
+
+  }
+
+ .sections > .section-sec2 >  ul > li > .bottom-sec .price{
+
+ }
+
+ .sections > .section-sec2 > .section-border{
+    border-bottom: 2px solid #7285d3a4;
+    width: 100%;
+    margin-bottom: 20px;
+ }
+

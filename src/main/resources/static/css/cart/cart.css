@@ -1,0 +1,96 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/header.css);
+@import url(/css/common/footer.css);
+
+button{
+  border: 0;
+  background-color: transparent;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+button:hover{
+  color: white;
+  font-weight: bold;
+}
+
+
+.main{
+  width: 100%;
+  /* background-color: #F0F2F5; */
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+}
+.main .title{
+  width: 1000px;
+  margin: auto;
+  padding: 20px;
+  display: contents;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: space-between;
+  border-bottom: 2px solid #7285d3a4;
+}
+.main .title h1{
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 10px 10px 250px;
+}
+.main .title h1 span{
+  color: #7285d3a4;
+}
+
+.Btn{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+  margin: 0 auto;
+}
+.Btn .price{
+  font-size: 28px;
+}
+.Btn button{
+  display: flex;
+  justify-content: center;
+  width: 150px;
+  height: 50px;
+  border: 2px solid #c5c5c5;
+  transition: all 0.3s;
+  align-items: center;
+  font-size: 25px;
+  border-radius: 10px;
+}
+.Btn button:hover{
+  background-color: #c5c5c5;
+  color: white;
+}
+
+table {
+  width: 70%;
+  text-align: center;
+  border: 1px solid #fff;
+  border-spacing: 1px;
+  font-family: 'Cairo', sans-serif;
+  margin: 20px auto;
+}
+table td {
+  padding: 10px;
+  background-color: #CDD4EF
+}
+table th {
+  background-color: #7286D3;
+  color: #fff;
+  padding: 10px;
+  transition: all 0.3s;
+}
+td a:hover{
+  color: white;
+  font-weight: bold;
+}
+th img {
+  width: 90px;
+  height: 90px;
+}
+

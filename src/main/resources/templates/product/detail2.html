@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<!-- 송원철 -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>-->
+    <script th:src="@{/js/review/review.js}" defer></script>
+</head>
+
+<body>
+    <th:block th:each="img : ${productImages}">
+        <img th:src="@{/images/{filename}(filename=${img.productImgSavedName})}" alt="" height="100" />
+    </th:block>
+    <!-- 송원철 -->
+    <form class="wishListForm1" sec:authorize="hasAnyRole('MEMBER', 'SEMIMEMBER', 'SELLER', 'ADMIN')">
+        <a class="btn btn-outline-dark"
+            th:href="@{(${member != null} ? '/cart/member/' + ${member.getMemberId()} : '/cart/semiMember/' + ${#authentication.principal.semiMemberEntity.semiMemberId})}">
+            <i class="bi-cart-fill me-1"></i>
+            Cart
+            <span class="badge bg-dark text-white ms-1 rounded-pill" th:text="${cartCount}">0</span>
+        </a>
+    </form>
+    <!----------->
+    <table>
+        <tr>
+            <th>상품아이디</th>
+            <td th:text="${product.id}"></td>
+        </tr>
+        <tr>
+            <th>날짜</th>
+            <td th:text="${product.productCreateTime}"></td>
+        </tr>
+        <tr>
+            <th>조회수</th>
+            <td th:text="${product.productHits}"></td>
+        </tr>
+        <tr>
+            <th>상품명</th>
+            <td th:text="${product.productName}"></td>
+        </tr>
+        <tr>
+            <th>상품색상</th>
+            <td th:text="${product.productColor}"></td>
+        </tr>
+        <tr>
+            <th>상품사이즈</th>
+            <td th:text="${product.productSize}"></td>
+        </tr>
+        <tr>
+            <th>설명</th>
+            <td th:text="${product.productDescription}"></td>
+        </tr>
+        <tr>
+            <th>상품작성자</th>
+            <td th:text="${product.memberNickName}"></td>
+        </tr>
+        <tr>
+            <th>상품가격</th>
+            <td th:text="${product.productPrice}"></td>
+        </tr>
+    </table>
+    <!-- 송원철 -->
+    <form class="wishListForm2" sec:authorize="hasAnyRole('MEMBER', 'SEMIMEMBER', 'SELLER', 'ADMIN')"
+        onsubmit="return addProduct();"
+        th:action="@{(${member != null} ? '/cart/member/' + ${member.getMemberId()} + '/' + ${product.id} : '/cart/semiMember/' + ${#authentication.principal.semiMemberEntity.semiMemberId} + '/' + ${product.id})}"
+        method="post">
+        <input class="form-control text-center me-3" id="amount" name="amount" type="num" value="1"
+            style="max-width: 3rem" />
+        <button class="btn btn-outline-dark flex-shrink-0" id="wish" type="submit"><i class="bi-cart-fill me-1"></i>장바구니
+        </button>
+    </form>
+    <script th:inline="javascript">
+        /* <![CDATA[ */
+        const button = document.getElementById("wish")
+
+        function addProduct() {
+            var count = document.getElementById("amount").value
+            if (isNaN(count)) {
+                alert("숫자를 입력해주세요.")
+                return false
+            } else {
+                return true
+            }
+        }
+    </script>
+    <form class="abc" sec:authorize="!isAuthenticated()">
+        <div class="d-flex">
+            <a class="btn btn-outline-dark" th:href="@{/login}">
+                <i class="bi-cart-fill me-1"></i>
+                장바구니
+            </a>
+        </div>
+    </form>
+    <!---------------->
+    <button onclick="listReq()">목록</button>
+    <button onclick="updateReq()">수정</button>
+    <button onclick="deleteReq()">삭제</button>
+    <div class="reply-con">
+        <div class="reply-write">
+            <form id="replyForm">
+                <input type="hidden" readonly name="productId" th:value="${product.id}" id="productId">
+                <ul>
+                    <li>
+                        <textarea name="review" id="review" cols="30" rows="1" placeholder="내용작성"></textarea>
+                    </li>
+                    <li class="Btn">
+                        <input type="button" value="답글작성" id="reviewBtn">
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <div class="reviewList">
+            <div id="reviewCon" class="reviewCon">
+
+            </div>
+        </div>
+    </div>
+</body>
+<script th:inline="javascript">
+    const listReq = () => {
+        console.log("글목록");
+        location.href = "/product/list";
+    }
+    const updateReq = () => {
+        console.log("수정");
+        const id = [[${ product.id }]];
+        location.href = "/product/update/" + id;
+    }
+    const deleteReq = () => {
+        console.log("삭제");
+        const id = [[${ product.id }]];
+        location.href = "/product/delete/" + id;
+    }
+
+
+</script>
+
+</html>

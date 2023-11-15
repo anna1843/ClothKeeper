@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>일반 회원가입</title>
+    <link rel="stylesheet" th:href="@{/css/member/join.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/member/checkDuplicate.js}" defer="defer"></script>
+    <script th:src="@{/js/member/confirmPw_join.js}" defer="defer"></script>
+    <script th:src="@{/js/member/email.js}" defer="defer"></script>
+    <script th:src="@{/js/member/join.js}" defer="defer"></script>
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> <!-- 카카오 주소 api -->
+    <script th:src="@{/js/member/addressApi.js}" defer="defer"></script> <!-- 카카오 주소 api -->
+    <script th:src="@{/js/member/join_email.js}" defer="defer"></script>
+    <script th:src="@{/js/member/join_validation.js}" defer="defer"></script> <!-- 이메일아이디, 이름, 닉네임, 휴대전화번호 유효성 검사 -->
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: headerFragment}"></div>
+<div class="container">
+    <div class="join">
+        <div class="join-con">
+            <div class="join-title">
+                <h1>일반 회원가입</h1>
+            </div>
+            <div class="join-form">
+                <form th:action="@{/member/join}" method="post" id="signupForm" th:object="${memberDto}">
+                    <ul>
+                        <li class="emailLi">
+                            <div class="email">
+                                <label>이메일</label>
+                                <div class="email-text">
+                                    <input type="text" id="emailId" name="emailId" required="required" placeholder="이메일 아이디 입력" class="emailbox">
+                                    <span> @ </span>
+                                    <input type="text" id="domainCustom" name="domainCustom" placeholder="도메인 직접 입력" class="domainbox">
+                                    <select id="domainList" required="required">
+                                        <option value="custom">직접 입력</option>
+                                        <option value="gmail.com">gmail.com</option>
+                                        <option value="naver.com">naver.com</option>
+                                        <option value="nate.com">nate.com</option>
+                                        <option value="daum.net">daum.net</option>
+                                    </select>
+                                    <input type="hidden" id="memberEmail" name="memberEmail" value="">
+                                    <button type="button" id="emailCheckButton">이메일 중복 확인</button>
+                                </div>
+                            </div>
+                        </li>
+                        <p th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}" class="error"></p>
+                        <span id="emailIdErrorMessage" style="color: red;"></span> <!-- 이메일 아이디 유효성 검사 오류 메시지를 표시할 영역 -->
+
+                        <!-- 인증번호 입력란 -->
+                        <li>
+                            <div class="code">
+                                <label th:for="emailVerificationCode" >인증번호</label>
+                                <input type="text" id="emailVerificationCode" required=required placeholder="인증번호 입력" class="box">
+                                <!-- 이메일 인증 버튼 -->
+                                <button type="button" id="certifyEmailButton" class="submitBtn">인증번호 전송</button>
+                                <button type="button" id="verifyEmailButton" class="checkBtn">인증번호 확인</button>
+                            </div>
+                            <!-- <button type="button" id="verifyEmailButton" class="checkBtn">인증번호 확인</button> -->
+                        </li>
+                        <li>
+                            <d id="emailAvailable" class="valid-feedback" style="display: none;"></d>
+                            <d id="emailNotAvailable" class="invalid-feedback" style="display: none;"></d>
+                        </li>
+                        <li>
+                            <!-- 인증 결과 메시지 영역 -->
+                            <div id="certifyEmailMessage" class="valid-feedback" style="display: none;"></div>
+                        </li>
+
+                        <!-- 비밀번호 -->
+                        <li>
+                            <label th:for="memberPassword">비밀번호</label>
+                            <input type="password" th:field="*{memberPassword}" required="required" placeholder="최소 하나의 특수문자, 알파벳, 숫자를 포함해야 합니다" class="box">
+                        </li>
+                        <p th:if="${#fields.hasErrors('memberPassword')}" th:errors="*{memberPassword}" class="error"></p>
+                        <li>
+                            <label th:for="confirmPassword">비밀번호 확인</label>
+                            <input type="password" th:field="*{confirmPassword}" required="required" placeholder="위와 동일한 비밀번호 입력" class="box">
+                        </li>
+                        <p th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="error"></p>
+                        <li><font id="checkMessage" size="2"></font></li>
+
+                        <!-- 이름 -->
+                        <li>
+                            <label th:for="memberName">이름</label>
+                            <input type="text" th:field="*{memberName}" required="required" placeholder="한글과 영문만 입력 가능합니다" class="box">
+                        </li>
+                        <p th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}" class="error"></p>
+                        <span id="memberNameErrorMessage" style="color: red;"></span> <!-- 이름 유효성 검사 오류 메시지를 표시할 영역 -->
+
+                        <!-- 닉네임 -->
+                        <li>
+                            <div class="nickName">
+                                <label th:for="memberNickName">닉네임</label>
+                                <input type="text" th:field="*{memberNickName}" required="required" placeholder="닉네임 입력" class="box">
+                                <!-- 닉네임 중복 확인 버튼 -->
+                                <button type="button" id="nickNameCheckButton" >닉네임 중복 확인</button>
+                            </div>
+                        </li>
+                        <p th:if="${#fields.hasErrors('memberNickName')}" th:errors="*{memberNickName}" class="error"></p>
+                        <span id="memberNickNameErrorMessage" style="color: red;"></span> <!-- 닉네임 유효성 검사 오류 메시지를 표시할 영역 -->
+                        <!-- 중복 확인 결과 메시지 영역 -->
+                        <li>
+                            <d id="nickNameAvailable" class="valid-feedback" style="display: none;"></d>
+                            <d id="nickNameNotAvailable" class="invalid-feedback" style="display: none;"></d>
+                        </li>
+                        
+                        <!-- 휴대전화 -->
+                        <li>
+                            <div class="phone">
+                                <label th:for="memberPhone">휴대전화</label>
+                                <input type="text" th:field="*{memberPhone}" required="required" placeholder="- 제외하고 입력해주세요" class="box">
+                                <!-- 휴대전화 중복 확인 버튼 -->
+                                <button type="button" id="phoneCheckButton">휴대전화 중복 확인</button>
+                            </div>
+                        </li>
+                        <p th:if="${#fields.hasErrors('memberPhone')}" th:errors="*{memberPhone}" class="error"></p>
+                        <span id="memberPhoneErrorMessage" style="color: red;"></span> <!-- 휴대전화번호 유효성 검사 오류 메시지를 표시할 영역 -->
+                        <!-- 중복 확인 결과 메시지 영역 -->
+                        <li>
+                            <d id="phoneAvailable" class="valid-feedback" style="display: none;"></d>
+                            <d id="phoneNotAvailable" class="invalid-feedback" style="display: none;"></d>
+                        </li>
+                        
+                        <!-- 생년월일 -->
+                        <li class="birthLi">
+                            <label>생년월일</label>
+                            <div class="birth-select">
+                                <select th:field="*{birthYear}" required="required">
+                                    <option th:each="year : ${birthYears}" th:value="${year}" th:text="${year}"></option>
+                                </select>
+                                년
+                                <select th:field="*{birthMonth}" required="required">
+                                    <option th:each="month : ${birthMonths}" th:value="${month}" th:text="${month}"></option>
+                                </select>
+                                월
+                                <select th:field="*{birthDay}" required="required">
+                                    <option th:each="day : ${birthDays}" th:value="${day}" th:text="${day}"></option>
+                                </select>
+                                일
+                            </div>
+                        </li>
+                        
+                        <!-- 주소 -->
+                        <div class="form-group">
+                            <label th:for="memberPostCode">우편번호</label>
+                            <input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호 필수로 입력해주세요" name="memberPostCode" id="memberPostCode" type="text" readonly="readonly" >
+                            <button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>
+                        </div>
+                        <div class="form-group">
+                            <label th:for="memberStreetAddress">도로명주소</label>
+                            <input class="form-control" style="top: 5px;" placeholder="도로명주소" name="memberStreetAddress" id="memberStreetAddress" type="text" readonly="readonly" />
+                        </div>
+                        <div class="form-group">
+                            <label th:for="memberDetailAddress">상세주소</label>
+                            <input class="form-control" placeholder="상세주소" name="memberDetailAddress" id="memberDetailAddress" type="text"  />
+                        </div>
+
+                        <!-- 회원가입 버튼 -->
+                        <li class="submitLi">
+                            <div class="joinBtn">
+                                <input type="submit" value="회원가입" onclick="validateAndSubmit();">
+                            </div>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+</html>

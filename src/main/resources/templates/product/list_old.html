@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>List</title>
+  <link rel="stylesheet" th:href="@{/css/product/list.css}">
+</head>
+<body>
+<table class="product">
+  <tr>
+    <th class="table_id">번호</th>
+    <th class="table_img">썸네일</th>
+    <th class="table_title">제목</th>
+    <th class="table_writer">작성자</th>
+    <th class="table_date">날짜</th>
+    <th class="table_hits">조회수</th>
+  </tr>
+  <!-- each -> 반복문 -->
+  <!-- product -> 변수같은 개념 -->
+  <tr th:each="product, stat: ${productList}" >
+    <td th:text="${product.id}"></td>
+    <td><img th:src="@{/images/{filename}(filename=${productImages[stat.index].productImgSavedName})}" alt="" height="50"/></td>
+    <td><a th:href="@{|/product/${product.id}|}" th:text="${product.productName}"></a></td>
+    <td th:text="${product.memberNickName}"></td>
+    <td th:text="${#temporals.format(product.productCreateTime, 'yy/MM/dd HH:mm')}"></td>
+    <td th:text="${product.productHits}"></td>
+  </tr>
+</table>
+
+<!-- 검색창 -->
+<div class="searchBar_wrap">
+  <form th:action="@{/product/list}" method="get" class="searchBar">
+    <select th:name="searchType">
+      <option th:value="productNameContains">상품명</option>
+      <option th:value="productDescriptionContains">상품설명</option>
+    </select>
+    <input type="text" th:name="searchKeyword">
+    <button type="submit">검색</button>
+  </form>
+</div>
+
+<div class="pagination_wrap">
+  <div class="pagination">
+    <!-- 만약 searchKeyword(검색어) 값이 없다면 ->  주소/product/list?page=2 -->
+    <div class="pagination_noKeyword" th:if="${searchKeyword == null}">
+
+      <!-- 첫번째 페이지로 이동 -->
+      <th:block class="toFirstPage">
+        <a th:class="${nowPage == 1 ? 'invisible' : null}" th:href="@{/product/list(page=1)}">first</a>
+      </th:block>
+
+      <!-- 좌측 10페이지 씩 이동 -->
+      <th:block class="toPrev10Page">
+        <a th:class="${nowPage == 1 ? 'invisible' : null}"
+           th:if="${nowPage > 10}" th:href="@{/product/list(page=${nowPage-10})}"><<</a>
+      </th:block>
+      <th:block class="toPrev10Page">
+        <a th:class="${nowPage == 1 ? 'invisible' : null}"
+           th:if="${nowPage <= 10}" th:href="@{/product/list(page=1)}"><<</a>
+      </th:block>
+
+      <!-- 페이징 처리 -->
+      <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+        <a th:if="${page != nowPage}" th:href="@{/product/list(page=${page})}" th:text="${page}"></a>
+        <strong th:if="${page == nowPage}" th:text="${page}"></strong>
+      </th:block>
+
+      <!-- 우측 10페이지 씩 이동 -->
+      <th:block class="toNext10Page">
+        <a th:class="${nowPage == endPage ? 'invisible' : null}"
+           th:if="${nowPage > (totalPage - 10)}" th:href="@{/product/list(page=${totalPage})}">>></a>
+      </th:block>
+      <th:block class="toNext10Page">
+        <a th:class="${nowPage == endPage ? 'invisible' : null}"
+           th:if="${nowPage < (totalPage - 10)}" th:href="@{/product/list(page=${nowPage+10})}">>></a>
+      </th:block>
+
+      <!-- 마지막 페이지로 이동 -->
+      <th:block class="toLastPage">
+        <a th:class="${nowPage == endPage ? 'invisible' : null}" th:href="@{/product/list(page=${totalPage})}">last</a>
+      </th:block>
+    </div>
+
+    <!-- 만약 searchKeyword(검색어) 값이 있다면 ->  주소/product/list?searchType=검색타입&searchKeyword=검색어 -->
+    <div class="pagination_yesKeyword" th:if="${searchKeyword != null}">
+
+      <!-- 첫번째 페이지로 이동 -->
+      <th:block class="toFirstPage">
+        <a th:class="${nowPage == 1 ? 'invisible' : null}" th:href="@{/product/list(page=1), searchType=${searchType}, searchKeyword = ${searchKeyword}}">first</a>
+      </th:block>
+
+      <!-- 좌측 10페이지 씩 이동 -->
+      <th:block class="toPrev10Page">
+        <a th:class="${nowPage == 1 ? 'invisible' : null}"
+           th:if="${nowPage > 10}" th:href="@{/product/list(page=${nowPage-10}, searchType=${searchType}, searchKeyword = ${searchKeyword})}"><<</a>
+      </th:block>
+      <th:block class="toPrev10Page">
+        <a th:class="${nowPage == 1 ? 'invisible' : null}"
+           th:if="${nowPage <= 10}" th:href="@{/product/list(page=1, searchType=${searchType}, searchKeyword = ${searchKeyword})}"><<</a>
+      </th:block>
+
+      <!-- 페이징 처리 -->
+      <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+        <a th:if="${page != nowPage}" th:href="@{/product/list(page=${page}, searchType=${searchType}, searchKeyword = ${searchKeyword})}" th:text="${page}"></a>
+        <strong th:if="${page == nowPage}" th:text="${page}"></strong>
+      </th:block>
+
+      <!-- 우측 10페이지 씩 이동 -->
+      <th:block class="toNext10Page">
+        <a th:class="${nowPage == endPage ? 'invisible' : null}"
+           th:if="${nowPage > (totalPage - 10)}" th:href="@{/product/list(page=${totalPage}, searchType=${searchType}, searchKeyword = ${searchKeyword})}">>></a>
+      </th:block>
+      <th:block class="toNext10Page">
+        <a th:class="${nowPage == endPage ? 'invisible' : null}"
+           th:if="${nowPage < (totalPage - 10)}" th:href="@{/product/list(page=${nowPage+10}, searchType=${searchType}, searchKeyword = ${searchKeyword})}">>></a>
+      </th:block>
+
+      <!-- 마지막 페이지로 이동 -->
+      <th:block class="toLastPage">
+        <a th:class="${nowPage == endPage ? 'invisible' : null}" th:href="@{/product/list(page=${totalPage}, searchType=${searchType}, searchKeyword = ${searchKeyword})}">last</a>
+      </th:block>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

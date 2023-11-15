@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>프로필 이미지 수정</title>
+    <link rel="stylesheet" th:href="@{/css/member/updateImage.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/member/detail.js}" defer="defer"></script>
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: headerFragment}"></div>
+<div class="container">
+    <div class="nav">
+        <div class="updateImage-con">
+            <div class="title">
+                <h1><span th:text="${member.memberNickName}" ></span>님 이미지 수정</h1>
+            </div>
+            <!-- 이미지 미리보기 영역 -->
+            <div id="image-preview1"><img id="preview-image1" th:src="${memberImageUrl}" alt="프로필 이미지" style="width: 100px; height: 100px;"></div>
+            <!-- 버튼을 클릭하면 /image/upload로 POST 요청 보내기 -->
+            <form action="/image/upload" method="post" enctype="multipart/form-data">
+                <ul>
+                    <li>
+                        <input type="file" name="file" id="file-input" onchange="enableUploadButton()"> <!-- 파일 업로드 필드 -->
+                        <button type="button" id="delete-button">프로필 이미지 삭제</button>
+                    </li>
+                    <li>
+                        <button type="submit" id="upload-button" disabled>적용</button>
+                        <button type="button" id="cancel" onclick="goBack()">취소</button>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Thymeleaf 표현식을 사용하여 memberId를 JavaScript 변수에 할당 -->
+<!--<script th:inline="javascript">-->
+<!--    var memberId = /*[[${member.memberId}]]*/ null;-->
+<!--</script>-->
+<script>
+    function goBack() {
+      window.history.back();
+    }
+</script>
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+</body>
+</html>

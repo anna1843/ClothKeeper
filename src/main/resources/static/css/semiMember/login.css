@@ -1,0 +1,117 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/header.css);
+@import url(/css/common/footer.css);
+/* .container */
+.container{
+    width: 100%;
+    height: 1200px; 
+} 
+/* semiLogin */
+.container .semiLogin{ 
+    width: 100%; 
+    height: 1200px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-start; 
+    box-sizing: border-box; 
+} 
+/* semiLogin-con */
+.container .semiLogin .semiLogin-con{ 
+    flex-basis: 1000px; 
+    box-sizing: border-box; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    text-align: center; 
+    gap: 30px; 
+} 
+/* title */
+.container .semiLogin .semiLogin-con .title{ 
+    padding: 20px; 
+    gap: 10px; 
+    box-sizing: border-box; 
+    display: flex; 
+    justify-content: center; 
+}
+/* emiLogin-form */
+.container .semiLogin .semiLogin-con .semiLogin-form{ 
+    height: 1000px; 
+    padding: 15px; 
+    box-sizing: border-box; 
+    justify-content: center; 
+    align-items: center;
+}
+/* semiLogin-form form */
+.container .semiLogin .semiLogin-con .semiLogin-form form{ 
+    width: 700px; 
+    margin: auto; 
+    text-align: center; 
+    align-items: center;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    gap: 10px; 
+    box-sizing: border-box;
+} 
+/* form ul */
+.container .semiLogin .semiLogin-con .semiLogin-form form>ul{ 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    text-align: center; 
+    align-items: center;
+} 
+/* form ul li -> submit제외*/
+.container .semiLogin .semiLogin-con .semiLogin-form form>ul>li:not(.submit){
+    width: 500px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: start; 
+    padding: 10px;
+}
+/* form ul li.submit */
+.container .semiLogin .semiLogin-con .semiLogin-form form>ul>li.submit{
+    width: 500px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+} 
+/* ul li label */
+.container .semiLogin .semiLogin-con .semiLogin-form form>ul>li label{
+    text-align: start;
+    font-size: 18px;
+    padding: 10px;
+} 
+/* ul li input -> button 제외 */
+.container .semiLogin .semiLogin-con .semiLogin-form form>ul>li input:not(.Btn){
+    height: 50px;
+    font-size: 20px;
+    border-bottom: 2px solid #cccccc;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    text-align: center;
+ }
+ /* button input */
+.container .semiLogin .semiLogin-con .semiLogin-form form>ul>li input.Btn{
+    width: 480px;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    background: #4b66c79e;
+    color: white;
+    outline: none;
+    padding: 15px;
+    gap: 15px;
+    cursor: pointer;
+}
+.container .semiLogin .semiLogin-con .semiLogin-form form>ul>li input.Btn:hover{
+    box-sizing: border-box;
+    background: #4b66c7;
+    box-shadow: 0 10px 10px 0 #cccccc;
+}
+
+
+

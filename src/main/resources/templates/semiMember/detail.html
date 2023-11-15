@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <title>상세정보 페이지</title>
+  <link rel="stylesheet" th:href="@{/css/semiMember/detail.css}">
+</head>
+<div th:replace="~{fragments/common/header :: headerFragment}"></div>
+<body>
+  <div class="container">
+    <div class= "nav">
+      <div class="detail-con">
+        <div class="title">
+          <h1><span th:text="${semiMember.semiMemberEmail}" ></span>&nbsp;님 상세정보</h1>
+        </div>
+        <div class="detail">
+            <!--  아이디 : <span th:text="${member.memberId}"></span> <br>-->
+            <ul>
+              <span th:if="${false}" th:text="${semiMember.semiMemberId}"></span> <!-- th:if="${false}" 입력 시 안보이게 처리 -->
+              <li>
+                <span>이메일</span>
+                <span th:text="${semiMember.semiMemberEmail}"></span> 
+              </li>
+              <li>
+<!--                <span>휴대전화(암호화됨)</span>-->
+<!--                <span th:text="${semiMember.semiMemberPhone}"></span>-->
+                <span>휴대전화(암호화됨)</span>
+                <th:block th:if="${#authentication.principal.username==semiMember.semiMemberEmail}">
+                            <span th:text="${semiMember.semiMemberPhone}"></span>
+                </th:block>
+                <th:block th:unless="${#authentication.principal.username==semiMember.semiMemberEmail}">
+                    <span>
+                        본인글이 아닙니다
+                    </span>
+                </th:block>
+              </li>
+              <li>
+                <span>권한</span>
+                <span th:text="${semiMember.role}"></span>
+              </li>
+              <li>
+                <span>가입일</span>
+                <span th:text="${#temporals.format(semiMember.createTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
+              </li>
+              <li class="delete">
+                <th:block th:if="${#authentication.principal.username==semiMember.semiMemberEmail}">
+                    <span>
+                        <div class="btn">
+                            <a th:href="@{/semiMember/confirmEmail/{semiMemberId}(semiMemberId=${semiMember.semiMemberId})}">삭제</a>
+                        </div>
+                    </span>
+                </th:block>
+                <th:block th:unless="${#authentication.principal.username==semiMember.semiMemberEmail}">
+                    <span>
+                        본인글이 아닙니다
+                    </span>
+                </th:block>
+              </li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+</html>

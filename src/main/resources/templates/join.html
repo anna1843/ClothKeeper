@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <!--  chatbot-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>회원가입</title>
+    <link rel="stylesheet" th:href="@{/css/join.css}">
+
+    <!--  chatbot-->
+    <script th:src="@{/js/chatbot/chatbot.js}" type="text/javascript" defer="defer"></script>
+
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: headerFragment}"></div>
+<!--<div th:replace="~{fragments/common/header_SONG :: headerFragment}"></div>-->
+<div class="container">
+    <div class="join">
+        <div class="join-con">
+            <div class="title">
+                <h1>회원가입<img th:src="@{/images/join.png}" alt="join"></h1>
+            </div>
+            <div class="button">
+                <!-- 일반 회원가입 버튼 -->
+                <div class="joinBtn">
+                    <button th:onclick="window.location.href='/member/join'" class="jBtn">일반 회원가입</button>
+                </div>
+                <!-- 간편 회원가입 버튼 -->
+                <div class="semiBtn">
+                    <button th:onclick="window.location.href='/semiMember/join'" class="sBtn">간편 회원가입</button>    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--chatbot-->
+<div class="chatbot" >
+</div>
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+</body>
+</html>

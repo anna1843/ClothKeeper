@@ -1,0 +1,82 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/header.css);
+@import url(/css/common/footer.css);
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+/* 상세 정보 영역 스타일 */
+.updateImage-con {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+/* title */
+.updateImage-con .title {
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #7285d3;
+}
+.updateImage-con .title h1 {
+    font-size: 24px
+}
+/* image */
+#image-preview1 {
+    max-width: 100px;
+    max-height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.updateImage-con form ul {
+    display: grid;
+    grid-template-columns: 1fr; /* Adjust the number of columns as needed */
+    gap: 30px; /* Adjust the gap between items as needed */
+    text-align: center; /* Center the items horizontally */
+}
+
+.updateImage-con form ul>li {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+/*삭제 버튼*/
+.updateImage-con form ul>li #delete-button{
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.updateImage-con form ul>li #delete-button:hover {
+    background-color: #0056b3;
+}
+/*적용 버튼, 취소 버튼*/
+.updateImage-con form ul>li #upload-button{
+    background-color: #cccccc;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.updateImage-con form ul>li #upload-button:hover {
+    background-color: #0056b3;
+}
+.updateImage-con form ul>li #cancel{
+    background-color: #cccccc;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.updateImage-con form ul>li #cancel:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,206 @@
+@import url(/css/common/reset.css);
+/* header */
+.header{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/* header > nav */
+.header .nav{
+    flex-basis: 1400px;
+    box-sizing: border-box; /* 박스의 크기를 테두리를 기준으로 계산*/
+    /* background-color: #ffeaeaaf; */
+    /* background-color: #8ea6e9db; */
+}
+
+/* header > nav > top-nav */
+.header .nav .top-nav{
+    box-sizing: border-box;
+    display: flex; /*flex 레이아웃*/
+    justify-content: flex-end;
+    /* border-bottom: 2px solid #E5E0FF; */
+}
+.header .nav .top-nav .top-menu{
+    box-sizing: border-box;
+}
+.header .nav .top-nav .top-menu>ul{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+}
+.header .nav .top-nav .top-menu>ul>li{
+    padding: 5px 10px;
+}
+.header .nav .top-nav .top-menu>ul>li span{
+    color: #8e7aff;
+}
+.header .nav .top-nav .top-menu>ul>Li>a{
+    font-size: 13px;
+}
+
+/* header > nav > middle-nav */
+.header .nav .middle-nav{
+    /* background-color: #E5E0FFdb; */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+}
+.header .nav .middle-nav {
+    flex-basis: 80px; /* logo 이미지 삽입 시 flex기본 크기 설정 */
+}
+.header .nav .middle-nav a img{
+    height: auto;
+    display: block;
+    background: transition;
+}
+.header .nav .middle-nav .middle-menu{
+    padding: 5px; /*ul과의 전체 간격*/
+    box-sizing: border-box;
+    /* border: 2px solid red; */
+}
+.header .nav .middle-nav .middle-menu ul{  
+  display: flex;
+  justify-content: space-between;
+  gap: 5px; /*li 간격*/
+  /* border: 2px solid orange; */
+}
+.header .nav .middle-nav .middle-menu ul>li{
+    box-sizing: border-box;
+    padding: 10px;
+    /* border: 2px solid yellow; */
+}  
+.header .nav .middle-nav .middle-menu ul>li a{
+    align-items: center;
+    font-size: 15px;
+    letter-spacing: 2px; /*글자 간격 설정*/
+    /* border: 2px solid green; */
+    line-height: 30px; 
+}
+.header .nav .middle-nav .middle-menu ul>li:last-child{
+    box-sizing: border-box;
+    /* padding: 10px 0; */
+    /* line-height: 30px;  */
+    /* border: 2px solid purple; */
+}
+.header .nav .middle-nav .middle-menu ul>li:last-child form{
+    border: 2px solid #E5E0FFdb;
+    border-radius: 10px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    box-sizing: border-box;
+    /* padding: 10px; */
+}
+.header .nav .middle-nav .middle-menu ul>li:last-child form input:focus{
+    /* focus가 가면 border 없애기 */
+    outline: none;
+}
+.header .nav .middle-nav .middle-menu ul>li:last-child form input:nth-child(1){
+    flex: 5;
+    border: none;
+    /* padding: 0 0 0 10px; */
+}
+.header .nav .middle-nav .middle-menu ul>li:last-child form button .zoom{
+    height: 25px;
+    width: 25px;
+    object-fit: cover;
+    cursor: pointer;
+    background: transparent;
+}
+.header .nav .middle-nav .middle-menu ul>li:last-child form input{
+   background-color: transparent;
+}
+.header .nav .middle-nav .middle-menu ul >li:nth-child(1) a{  
+  font-weight: bold;
+  line-height: 30px; 
+ }
+
+/* header > nav > bottom-nav*/
+.header .nav .bottom-nav{  
+  /* width: 100%; */
+  /* border: 1px solid; */
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  /* justify-content: space-evenly; */
+}
+.header .nav .bottom-nav .gnb{
+ padding: 10px 0 ;
+ box-sizing: border-box;
+}
+.header .nav .bottom-nav .gnb>ul{  
+ display: flex;
+ justify-content: space-between;
+ gap: 5px;
+}
+.header .nav .bottom-nav .gnb>ul>li{  
+  display: flex;
+  justify-content: center;
+  line-height: 20px;
+  font-size: 18px;
+ }
+.header .nav .bottom-nav .gnb>ul>li>a{  
+  padding: 5px 10px;
+  position: relative;
+ }
+ /* 아래 그림자 */
+ /* .header .nav .bottom-nav .gnb>ul>li:nth-child(1) a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  color: #8e7aff;
+  font-size: 20px;
+  text-shadow: 0px 11px 4px #b9adff;
+  font-weight: bold;
+ } */
+ .header .nav .bottom-nav .gnb>ul>li:nth-child(1) a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* line-height: 1; */
+    color: #16046d;
+    font-size: 20px;
+    text-shadow: 4px 0px 3px #2000be76;
+    font-weight: bold;
+ }
+ /* 마우스 올리면 밑줄 생성 */
+.header .nav .bottom-nav .gnb >ul>li>a::after{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 0;
+    background-color: #8e7affb4;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.1s;
+}
+.header .nav .bottom-nav .gnb >ul>li>a:hover::after{
+    height: 2px;
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    visibility: visible;
+    opacity: 1;
+    color: #cccccc;
+}
+/* 마우스 올렸을 경우 밑줄 없애기 */
+.header .nav .bottom-nav .gnb >ul>li .main::after{
+    content: none;
+}
+
+#image-preview {
+    max-width: 35px;
+    max-height: 35px;
+    border: 1px solid #ccc;
+    border-radius: 50%; /* 50%로 설정하여 원형 모양으로 만듭니다. */
+    overflow: hidden; /* 넘치는 부분은 숨깁니다. */
+}

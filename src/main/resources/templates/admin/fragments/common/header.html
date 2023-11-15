@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<div id="header" class="header" th:fragment="headerFragment">
+        <div class="top-nav">
+            <div class="logo">
+                <a th:href="@{/}"><img th:src="@{/images/logo.png}" alt="HOME"></a>
+            </div>
+
+            <ul>
+                <th:block sec:authorize="hasAnyRole('ADMIN', 'SELLER')">
+                    <li><a href="/member/logout">로그아웃</a></li>
+                </th:block>
+
+                <th:block sec:authorize="hasAnyRole('ADMIN')">
+                    <li><a th:href="@{/member/list}">고객 관리</a></li>
+                </th:block>
+            </ul>
+        </div>
+</div>
+</html>

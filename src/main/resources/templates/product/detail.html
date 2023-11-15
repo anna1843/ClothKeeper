@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <meta charset="UTF-8">
+<!--  chatbot-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>write</title>
+  <link rel="stylesheet" th:href="@{/css/product/detail.css}">
+  <script th:src="@{/js/product/detail.js}"></script>
+  <script th:src="@{/js/review/review.js}" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--  chatbot-->
+  <script th:src="@{/js/chatbot/chatbot.js}" type="text/javascript" defer="defer"></script>
+
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: headerFragment}"></div>
+<div class="container">
+
+  <div class="root">
+
+    <div class="image_section">
+
+        <div class="image-expand_area" id="imagePreviewExpand-box">
+          <img src="/images/product/iconmonstr-photo-camera-13.svg" alt="미리보기 이미지 확대" class="image-expand__img-alt" id="imagePreviewExpand">
+        </div>
+
+        <div class="image-preview_area" id="image-container">
+          <ul class="image-preview_ul" id="image-preview-box-container">
+            <th:block th:each="img : ${productImages}">
+              <li class="image-preview_box">
+                <img th:src="@{/images/{filename}(filename=${img.productImgSavedName})}" alt="미리보기 이미지" height="100" class="image-preview_img"/>
+              </li>
+            </th:block>
+          </ul>
+        </div>
+
+    </div>
+
+    <div class="division_section"></div>
+
+    <div class="product-info_section">
+
+      <div class="update-id_box">
+        <a th:href="@{'/product/update/' + ${product.id}}" class="update_contents" sec:authorize="hasAnyRole('SELLER', 'ADMIN')">
+          <img src="/images/product/iconmonstr-pencil-lined.svg" alt="수정링크 아이콘">
+          <span>수정</span>
+        </a>
+        <div class="id_contents">
+          <p class="id_text">상품번호: <span th:if="${product.id != null}" th:text="${product.id}" class="id_text"></span></p>
+        </div>
+      </div>
+
+      <div class="brand_box">
+        <span th:if="${product.productBrand != null}" th:text="${product.productBrand.productBrandName}" class="brand_text"></span>
+      </div>
+
+      <div class="product-name_box">
+        <span th:if="${product.productName != null}" th:text="${product.productName}" class="product-name_text"></span>
+      </div>
+
+      <div class="product-info-detail_area">
+
+        <div class="description_box">
+          <p th:if="${product.productDescription != null}" th:text="${product.productDescription}" class="description-result_text"></p>
+        </div>
+
+        <div class="category_box">
+          <p class="category_text">카테고리</p>
+          <span th:if="${product.productCategory != null}" th:text="${product.productCategory.productCategoryName}" class="category-result_text"></span>
+        </div>
+
+        <div class="color_box">
+          <p class="color_text">색상</p>
+          <span th:if="${product.productColor != null}" th:text="${product.productColor}" class="color-result_text"></span>
+        </div>
+
+        <div class="size_box">
+          <p class="size_text">사이즈</p>
+          <span th:if="${product.productSize != null}" th:text="${product.productSize}" class="size-result_text"></span>
+        </div>
+
+        <div class="price-stock-quantity_box">
+          <div class="quantity-stock_contents">
+            <img src="/images/product/iconmonstr-minus-square-filled.svg" alt="minus" class="minus_img" id="minus-button">
+            <div class="quantity-result_text-num" id="quantity">1</div>
+            <img src="/images/product/iconmonstr-plus-square-filled.svg" alt="plus" class="plus_img" id="plus-button">
+            <p class="stock-result_text">남은 재고수량 :</p>
+            <span th:if="${product.productStock != null}" th:text="${product.productStock}" class="stock-result_text" id="stock"></span>
+          </div>
+          <span th:if="${product.productPrice != null}" th:text="${product.productPrice}" class="price-result_text" id="productPrice" data-original-price=""></span>
+        </div>
+
+        <div class="wish-purchase_box">
+
+          <!-- 송원철 -->
+          <form class="wishListForm" name="wishListForm" sec:authorize="hasAnyRole('MEMBER', 'SEMIMEMBER', 'SELLER', 'ADMIN')"
+                onsubmit="return addProduct();"
+                th:action="@{(${member != null} ? '/cart/member/' + ${member.getMemberId()} + '/' + ${product.id} : '/cart/semiMember/' + ${semiMember.getSemiMemberId()} + '/' + ${product.id})}"
+                method="post">
+            <input class="form-control text-center me-3" id="amount" name="amount" type="num" value="1"
+                  style="max-width: 3rem; display: none;" />
+            <div class="cart_btn" id="wish1" style="cursor:pointer;">
+              <i class="bi-cart-fill me-1"></i>
+              <span class="cart_text">장바구니 추가</span>
+            </div>
+          </form>
+          <script th:inline="javascript">
+            /* <![CDATA[ */
+            const submitButton = document.querySelector('.cart_btn');
+                submitButton.addEventListener('click', function() {
+                  const form = document.forms.wishListForm;
+                  form.submit();
+                });
+
+            function addProduct() {
+                var count = document.getElementById("amount").value
+                if (isNaN(count)) {
+                    alert("숫자를 입력해주세요.")
+                    return false
+                } else {
+                    return true
+                }
+            }
+          </script>
+          <!-- 비로그인 시 -->
+          <form class="abc" sec:authorize="!isAuthenticated()">
+            <a class="btn btn-outline-dark" th:href="@{/login}">
+              <i class="bi-cart-fill me-1"></i>
+              <div class="cart_btn1" style="cursor:pointer;">
+                <span class="cart_text1">장바구니 추가</span>
+              </div>
+            </a>
+          </form>
+
+          <a href="" class="purchase_link">
+            <div class="purchase_btn">
+              <span class="purchase_text">구매하기</span>
+            </div>
+          </a>
+
+        </div>
+
+        <!---------------->
+        <!-- =============================================== -->
+        <style>
+          .review_content {display:none}
+        </style>
+        <div class="review-con">
+          <div class="review-title">
+            <h3>상품리뷰</h3>
+          </div>
+          <div class="review-write">
+            <form id="replyForm" sec:authorize="isAuthenticated()">
+              <input type="hidden" readonly name="productId" th:value="${product.id}" id="productId">
+              <ul>
+                <li>
+                  <textarea name="review" class="review_textarea" id="review" cols="30" rows="1" placeholder="내용작성"></textarea>
+                  <label for="review"></label>
+                </li>
+                <li class="Btn">
+                  <input type="button" value="답글작성" id="reviewBtn" class="reviewBtn">
+                </li>
+              </ul>
+            </form>
+          </div>
+          <div class="reviewList">
+            <input type="hidden" readonly name="productId" th:value="${product.id}" id="proId">
+            <div id="reviewCon" class="reviewCon">
+
+            </div>
+          </div>
+        </div>
+        <!-- =============================================== -->
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--chatbot-->
+<div class="chatbot" >
+</div>
+
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+</body>
+</html>

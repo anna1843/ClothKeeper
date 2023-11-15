@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/chatbot/chat.css}">
+    <title>챗봇!</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script th:src="@{/webjars/sockjs-client/sockjs.min.js}"></script>
+    <script th:src="@{/webjars/stomp-websocket/stomp.min.js}"></script>
+    <script th:src="@{/js/chatbot/chat.js}" type="text/javascript" defer="defer"></script>
+</head>
+<body>
+<div id="chat" class="chat">
+    <div id="chat-bot" class="chatbot">
+        <dl id="chat-disp" class="chat-nav">
+            <dt id="chat-header" class="chat-header">
+                <span>무엇이든 물어보세요 ヾ(*´∇`)ﾉ </span>
+                <span class="btn-wrap">
+                    <button type="button" id="btn-chat-close" onclick="disconnect()">나가기</button>
+                </span>
+            </dt>
+            <!-- dd를 div로 바꾸고 싶어요,, -->
+            <dd id="chat-content">
+
+            </dd>
+            <dd id="chat-question" class="flex _between">
+                <span class="flex column center"><i></i></span>
+                <textarea name="question" id="question" cols="30" rows="1" placeholder="문의 사항을 입력하세요"></textarea>
+                <button type="button" id="btn-msg-sand" onclick="msgSendClickFn()">전송</button>
+            </dd>
+        </dl>
+    </div>
+</div>
+</body>
+</html>

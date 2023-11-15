@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>문의사항 상세 페이지</title>
+    <link rel="stylesheet" th:href="@{/css/inquiry/detail.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script th:src="@{/js/inquiry/write.js}" defer="defer"></script>
+    <script th:src="@{/js/inquiry/reply.js}" defer="defer"></script>
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: headerFragment}"></div>
+<div class="container">
+    <div class="detail">
+        <div class="detail-con">
+            <div class="title">
+                <h1>문의사항</h1>
+            </div>
+            <div class="board-con">
+                <div class="top">
+                    <div class="top-title">
+                        <span th:text="${inquiryDto.inqType}" class="typeSpan"></span>
+                        <span th:text="${inquiryDto.inquiryTitle}" class="titleSpan"></span>
+                    </div>
+                    <div class="top-bottom">
+                        <div class="left">
+                            <span th:text="${#temporals.format(inquiryDto.CreateTime,'yyyy년 MM월 dd일 hh:mm')}"></span>
+                            <span th:text="${#temporals.format(inquiryDto.UpdateTime,'yyyy년 MM월 dd일 hh:mm')}"></span>
+                        </div>
+                        <div class="right">
+<!--                            <span th:text="${inquiryDto.inquiryWriter}"></span>-->
+                            <span th:text="${inquiryDto.memberEmail}"></span> <!--송원철-->
+                            <span th:text="${inquiryDto.inqHit}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="middle">
+                    <textarea th:text="${inquiryDto.inquiryContent}" th:value="${inquiryDto.inquiryContent}"
+                              name="inquiryContent" id="contentText" class="writeInput" disabled></textarea>
+                </div>
+                <div class="bottom">
+                    <div class="bottom-top">
+                        <div class="delete">
+                                <a th:href="@{/inquiry/delete/{id}(id=${inquiryDto.inqId})}">삭제하기</a>
+                        </div>
+                        <div class="list">
+                            <a th:href="@{/inquiry/list?page=0&select=&search=}" class="list">LIST</a>
+                        </div>
+                    </div>
+                    <div class="bottom-bottom">
+                        <div class="update">
+                                <a th:href="@{/inquiry/update/{id}(id=${inquiryDto.inqId})}">수정하기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <style>
+                .content {display:none}
+            </style>
+            <div class="reply-con">
+                <div class="title">
+                    <h2>답변</h2>
+                </div>
+                <div class="reply-write" sec:authorize="hasAnyRole('ADMIN','SELLER')">
+                    <form id="replyForm">
+                        <input type="hidden" readonly name="inqId"
+                               th:value="${inquiryDto.inqId}" th:id="inqId">
+                        <ul>
+                            <li>
+                                <textarea name="reply" id="reply"
+                                          cols="30" rows="1" placeholder="내용작성"></textarea>
+                            </li>
+
+                            <li class="Btn">
+                                <input type="button" value="답글작성" id="replyBtn">
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <div class="replyList">
+                    <input type="hidden" readonly name="inqId"
+                           th:value="${inquiryDto.inqId}" th:id="inqId2">
+                    <div id="replyCon" class="replyCon">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+</html>

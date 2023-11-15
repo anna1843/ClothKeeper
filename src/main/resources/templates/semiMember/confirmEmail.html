@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원정보 삭제 시 이메일 인증</title>
+    <link rel="stylesheet" th:href="@{/css/semiMember/confirmEmail.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/member/semiConfirmEmail.js/}" defer="defer"></script>
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: headerFragment}"></div>
+<div class="container">
+    <div class="confirm">
+        <div class="confirm-con">
+            <div class="title">
+                <h1>이메일 인증</h1>
+            </div>
+            <div class="confirm-form">
+                <form th:action="@{/semiMember/delete/{semiMemberId}(semiMemberId=${semiMemberId})}" id="confirmEmailForm">
+                    <ul>
+                        <li class="email">
+                            <div class="email-group">
+                                <label th:for="semiMemberEmail">이메일</label>
+                                <div class="writeE">
+                                    <input type="email" name="semiMemberEmail" id="semiMemberEmail" th:value="${semiMember.semiMemberEmail}" readonly>
+                                    <!-- 이메일 인증 버튼 -->
+                                    <button type="button" id="certifyEmailButton">인증번호 전송</button>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- 인증번호 입력란 -->
+                        <li class="num">
+                            <div class="num-group">
+                                <label th:for="emailVerificationCode">인증번호</label>
+                                <div class="numInput">
+                                    <input type="text" id="emailVerificationCode" placeholder="인증번호 입력">
+                                    <button type="button" id="verifyEmailButton">인증번호 확인</button>
+                                </div>
+                            </div>
+                            <div class="num0feedback">
+                                <div id="certifyEmailMessage" class="valid-feedback" style="display: none;"></div>
+                            </div>
+                        </li>
+                        <li class="delete">
+                            <button type="submit" id="deleteBtn">삭제</button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+</html>

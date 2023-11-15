@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>update</title>
+</head>
+<body>
+<th:block th:each="img : ${productImages}">
+  <img th:src="@{/images/{filename}(filename=${img.productImgSavedName})}" alt="" height="250"/>
+</th:block>
+<form action="/product/update" method="post" name="updateForm">
+  <input type="hidden" name="id" th:value="${productUpdate.id}">
+  상품명: <input type="text" name="productName" th:value="${productUpdate.productName}"> <br>
+  상품색상: <input type="text" name="productColor" th:value="${productUpdate.productColor}"> <br>
+  상품사이즈: <input type="text" name="productSize" th:value="${productUpdate.productSize}"> <br>
+  상품설명: <textarea name="productDescription" cols="30" rows="10" th:text="${productUpdate.productDescription}"></textarea> <br>
+  상품작성자 : <input type="text" name="productWriter" th:value="${productUpdate.productWriter}" readonly> <br>
+  상품노출여부:
+  <label for="displayTrue">Y</label>
+  <input type="radio" id="displayTrue" name="isProductDisplayed" value="true" th:checked="${productUpdate.isProductDisplayed == true}">
+  <label for="displayFalse">N</label>
+  <input type="radio" id="displayFalse" name="isProductDisplayed" value="false" th:checked="${productUpdate.isProductDisplayed == false}"> <br>
+
+  <input type="hidden" name="productHits" th:value="${productUpdate.productHits}">
+  <input type="submit" value="판매글수정" onclick="productUpdate()">
+</form>
+</body>
+</html>

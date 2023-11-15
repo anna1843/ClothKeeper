@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout/firstTeam}"
+>
+<th:block layout:fragment="title">
+    <title>firstTeam index</title>
+</th:block>
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/cream_index.css}">
+</th:block>
+<th:block layout:fragment="script">
+    <!--  <script th:src="${/js/index.js}"></script>-->
+</th:block>
+
+<th:block layout:fragment="container">
+    <div class="productNav">
+        <ul>
+            <li>상품별 카테고리</li>
+            <li>상품별 카테고리</li>
+            <li>상품별 카테고리</li>
+            <li>상품별 카테고리</li>
+            <li>상품별 카테고리</li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="section">
+            <ul>
+                <li>
+                    <p>상품 리스트</p>
+                </li>
+                <li>
+                    <p>상품 리스트</p>
+                </li>
+                <li>
+                    <p>상품 리스트</p>
+                </li>
+                <li>
+                    <p>상품 리스트</p>
+                </li>
+                <li>
+                    <p>상품 리스트</p>
+                </li>
+                <li>
+                    <p>상품 리스트</p>
+                </li>
+                <li>
+                    <p>상품 리스트</p>
+                </li>
+                <li>
+                    <p>상품 리스트</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</th:block>
+
+
+</html>

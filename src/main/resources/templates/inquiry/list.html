@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>문의사항 목록 페이지</title>
+    <link rel="stylesheet" th:href="@{/css/inquiry/list.css}">
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: headerFragment}"></div>
+<div class="List">
+    <div class="List-con">
+        <div class="List-title">
+            <div class="title">
+                <h1>문의사항 <img th:src="@{/images/inquiry.png}" alt="notice"></h1>
+            </div>
+        </div>
+        <div class="search">
+            <div class="form">
+                <form th:action="@{/inquiry/list(page=0 ,search=${param.search} ,select=${param.select})}" method="get">
+                    <select name="select" id="select" class="select">
+                        <option th:value="''" th:selected="${#strings.isEmpty(param.select)}">전체</option>
+                        <option th:value="inquiryTitle" th:selected="${#strings.equals(param.select, 'inquiryTitle')}">제목</option>
+                        <option th:value="inquiryContent" th:selected="${#strings.equals(param.select, 'inquiryContent')}">내용</option>
+                        <option th:value="memberEmail"  th:selected="${#strings.equals(param.select, 'memberEmail')}">작성자</option> <!--송원철-->
+                    </select>
+                    <input type="text" name="search" id="search" th:value="${param.search}" placeholder="검색어를 입력하세요" class="input">
+                    <button type="submit">
+                        <img th:src="@{/images/zoom.png}" alt="검색" class="zoom">
+                    </button>
+                </form>
+            </div>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>구분</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>생성시간</th>
+                <th>수정시간</th>
+                <th>조회수</th>
+                <th>보기</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="inquiry: ${inquiryList}">
+                <td th:text="${inquiry.inqType}"></td>
+                <td th:text="${inquiry.inquiryTitle}"></td>
+                <td th:text="${inquiry.memberEmail}"></td>
+                <td th:text="${#temporals.format(inquiry.CreateTime, 'yyyy.MM.dd')}"></td>
+                <td th:text="${#temporals.format(inquiry.UpdateTime, 'yyyy.MM.dd')}"></td>
+                <td th:text="${inquiry.inqHit}"></td>
+                <td><a th:href="@{/inquiry/detail/{id}(id=${inquiry.inqId})}">상세보기</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="page">
+            <ul>
+                <li>
+                    <span th:if="${1 == inquiryList.pageable.pageNumber+1}" style="font-weight:bold" class="span0"></span>
+                    <span th:unless="${1 == inquiryList.pageable.pageNumber+1}">
+                        <a th:href="@{/inquiry/list(page=0, search=${param.search}, select=${param.select})}" class="span1">처음</a>
+                        <!--처음으로 이동-->
+                    </span>
+                </li>
+                <li>
+                    <span th:if="${1 == inquiryList.pageable.pageNumber+1}" style="font-weight:bold" class="span0"></span>
+                    <span th:unless="${1 == inquiryList.pageable.pageNumber+1}">
+                        <a th:href="@{/inquiry/list(page=${inquiryList.pageable.pageNumber-1}, search=${param.search}, select=${param.select})}" class="=span1">이전</a>
+                        <!--이전페이지로 이동-->
+                    </span>
+                </li>
+                <li>
+                    <!--블럭 처리-->
+                    <li th:each="i: ${#numbers.sequence(startPage, endPage)}" class="block">
+                        <span th:if="${i == inquiryList.pageable.pageNumber+1}" th:text="${i}" class="now"></span>
+                        <a th:unless="${i == inquiryList.pageable.pageNumber+1}" th:href="@{/inquiry/list(page=${i - 1}, search=${param.search}, select=${param.select})}" th:text="${i}"></a>
+                    </li>
+                </li>
+                <li>
+                    <span th:if="${inquiryList.totalPages == inquiryList.pageable.pageNumber + 1}" class="span0">끝</span>
+                    <span th:unless="${inquiryList.totalPages == inquiryList.pageable.pageNumber + 1}">
+                        <a th:href="@{/inquiry/list(page=${inquiryList.pageable.pageNumber + 1}, search=${param.search}, select=${param.select})}" classa="span1">다음</a>
+                    </span>
+                </li>
+                <li>
+                    <!--현재 페이지가 마지막 페이지이면 span표시-->
+                    <span th:if="${inquiryList.totalPages == inquiryList.pageable.pageNumber + 1}" class="span0">END</span>
+                    <span th:unless="${inquiryList.totalPages == inquiryList.pageable.pageNumber + 1}">
+                        <a th:href="@{/inquiry/list(page=${inquiryList.totalPages-1}, search=${param.search}, select=${param.select})}" class="span1">마지막</a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+</html>

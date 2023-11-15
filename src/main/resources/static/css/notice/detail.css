@@ -1,0 +1,190 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/header.css);
+@import url(/css/common/footer.css);
+/* .conatiner */
+.container{
+    width: 100%;
+}
+/* .container > .deatil */
+.container .detail{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px;
+    box-sizing: border-box;
+}
+.container .detail .detail-con{
+    flex-basis: 1200px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+/* title */
+.container .detail .detail-con .title{
+    width: 1000px;
+    border-bottom: 4px solid #7285d3;
+    text-align: start;
+    padding: 5px;
+}
+.container .detail .detail-con .board-con{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+.container .detail .detail-con .board-con .top{
+    display: flex;
+    flex-direction: column;
+}
+.container .detail .detail-con .board-con .top .top-title{
+    border-bottom: 2px solid #7285d3a4;
+    display: flex;
+    justify-content: start;
+    padding: 10px 0 20px 0;
+    gap: 10px;
+}
+/* title */
+.container .detail .detail-con .board-con .top .top-title span.titleSpan{
+    font-weight: bold;
+}
+/* type */
+.container .detail .detail-con .board-con .top .top-title span.typeSpan{
+    padding: 0 10px;
+    border-right: 1px solid #cccccc;
+}
+/* top-bottom */
+.container .detail .detail-con .board-con .top .top-bottom{
+    width: 900px;
+    border-bottom: 2px solid #7285d3a4;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+/* left */
+.container .detail .detail-con .board-con .top .top-bottom .left{
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+/* riight */
+.container .detail .detail-con .board-con .top .top-bottom .right{
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+/* content */
+.container .detail .detail-con .board-con .middle{
+    display: flex;
+    justify-content: start;
+    box-sizing: border-box;
+}
+.container .detail .detail-con .board-con .middle textarea{
+    width: 900px;
+    height: 300px;
+    padding: 10px;
+    resize: none;
+    background: transparent;
+    outline: none;
+    font-size: 18px;
+}
+/* botttom -> delete, update, list */
+.container .detail .detail-con .board-con .bottom{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+.container .detail .detail-con .board-con .bottom .bottom-top{
+    width: 900px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    gap: 10px;
+}
+/* delete의 a */
+.container .detail .detail-con .board-con .bottom .bottom-top .delete{
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.container .detail .detail-con .board-con .bottom .bottom-top .delete a{
+    width: 300px;
+    height: 20px;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 0px;
+    height: 20px;
+    transition: all 0.3s;
+    border-top: 1px solid #f5d4d4;
+    border-right: 1px solid #f5d4d4;
+    border-left: 20px solid #f5d4d4;
+    border-bottom: 1px solid #f5d4d4;
+}
+.container .detail .detail-con .board-con .bottom .bottom-top .delete a:hover{
+    border-left-width: 1px;
+}
+/* list목록으로 가는 a */
+.container .detail .detail-con .board-con .bottom .bottom-top .list{
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.container .detail .detail-con .board-con .bottom .bottom-top .list a{
+    width: 300px;
+    height: 20px;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 0px;
+    height: 20px;
+    transition: all 0.3s;
+    border-top: 1px solid #C7D3F4;
+    border-right: 1px solid #C7D3F4;
+    border-left: 20px solid #C7D3F4;
+    border-bottom: 1px solid #C7D3F4;
+}
+.container .detail .detail-con .board-con .bottom .bottom-top .list a:hover{
+    border-left-width: 1px;
+}
+/* bottom */
+.container .detail .detail-con .board-con .bottom .bottom-bottom{
+    width: 900px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+.container .detail .detail-con .board-con .bottom .bottom-bottom .update{
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.container .detail .detail-con .board-con .bottom .bottom-bottom .update a{
+    width: 400px;
+    height: 20px;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 0px;
+    height: 20px;
+    transition: all 0.3s;
+    border-top: 1px solid #C7D3F4;
+    border-right: 1px solid #C7D3F4;
+    border-left: 20px solid #C7D3F4;
+    border-bottom: 1px solid #C7D3F4;
+}
+.container .detail .detail-con .board-con .bottom .bottom-bottom .update a:hover{
+    border-left-width: 1px;
+}

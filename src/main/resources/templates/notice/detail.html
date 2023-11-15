@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항 상세 페이지</title>
+    <link rel="stylesheet" th:href="@{/css/notice/detail.css}">
+    <script th:src="@{/js/notice/write.js}" defer="defer"></script>
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: headerFragment}"></div>
+<div class="container">
+    <div class="detail">
+        <div class="detail-con">
+            <div class="title">
+                <h1>공지사항</h1>
+            </div>
+            <div class="board-con">
+                <div class="top">
+                    <div class="top-title">
+                        <span th:text = "${noticeDto.notType}" class="typeSpan"></span>
+                        <span th:text = "${noticeDto.noticeTitle}" class="titleSpan"></span>
+                    </div>
+                    <div class="top-bottom">
+                        <div class="left">
+                            <span th:text="${#temporals.format(noticeDto.CreateTime,'yyyy년 MM월 dd일 hh:mm')}"></span>
+                            <span th:text="${#temporals.format(noticeDto.UpdateTime,'yyyy년 MM월 dd일 hh:mm')}"></span>    
+                        </div>
+                        <div class="right">
+                            <span th:text="${noticeDto.notWriter}"></span>
+                            <span th:text = "${noticeDto.notHit}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="middle">
+                    <textarea th:text="${noticeDto.noticeContent}" th:value="${noticeDto.noticeContent}" name="noticeContent" id="contentText" class="writeInput" disabled></textarea>
+                </div>
+                <div class="bottom">
+                    <div class="bottom-top">
+                        <div class="delete">
+                            <th:block sec:authorize="hasAnyRole('ADMIN')">
+                            <a th:href="@{/notice/delete/{id}(id=${noticeDto.notId})}">삭제하기</a>
+                            </th:block>
+                        </div>
+                        <div class="list">
+                            <a th:href="@{/notice/list?page=0&select=&search=}" class="list">LIST</a>
+                        </div>
+                    </div>
+                    <div class="bottom-bottom">
+                        <div class="update">
+                            <th:block sec:authorize="hasAnyRole('ADMIN')">
+                            <a th:href="@{/notice/update/{id}(id=${noticeDto.notId})}">수정하기</a>
+                            </th:block>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--댓글-->
+                <div class="reply-con">
+                    <div class="reply-write">
+                        <form action="@{/notice/}">
+                            <!-- 번호 -->
+                        </form>
+                    </div>
+
+                </div>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+</html>

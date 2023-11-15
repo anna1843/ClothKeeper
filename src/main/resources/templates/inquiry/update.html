@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>문의사항 수정 페이지</title>
+    <link rel="stylesheet" th:href="@{/css/inquiry/update.css}">
+    <script th:src="@{/js/inquiry/write.js}" defer="defer"></script>
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: headerFragment}"></div>
+<div class="container">
+    <div class="update">
+        <div class="update-con">
+            <div class="title">
+                <h1>문의사항</h1>
+            </div>
+            <div class="update-form">
+                <form th:action="@{/inquiry/update/{id}(id=${inquiryDto.inqId})}" method="post">
+                    <ul>
+                       <li>
+                           <label>구분</label>
+                           <select name="Type" id="inquiryType" th:field="${inquiryDto.inqType}">
+                               <option th:value="''" disabled> ----- 선택하세요 ----- /option>
+                               <option th:value="'product'">상품</option>
+                               <option th:value="'delivery'">배송</option>
+                               <option th:value="'etc'">기타</option>
+                           </select>
+                       </li>
+                       <li>
+                            <label th:for="memberEmail">작성자</label>
+                            <input type="text" name="memberEmail" th:value="${inquiryDto.memberEmail}" readonly>
+                        </li>
+                        <li>
+                            <label th:for="inquiryTitle">제목</label>
+                            <input type="text" name="inquiryTitle" th:value="${inquiryDto.inquiryTitle}" class="writeInput">
+                        </li>
+                        <li class="contentLi">
+                            <div class="content">
+                                <label th:for="content" class="contentLabel">내용</label>
+                            </div>
+                           <textarea th:text="${inquiryDto.inquiryContent}" th:value="${inquiryDto.inquiryContent}" name="inquiryContent" id="contentText" class="writeInput"></textarea>
+                        </li>
+                        <li>
+                            <label th:for="inqHit">조회수</label>
+                            <input type="text" name="inqHit" th:value="${inquiryDto.inqHit}" readonly>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="Btn">
+                            <div class="button">
+                                <input type="submit" value="수정하기">
+                                <input type="reset" value="취소">
+                                <input type="hidden" name="inqId" th:value="${inquiryDto.inqId}" readonly>
+                            </div>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+            <!--댓글-->
+            <div class="reply-con">
+                <div class="reply-write">
+                    <form action="@{/inquiry/}">
+                        <!-- 번호 -->
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>payment test</title>
+    <link rel="stylesheet" th:href="@{/css/payment/succed.css}">
+</head>
+<body>
+<div class="container">
+    <div class="payment">
+        <div class="title">
+            <h1>결제 성공 페이지</h1>
+        </div>
+        <div class="form">
+            <h2>고객님이 주문하신 상품이 결제가 완료되었습니다.</h2><br>
+            <h2>판매자의 재고상태에 따라서 배송이 지연될 수 있음을 알려드립니다.<br> 추후 안내 메시지는 고객님의 연락처로 안내드리도록 하겠습니다.</h2>
+                <div class="Btn">
+                    <a th:href="@{/}">HOME</a>
+                    <a th:href="@{/product/list}">상품보러가기</a>
+                </div>
+            </div>
+    </div>
+</div>
+</body>
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+</html>

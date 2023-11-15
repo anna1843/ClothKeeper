@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <meta charset="UTF-8">
+  <title>List</title>
+  <link rel="stylesheet" th:href="@{/css/admin/product/detail.css}">
+  <link rel="stylesheet" href="maincss.css">
+</head>
+<div th:replace="~{admin/fragments/common/header :: headerFragment}"></div>
+<div th:replace="~{admin/fragments/common/sidebar :: sidebarFragment}"></div>
+<body>
+   <div class="main">
+    <div class="title">
+     <div class="main-title">
+       <h2>상품 상세보기</h2>
+      </div>
+    </div>
+      <div class="main-section1">
+        <div class="image">
+
+        </div>
+        <div class="item-form">
+          <ul>
+            <li>
+              <label>제목</label>
+              <span th:text="${productDetail.productName}"></span>
+            </li>
+            <li>
+              <label>색상</label>
+              <span  th:text="${productDetail.productColor}"></span>
+            </li>
+            <li>
+              <label>사이즈</label>
+              <span th:text="${productDetail.productSize}"></span>
+            </li>
+            <li>
+              <label>조회수</label>
+              <span th:text="${productDetail.productHits}"></span>
+            </li>
+            <li>
+              <label>상세설명</label>
+              <textarea th:text="${productDetail.productDescription}" th:value="${productDetail.productDescription}" name="productDescription" id="contentText" disabled></textarea>
+              <!-- <span th:text="${productDetail.productDescription}"></span> -->
+            </li>
+            <li>
+              <label>노출여부</label>
+              <span th:text="${productDetail.isProductDisplayed}"></span>
+            </li>
+            <li>
+              <label>가격</label>
+              <span th:text="${productDetail.productPrice}"></span>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <ul>
+        <li>
+
+        </li>
+      </ul>
+    </div>
+</body>
+</html>

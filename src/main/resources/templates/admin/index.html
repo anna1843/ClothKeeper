@@ -1,0 +1,160 @@
+
+<!--catfather49@gmail.com-->
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{admin/fragments/layout/baseLayout}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/admin/index.css}">
+    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+</head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<th:block layout:fragment="title">
+    <title>ADMIN</title>
+</th:block>
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/admin/index.css}">
+</th:block>
+<th:block layout:fragment="container">
+
+<body>
+<div class="main">
+    <div class="container">
+        <div class="main-section1">
+            <ul>
+                <li>
+                    <div class="sec1-title">문의 사항</div>
+                    <ul class="sec1-item">
+                        <li>
+                            <a th:href="@{/inquiry/list?page=0&select=&search=}">문의사항 보기</a>
+                         </li>
+<!--                        <li>-->
+<!--                            <a th:href="@{/reply/write}">문의사항 답변하기</a>-->
+<!--                        </li> -->
+                    </ul>
+                </li>
+                <li>
+                    <div class="sec1-title">상품</div>
+                    <ul class="sec1-item">
+                        <li> <a th:href="@{/product/write}">상품생성</a></li>
+                        <li><a th:href="@{/admin/product/{memberId}/list(memberId=${#authentication.principal.memberEntity.memberId})}">상품 리스트</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="sec1-title">공지사항</div>
+                    <ul class="sec1-item">
+                        <li>
+                            <a th:href="@{notice/write}">공지사항 작성</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/notice/list?page=0&select=&search=}">공지사항 보기</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="sec1-title">회원 목록</div>
+                    <ul class="sec1-item">
+                        <li><a th:href="@{/member/pagingList?page=0&subject=&search=}">회원 목록</a></li>
+                        <li><a th:href="@{/semiMember/pagingList?page=0&subject=&search=}">간편회원 목록</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main-section2">
+            <div class="workList">
+                <div class="workList-title">
+                    오늘 할일
+                </div>
+                <ul>
+                    <li>신규 주문<span class="workList-item-number">30</span></li>
+                    <li>반품 신청<span class="workList-item-number">0</span></li>
+                    <li>환불 처리<span class="workList-item-number">0</span></li>
+                    <li>입금 대기<span class="workList-item-number">10</span></li>
+                    <li>문의<span class="workList-item-number">5</span></li>
+                    <li>답변 대기 문의<span class="workList-item-number">5</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="main-section3">
+            <div class="productBest">
+                <div class="productBest-title">베스트 상품 Top 20</div>
+                <ul>
+                    <li>테스트 상품1</li>
+                    <li>테스트 상품1</li>
+                    <li>테스트 상품1</li>
+                    <li>테스트 상품1</li>
+                    <li>테스트 상품1</li>
+                    <li>테스트 상품1</li>
+                    <li>테스트 상품1</li>
+                    <li>테스트 상품1</li>
+                    <li>테스트 상품1</li>
+                    <li>테스트 상품1</li>
+                    <li>테스트 상품1</li>
+                    <li>테스트 상품1</li>
+                    <li>테스트 상품1</li>
+                    <li>테스트 상품1</li>
+                    <li>테스트 상품1</li>
+                    <li>테스트 상품1</li>
+                    <li>테스트 상품1</li>
+                    <li>테스트 상품1</li>
+                    <li>테스트 상품1</li>
+                    <li>테스트 상품1</li>
+                </ul>
+            </div>
+
+            <div class="byDateStatus">
+                <div class="byDateStatus-top">
+                    <div class="byDateStatus-title">일자별 요약</div>
+                </div>
+                <table class="byDateStatus-table">
+                    <th>일자</th>
+                    <th>주문수</th>
+                    <th>매출액</th>
+                    <th>방문자</th>
+                    <th>가입</th>
+                    <th>문의</th>
+                    <th>후기</th>
+                    <tr>
+                        <td>2023-09-25</td>
+                        <td>15</td>
+                        <td>5,000,000</td>
+                        <td>30</td>
+                        <td>10</td>
+                        <td>3</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>최근 7일 합계</td>
+                        <td>176</td>
+                        <td>18,000,000</td>
+                        <td>170</td>
+                        <td>66</td>
+                        <td>15</td>
+                        <td>74</td>
+                    </tr>
+                    <tr>
+                        <td>이번달 합계</td>
+                        <td>235</td>
+                        <td>168,000,000</td>
+                        <td>302</td>
+                        <td>33</td>
+                        <td>56</td>
+                        <td>41</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</th:block>
+</html>

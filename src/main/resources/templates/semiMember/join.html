@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>간편 회원가입</title>
+    <link rel="stylesheet" th:href="@{/css/semiMember/join.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/member/checkDuplicate_semi.js}" defer="defer"></script>
+    <script th:src="@{/js/member/email_semi.js}" defer="defer"></script>
+    <script th:src="@{/js/member/join_semiEmail.js}" defer="defer"></script>
+    <script th:src="@{/js/member/join_semiValidation.js}" defer="defer"></script>
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: headerFragment}"></div>
+<div class="container">
+    <div class="join">
+        <div class="join-con">
+            <div class="title">
+                <h1>간편 회원가입</h1>
+            </div>
+            <div class="join-form">
+                <form th:action="@{/semiMember/join}" method="post" id="signupForm" th:object="${semiMemberDto}">
+                    <ul>
+                        <!-- email -->
+                        <li class="email">
+                            <div class="input-group">
+                                <label>이메일</label>
+                                <div class="inputD">
+                                    <div class="inputEmail">
+                                        <input type="text" id="emailId" name="emailId" required="required" placeholder="이메일 아이디 입력"><span> @ </span>
+                                        <input type="text" id="domainCustom" name="domainCustom" placeholder="도메인 직접 입력">
+                                    </div>
+                                    <select id="domainList" required="required">
+                                        <option value="custom">직접 입력</option>
+                                        <option value="gmail.com">gmail.com</option>
+                                        <option value="naver.com">naver.com</option>
+                                        <option value="nate.com">nate.com</option>
+                                        <option value="daum.net">daum.net</option>
+                                    </select>
+                                    <input type="hidden" id="semiMemberEmail" name="semiMemberEmail" value="">
+                                    <button type="button" id="emailCheckButton">이메일 중복 확인</button>
+                                </div>
+                            </div>
+                            <div class="email-feedback">
+                                <d id="emailAvailable" class="valid-feedback" style="display: none;"></d>
+                                <d id="emailNotAvailable" class="invalid-feedback" style="display: none;"></d>
+                            </div>
+                        </li>
+                        <span id="emailIdErrorMessage" style="color: red; font-size: 13px;"></span> <!-- 이메일 유효성 검사 오류 메시지를 표시할 영역 -->
+                        
+                        <!-- 인증번호 입력란 -->
+                        <li class="num">
+                            <div class="num-top">
+                                <label th:for="emailVerificationCode">인증번호</label>
+                                <div class="numInput">
+                                    <input type="text" id="emailVerificationCode" placeholder="인증번호 입력">
+                                    <button type="button" id="certifyEmailButton">인증번호 전송</button>
+                                    <button type="button" id="verifyEmailButton">인증번호 확인</button>
+                                </div>
+                            </div>
+                            <div class="num-feedback">
+                                <div id="certifyEmailMessage" class="valid-feedback" style="display: none;"></div>
+                            </div>
+                        </li>
+
+                        <!-- 휴대전화 -->
+                        <li class="phone">
+                            <div class="phone-top">
+                                <label th:for="semiMemberPhone">휴대전화</label>
+                                <div class="phoneInput">
+                                    <input type="text" th:field="*{semiMemberPhone}" required="required" placeholder="- 제외하고 입력해주세요">
+                                    <!-- 휴대전화 중복 확인 버튼 -->
+                                    <button type="button" id="phoneCheckButton">휴대전화 중복 확인</button>
+                                </div>
+                            </div>
+                            <div class="phone-feedback">
+                                 <!-- 중복 확인 결과 메시지 영역 -->
+                                <d id="phoneAvailable" class="valid-feedback" style="display: none;"></d>
+                                <d id="phoneNotAvailable" class="invalid-feedback" style="display: none;"></d>    
+                            </div>
+                        </li>
+                        <p th:if="${#fields.hasErrors('semiMemberPhone')}" th:errors="*{semiMemberPhone}" class="error"></p>
+                        <span id="semiMemberPhoneErrorMessage" style="color: red; font-size: 13px"></span> <!-- 휴대전화번호 유효성 검사 오류 메시지를 표시할 영역 -->
+                     
+                        <!-- 회원가입 버튼 -->
+                        <li class="submit">
+                            <input type="submit" value="간편 회원가입">
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+</html>

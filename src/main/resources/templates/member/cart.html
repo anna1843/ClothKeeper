@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout/baseLayout}"
+>
+<th:block layout:fragment="title">
+    <title>Cloth Keeper</title>
+</th:block>
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/cart/cart.css}">
+    <!-- <link rel="stylesheet" href="maincss.css"> -->
+    <script th:src="@{/js/payment/payment.js}" defer="defer"></script>
+</th:block>
+
+<th:block layout:fragment="container">
+        <div class="main">
+            <div class="title">
+                <h1 ><span th:text="${member.memberNickName}" class="title"></span>&nbsp;님 장바구니</h1>
+                <h1 ><span th:text="${member.memberId}" class="title"></span>&nbsp;회원번호</h1>
+            </div>
+            <table class="cartTable">
+                <thead>
+                <tr>
+                    <th scope="col">번호</th>
+                    <th scope="col">상품ID</th>
+                    <th scope="col">상품이미지</th>
+                    <th scope="col">상품명</th>
+                    <th scope="col">수량</th>
+                    <th scope="col">가격</th>
+                    <th scope="col">담은날짜</th>
+                    <th scope="col">삭제</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="cartItem, i: ${cartItems}">
+                    <td th:text="${i.count}">장바구니상품 번호</td>
+                    <td th:text="${cartItem.getProduct().getId()}">상품ID</td>
+                    <td>
+                        <th:block th:each="img : ${productImages}">
+                            <!-- 상품 ID에 해당하는 이미지만 출력 -->
+                            <th:block th:if="${cartItem.getProduct().getId()} == ${img.id}">
+                                <a th:href="@{/product/{id}(id=${cartItem.getProduct().getId()})}"> <!-- 상세보기 페이지로 이동-->
+                                    <img th:src="@{/images/{filename}(filename=${img.productImgSavedName})}" alt="" height="50" />
+                                </a>
+                            </th:block>
+                        </th:block>
+                    </td>
+                    <td>
+                        <a th:href="@{/product/{id}(id=${cartItem.getProduct().getId()})}" th:text="${cartItem.getProduct().getProductName()}">상품명</a>
+                    </td>
+                    <td th:text="${cartItem.getCartItemCount()}">수량</td>
+                    <td th:text="${cartItem.getProduct().getProductPrice() * cartItem.getCartItemCount()}">가격</td>
+                    <td th:text="${#temporals.format(cartItem.getCreateTime(), 'yyyy-MM-dd HH:mm:ss')}">날짜</td>
+                    <td class="btn btn-outline-dark"><a
+                            th:href="@{/cart/member/{memberId}/{cartItemId}/delete(memberId=${cartItem.getCart().getMember().getMemberId()}, cartItemId=${cartItem.getCartItemId()})}"
+                            style="text-decoration: none">삭제</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="Btn">
+            <div class="price">
+                총가격 : <span th:text="${totalPrice}">0</span>
+            </div>
+            <button class="buttonpa" id="payment-button" th:value="@{/payment/kakao/pg(productId=${product.id}, memberId=${member.memberId}, productPrice=${totalPrice}, productName=${product.productName})}">
+                결제하기
+            </button>
+        </div>
+       
+</th:block>
+
+<!--<a th:href=@{"/payment/kakao/pg?{productId=123&memberId=123&productPrice=100000&productName=testProduct"}></a>-->
+
+<script>
+
+</script>
+
+</html>

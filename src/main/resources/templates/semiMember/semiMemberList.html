@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>간편회원 목록</title>
+</head>
+<body>
+<div class="memberList">
+    <table style="width:600px;" border="1">
+        <thead>
+        <tr>
+            <th colspan="11">
+                현재 로그인 사용자 : <span th:text="${myUserDetails.memberEntity.memberEmail}"></span> ,
+                권한 : <span th:text="${myUserDetails.memberEntity.role}"></span>
+            </th>
+        </tr>
+        <tr>
+            <th>회원번호</th>
+            <th>이메일</th>
+            <th>휴대전화번호</th>
+            <th>권한</th>
+            <th>가입일</th>
+            <th>상세보기</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="semiMember : ${semiMemberDtoList}">
+            <td th:text="${semiMember.semiMemberId}"></td>
+            <td th:text="${semiMember.semiMemberEmail}"></td>
+            <td th:text="${semiMember.semiMemberPhone}"></td>
+            <td th:text="${semiMember.role}"></td>
+            <td th:text="${#temporals.format(semiMember.createTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+            <td>
+                <a th:href="@{/semiMember/detail/{semiMemberId}(semiMemberId=${semiMember.semiMemberId})}">보기</a> <!-- /id=member.id -->
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

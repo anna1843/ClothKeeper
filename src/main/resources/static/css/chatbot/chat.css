@@ -1,0 +1,92 @@
+@charset "UTF-8";
+.chat{
+    width: 100%;
+    background: beige;
+    min-height: 1000px;
+    border: 2px solid;
+}
+.chat .chatbot{
+    height: inherit;
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+    flex-direction: column;
+}
+.chat .chatbot dl{
+    height: inherit;
+    /* border: 2px solid orange; */
+}
+.chat .chatbot .chat-nav dt{
+    display: flex;
+    justify-content: space-between;
+}
+.chat .chatbot .chat-nav dt span{
+    font-size: 20px;
+    padding: 10px;
+}
+.chat .chatbot .chat-nav dt span button{
+    width: 150px;
+    background-color: none;
+}
+/* 날짜 */
+.chat .chatbot dl dd .flex_center_date{
+    font-size: 20px;   
+}
+
+.chat .chatbot dl dd.flex_between{
+    display: flex;
+    justify-content: flex-end;
+}
+.chat .chatbot dl dd.flex_between input{
+    width: 200px;
+    height: 30px;
+}
+.chat .chatbot dl dd.flex_between button{
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.chat .chatbot dl dd.flex_between button:hover{
+    color: white;
+}
+
+.msg_bot_flex{
+    box-shadow: 2px 2px 2px 2px #c5c5c5;
+}
+.msg_bot_flex .message .part p{
+    text-align: center;
+}
+.msg_bot_flex .message .part2 p{
+    text-align: center;
+    height: 50px;
+    font-size: 25px;
+}
+.msg_bot_flex .message .part2 .flex_center_menu{
+    width: 180px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0 auto;
+    cursor:pointer;
+}
+.msg_bot_flex .message .part2 .flex_center_menu .menu-item{
+    width: inherit;
+    height: 35px;
+    line-height: 35px;
+    font-size: 25px;
+}
+
+.chat-content{
+
+}
+.msg_user_flex_end{
+    display: flex;
+    justify-content: flex-end;
+    box-shadow: 2px 2px 2px 2px #E5E0FF;
+    padding: 10px;
+    color: pink;
+}
+.msg_bot_flex{
+    box-shadow: 2px 2px 2px 2px #c5c5c5;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>장바구니 test</title>
+</head>
+<body>
+<h1>장바구니 test</h1>
+
+
+<tr th:each="cartDto: ${cartDtoList}">
+
+    <button id="payment-button" th:value="@{/payment/kakao/pg(productId=${cartDto.productId}, memberId=${cartDto.memberId}, productPrice=${cartDto.productPrice}, productName=${cartDto.productName})}">
+        결제
+    </button>
+</tr>
+
+<!--<a th:href=@{"/payment/kakao/pg?{productId=123&memberId=123&productPrice=100000&productName=testProduct"}></a>-->
+</body>
+
+<script>
+
+    var paymentButton = document.getElementById("payment-button").value
+    document.getElementById("payment-button").onclick = function(){
+    var text = "";
+    fetch("http://localhost:8095"+paymentButton)
+    .then(res => res.json())
+    .then(json => {
+        text = json;
+        console.log(text.approvalUrl);
+        var link = text.approvalUrl;
+
+        location.href=link;
+        location.replace(link);
+        window.open(link);
+    });
+    }
+
+
+
+</script>
+</html>

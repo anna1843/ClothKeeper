@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>이메일 찾기</title>
+    <link rel="stylesheet" th:href="@{/css/member/findEmail.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/member/findEmail.js}" defer="defer"></script>
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: headerFragment}"></div>
+<div class="container">
+    <div class="find">
+        <div class="find-con">
+            <div class="title">
+                <h1>이메일 찾기</h1>
+            </div>
+            <div class="find-form">
+                <form th:action="@{/find-email}" method="post">
+                    <ul>
+                        <li class="nickName">
+                            <div class="nickName-group">
+                                <label for="memberNickName">닉네임</label>
+                                <div class="nickName-write">
+                                    <input type="text" id="memberNickName" name="memberNickName" required="required" placeholder="닉네임 입력">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="phone">
+                            <div class="phone-group">
+                                <label for="memberPhone">휴대전화번호</label>
+                                <div class="phone-write">
+                                    <input type="text" id="memberPhone" name="memberPhone" required="required" placeholder="휴대전화번호 입력">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="Btn">
+                            <button type="submit">이메일 찾기</button>
+                        </li>
+                    </ul>
+                </form>
+                <!--결과 메시지 출력-->
+                <div id="foundEmail" style="display: none;" class="foundEmail"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="title">
+    <title>로그인</title>
+</th:block>
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/semiMember/login.css}">
+</th:block>
+<th:block layout:fragment="javascript">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</th:block>
+<div th:replace="~{fragments/common/header :: headerFragment}"></div>
+<th:block layout:fragment="container">
+    <div class="container">
+        <div class="semiLogin">
+            <div class="semiLogin-con">
+                <div class="title">
+                    <h1>간편 회원 로그인</h1>
+                </div>
+                 <div class="semiLogin-form">
+                    <!-- enctype="multipart/form-data" 뭔지 자세히 알아보기 -->
+                    <form th:action="@{/semiMember/login/post}" enctype="multipart/form-data" method="post">
+                        <ul>
+                            <li>
+                                <label for="semiMemberEmail">이메일</label>
+                                <input type="email" name="semiMemberEmail" id="semiMemberEmail" required="required" placeholder="이메일 입력">
+                            </li>
+                            <li>
+                                <label for="semiMemberPhone">휴대전화</label>
+                                <input type="text" name="semiMemberPhone" id="semiMemberPhone" required="required" placeholder="휴대전화 입력">
+                            </li>
+                            <li class="submit">
+                                <input type="submit" value="간편 로그인" class="Btn">
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+</html>

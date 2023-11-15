@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <title>update</title>
+  <link rel="stylesheet" th:href="@{/css/member/update.css}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script th:src="@{/js/member/updateValid.js}" defer="defer"></script>
+  <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> <!--다음 api 관련 js-->
+  <script th:src="@{/js/member/addressApi.js}" defer="defer"></script> <!--다음 api 관련 js-->
+  <script th:src="@{/js/member/update_birth.js}" defer="defer"></script>
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: headerFragment}"></div>
+<div class="container">
+  <div class="nav">
+    <div class="update-con">
+      <div class="title">
+        <h1><span th:text="${memberDto.memberName}" ></span>님 정보 수정</h1>
+      </div>
+      <form th:action="@{/member/update}" method="post" th:object="${memberDto}" onsubmit="return onSubmitForm()">
+        <ul>
+          <li>
+            아이디 : <input type="text" name="memberId" th:value="${memberDto.memberId}" id="memberId" readonly> <br>
+          </li>
+          <li>
+            이메일 : <input type="email" name="memberEmail" th:value="${memberDto.memberEmail}" id="memberEmail" readonly> <br>
+          </li>
+          <li>
+            비밀번호 : <input type="password" name="memberPassword" th:value="${memberDto.memberPassword}" id="memberPassword" readonly> <br>
+          </li>
+          <li>
+            <label th:for="memberName">이름</label>
+            <input type="text" th:field="*{memberName}" th:value="${memberDto.memberName}" required="required" placeholder="이름을 입력하세요"> <br> <!-- required 추가 시 값 꼭 입력해야함 -->
+          </li>
+          <p th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}" class="error"></p>
+          <li>
+            <label th:for="memberNickName">닉네임</label>
+            <input type="text" th:field="*{memberNickName}" th:value="${memberDto.memberNickName}" required="required" placeholder="닉네임을 입력하세요" th:data-original-value="${memberDto.memberNickName}"> <br> <!-- required 추가 시 값 꼭 입력해야함 -->
+          </li>
+          <p th:if="${#fields.hasErrors('memberNickName')}" th:errors="*{memberNickName}" class="error"></p>
+          <li>
+            <label th:for="memberPhone">휴대전화</label>
+            <input type="text" th:field="*{memberPhone}" th:value="${memberDto.memberPhone}" required="required" placeholder="휴대전화를 입력하세요"> <br> <!-- required 추가 시 값 꼭 입력해야함 -->
+          </li>
+          <p th:if="${#fields.hasErrors('memberPhone')}" th:errors="*{memberPhone}" class="error"></p>
+          <li>
+            <label th:for="memberBirth">생년월일</label>
+            <input type="text" th:field="*{memberBirth}" th:value="${memberDto.memberBirth}" required="required" placeholder="생년월일을 입력하세요" onclick="toggleBirthDropdowns(); validateBirth(this);" readonly> <!-- required 추가 시 값 꼭 입력해야함 -->
+            <!-- 오류 메시지를 표시할 영역 -->
+            <span id="birthErrorMessage" style="color: red;"></span> <br>
+          </li>
+          <p th:if="${#fields.hasErrors('memberBirth')}" th:errors="*{memberBirth}" class="error"></p>
+          <!-- 드롭다운 선택 영역 -->
+          <div id="birthDropdowns" style="display: none;">
+            <select th:field="*{birthYear}" required="required" onchange="updateBirthInput()">
+              <option th:each="year : ${birthYears}" th:value="${year}" th:text="${year}"></option>
+            </select>
+            년
+            <select th:field="*{birthMonth}" required="required" onchange="updateBirthInput()">
+              <option th:each="month : ${birthMonths}" th:value="${month}" th:text="${month}"></option>
+            </select>
+            월
+            <select th:field="*{birthDay}" required="required" onchange="updateBirthInput()">
+              <option th:each="day : ${birthDays}" th:value="${day}" th:text="${day}"></option>
+            </select>
+            일
+          </div>
+          <li>
+            <label th:for="memberPostCode">우편번호</label>
+            <input type="text" th:field="*{memberPostCode}" th:value="${memberDto.memberPostCode}" required="required" readonly="readonly"> <br>
+            <button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>
+          </li>
+          <p th:if="${#fields.hasErrors('memberPostCode')}" th:errors="*{memberPostCode}" class="error"></p>
+          <li>
+            <label th:for="memberStreetAddress">도로명주소</label>
+            <input type="text" th:field="*{memberStreetAddress}" th:value="${memberDto.memberStreetAddress}" placeholder="도로명주소를 입력하세요" readonly="readonly"> <br>
+          </li>
+          <li>
+            <label th:for="memberDetailAddress">상세주소</label>
+            <input type="text" th:field="*{memberDetailAddress}" th:value="${memberDto.memberDetailAddress}" required="required" placeholder="상세주소를 입력하세요"> <br>
+          </li>
+          <li>
+            <label th:for="role">권한</label>
+            <input type="text" th:field="*{role}" th:value="${memberDto.role}" readonly> <br>
+          </li>
+          <button type="button" onclick="javascript:history.back()">수정취소</button>
+          <input type="submit" value="수정실행">
+          <a th:href="@{/member/confirmPassword/{memberId}(memberId=${memberDto.memberId})}"><button type="button">비밀번호 변경</button></a>
+        </ul>
+      </form>
+<!--      <a href="javascript:history.back()">수정취소</a>-->
+<!--      <a th:href="@{/member/confirmPassword/{memberId}(memberId=${memberDto.memberId})}">비밀번호 변경</a>-->
+
+
+    </div>
+  </div>
+</div>
+<script>
+  // 생년월일 유효성 검사 함수
+  function validateBirth() {
+      var birth = document.getElementById('memberBirth').textContent;
+
+      if (!/^[0-9]{8}$/.test(birth)) {
+          document.getElementById('birthErrorMessage').textContent = "올바른 형식으로 입력해주세요 (8자리 숫자)";
+      } else {
+          document.getElementById('birthErrorMessage').textContent = "";
+      }
+  }
+  // 페이지 로드 시 유효성 검사 수행
+  window.onload = validateBirth;
+</script>
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+</body>
+</html>
+

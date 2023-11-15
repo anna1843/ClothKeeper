@@ -1,0 +1,335 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/header.css);
+@import url(/css/common/footer.css);
+/* .container */
+.container{
+    width: 100%;
+}
+/* .container >.join */
+.container .join{
+    width: 100%;
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+.container .join .join-con{
+    width: 900px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/* title */
+.container .join .join-con .title{
+    padding: 20px;
+    gap: 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+/* join-form */
+.container .join .join-con .join-form{
+    padding: 30px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+/* 회원가입  form */
+.container .join .join-con .join-form form{
+    margin: auto;
+    text-align: center;
+    width: 700px;
+    /* border: 2px solid yellow; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    box-sizing: border-box;
+    align-items: center;
+}
+.container .join .join-con .join-form form>ul{ 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    text-align: center; 
+    align-items: center;
+} 
+.container .join .join-con .join-form form>ul>li:not(.submit){
+    width: 500px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: start; 
+    padding: 10px;
+}
+.container .join .join-con .join-form form>ul>li label{
+    width: 100px;
+    display: flex;
+    justify-content: start;
+    font-size: 18px;
+    padding: 10px;
+} 
+/* li.email */
+.container .join .join-con .join-form form>ul>li.email{
+    /* border: 2px solid blue; */
+}
+/* email > input-group > label */
+.container .join .join-con .join-form form>ul>li.email .input-group label{
+    width: 100px;
+    font-size: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: start;
+} 
+/* email > input-group > inputD */
+.container .join .join-con .join-form form>ul>li.email .input-group .inputD{
+    display: inline-flex;
+    height: inherit;
+    align-items: center;
+    gap: 10px;
+}
+.container .join .join-con .join-form form>ul>li.email .input-group .inputD .inputEmail{
+    width: 500px;
+    border-bottom: 2px solid #8C9CDB;
+    display: flex;
+    justify-content: space-around;
+    height: inherit;
+    align-items: center;
+    gap: 10px;
+}
+.container .join .join-con .join-form form>ul>li.email .input-group .inputD .inputEmail input{
+    height: 35px;
+    width: 180px;
+    text-align: center;
+    font-size: 18px;
+    border-bottom: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+.container .join .join-con .join-form form>ul>li.email .input-group .inputD select{
+    width: 100px;
+    height: 35px;
+    text-align: center;
+    align-items: center;
+}
+.container .join .join-con .join-form form>ul>li.email .input-group .inputD button{
+    width: 110px;
+    height: 35px;
+    margin: auto 0;
+    display: flex;
+    text-align: center;
+    border: 1px solid #8C9CDB;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.container .join .join-con .join-form form>ul>li.email .input-group .inputD button:hover{
+    background-color: #c5c5c5;
+    color: white;
+}
+/* email > email-feedback */
+.container .join .join-con .join-form form>ul>li.email .email-feedback{
+    display: flex;
+    justify-content: center;
+    padding: 15px 0 0 0;
+    text-align: center;
+    align-items: center;
+    /* border: 2px solid green; */
+}
+/* email > email-feedback > button */
+.container .join .join-con .join-form form>ul>li.email .email-feedback button{
+    width: 150px;
+    height: 20px;
+    display: flex;
+    text-align: center;
+    border: 2px solid #c5c5c5;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.container .join .join-con .join-form form>ul>li.email .email-feedback button:hover{
+    background-color: #c5c5c5;
+    color: white;
+}
+/* email > email-feedback > valid-feedback*/
+.container .join .join-con .join-form form>ul>li.email .email-feedback .valid-feedback{
+    font-size: 14px;
+    color: green;
+    text-align: center;
+}
+.container .join .join-con .join-form form>ul>li.email .email-feedback .invalid-feedback{
+    font-size: 14px;
+    color: red;
+    text-align: center;
+}
+
+/* 인증번호 */
+.container .join .join-con .join-form form>ul>li.num{
+    /* border: 2px solid blue; */
+}
+/* num > num-top > label */
+.container .join .join-con .join-form form>ul>li.num .num-top label{
+    width: 100px;
+    font-size: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: start;
+} 
+/* num > num-top > numInput */
+.container .join .join-con .join-form form>ul>li.num .num-top .numInput{
+    display: inline-flex;
+    height: inherit;
+    align-items: center;
+    position: relative;
+    gap: 10px;
+}
+/* num > num-top > numInput input*/
+.container .join .join-con .join-form form>ul>li.num .num-top .numInput input{
+    height: 35px;
+    width: 500px;
+    text-align: center;
+    font-size: 18px;
+    border-bottom: 2px solid #8C9CDB;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    align-items: center;
+}
+/* num > num-top > numInput button*/
+.container .join .join-con .join-form form>ul>li.num .num-top .numInput button{
+    width: 100px;
+    height: 35px;
+    margin: auto 0;
+    display: flex;
+    text-align: center;
+    border: 1px solid #8C9CDB;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.container .join .join-con .join-form form>ul>li.num .num-top .numInput button:hover{
+    background-color: #c5c5c5;
+    color: white;
+}
+/* num > num-feedback */
+.container .join .join-con .join-form form>ul>li.num .num-feedback{
+    display: flex;
+    justify-content: center;
+    padding: 15px 0 0 0;
+    text-align: center;
+    align-items: center;
+    /* border: 2px solid green; */
+}
+/* num > num-feedback > valid-feedback*/
+.container .join .join-con .join-form form>ul>li.num .num-feedback .valid-feedback{
+    font-size: 14px;
+    color: green;
+    text-align: center;
+}
+
+/* phone */
+.container .join .join-con .join-form form>ul>li.phone{
+    /* border: 2px solid blue; */
+}
+/* phone > phone-top > label */
+.container .join .join-con .join-form form>ul>li.phone .phone-top label{
+    width: 100px;
+    font-size: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: start;
+} 
+/* phone > phone-top > phoneInput */
+.container .join .join-con .join-form form>ul>li.phone .phone-top .phoneInput{
+    display: inline-flex;
+    height: inherit;
+    align-items: center;
+    position: relative;
+    gap: 10px;
+}
+/* phone > phone-top > phoneInput input*/
+.container .join .join-con .join-form form>ul>li.phone .phone-top .phoneInput input{
+    height: 35px;
+    width: 500px;
+    text-align: center;
+    font-size: 18px;
+    border-bottom: 2px solid #8C9CDB;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    align-items: center;
+    position: relative;
+}
+/* phone > phone-top > phoneInput button*/
+.container .join .join-con .join-form form>ul>li.phone .phone-top .phoneInput button{
+    width: 120px;
+    height: 35px;
+    margin: auto 0;
+    display: flex;
+    text-align: center;
+    border: 1px solid #8C9CDB;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.container .join .join-con .join-form form>ul>li.phone .phone-top .phoneInput button:hover{
+    background-color: #c5c5c5;
+    color: white;
+}
+/* phone > phone-feedback */
+.container .join .join-con .join-form form>ul>li.phone .phone-feedback{
+    display: flex;
+    justify-content: center;
+    padding: 15px 0 0 0;
+    text-align: center;
+    align-items: center;
+    /* border: 2px solid green; */
+}
+/* phone > phone-feedback > valid-feedback*/
+.container .join .join-con .join-form form>ul>li.phone .phone-feedback .valid-feedback{
+    font-size: 14px;
+    color: green;
+    text-align: center;
+}
+/* submit button */
+.container .join .join-con .join-form form>ul>li.submit{
+    width: 500px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+}
+.container .join .join-con .join-form form>ul>li.submit input{
+    width: 480px;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    background: #4b66c79e;
+    color: white;
+    outline: none;
+    padding: 15px;
+    gap: 15px;
+    cursor: pointer;
+}
+.container .join .join-con .join-form form>ul>li.submit input:hover{
+    box-sizing: border-box;
+    background: #4b66c7;
+    box-shadow: 0 10px 10px 0 #cccccc;
+}

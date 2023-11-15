@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<div id="sidebar" class="sidebar" th:fragment="sidebarFragment">
+<div class="sideBar">
+    <div class="sideBarTitle">
+        <span>  </span>
+    </div>
+
+    <th:block sec:authorize="isAnonymous()">
+        <div class="loginInfo">
+            <form action="admin/login">
+                <input type="text" name="id" class="id">
+                <input type="password" name="pw" class="pw">
+                <button type="submit" class="loginBtn">login</button>
+            </form>
+        </div>
+    </th:block>
+
+    <th:block sec:authorize="hasAnyRole('SELLER', 'ADMIN')">
+        <div class="loginInfo">
+            <ul>
+                <li>
+                    <span th:text="${#authentication.principal.memberEntity.memberNickName}" class="data1 span"></span>님
+                </li>
+            </ul>
+        </div>
+
+    </th:block>
+
+    <div class="sideBar-sec">
+        <ul>
+            <li>
+                <a href="#">문의사항</a>
+                <ul>
+                    <li>
+                        <a th:href="@{/inquiry/list?page=0&select=&search=}">문의사항 보기</a>
+                    </li>
+                    <li>
+                        <a href="#">답변</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">공지사항</a>
+                <ul>
+                    <li>
+                        <a th:href="@{/notice/write}">공지사항 작성</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/notice/list?page=0&select=&search=}">공지사항 보기</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">상품</a>
+                <ul>
+                    <li>
+                        <a href="/product/write">상품생성</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/admin/product/{memberId}/list(memberId=${#authentication.principal.memberEntity.memberId})}">상품 리스트</a>
+                    </li>
+                    <li>
+                        <a href="#">비고</a>
+                    </li>
+                    <li>
+                        <a href="#">비고</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">장바구니</a>
+                <ul>
+                    <li>
+                        <a href="#">주문 목록</a>
+                    </li>
+                    <li>
+                        <a href="#">비고</a>
+                    </li>
+                    <li>
+                        <a href="#">비고</a>
+                    </li>
+                    <li>
+                        <a href="#">비고</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">회원관리</a>
+                <ul>
+                    <li>
+                        <a href="#">일반회원 목록</a>
+                    </li>
+                    <li>
+                        <a href="#">간편회원 목록</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+</html>

@@ -1,0 +1,257 @@
+<<<<<<< HEAD
+/* .container .root .product-info_section .product-info-detail_area .review-con{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+.container .root .product-info_section .product-info-detail_area .review-con .review-title{
+    width: 70px;
+    border-bottom: 4px solid #7285d3;
+    text-align: start;
+    padding: 5px;
+}
+.container .root .product-info_section .product-info-detail_area .review-con .review-write{
+=======
+  .container .root .product-info_section .product-info-detail_area .review-con{
+    width: 420px;
+    text-align: center;
+    padding: 20px 0 0 0;
+  }
+
+  .container .root .product-info_section .product-info-detail_area .review-con .review-title{
+    border-bottom: 2px solid #7286d3;
+>>>>>>> dev
+    padding: 10px;
+}
+<<<<<<< HEAD
+.container .root .product-info_section .product-info-detail_area .review-con .review-write form{
+    margin: auto;
+    text-align: center;
+    width: 70x;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    box-sizing: border-box;
+}
+.container .root .product-info_section .product-info-detail_area .review-con .review-write form>ul{
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.container .root .product-info_section .product-info-detail_area .review-con .review-write form>ul>li{
+    width: 100px;
+}
+.container .root .product-info_section .product-info-detail_area .review-con .review-write form>ul>li:not(.Btn){
+    display: flex;
+    justify-content: start;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+.container .root .product-info_section .product-info-detail_area .review-con .review-write form>ul>li:not(.Btn) textarea{
+    width: 90px;
+=======
+.container .root .product-info_section .product-info-detail_area .review-con .review-write form>ul>li textarea{
+    width: 420px;
+>>>>>>> dev
+    height: 300px;
+    resize: none;
+    font-size: 17px;
+}
+.container .root .product-info_section .product-info-detail_area .review-con .review-write form>ul>li.Btn{
+    height: 44px;
+    width: 210px;
+    background-color: #7286d3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 3px 0px #b1b1b1;
+    border-radius: 8px;
+}
+.container .root .product-info_section .product-info-detail_area .review-con .reviewList {
+    border: 2px solid #c5c5c5;
+}
+  .container .root .product-info_section .product-info-detail_area .review-con>ul{
+    position: relative;
+    font-size: 20px;
+  }
+  .container .root .product-info_section .product-info-detail_area .review-con>ul>li.writer{
+    height: 20px;
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .container .root .product-info_section .product-info-detail_area .review-con>ul>li.create{
+    height: 20px;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .container .root .product-info_section .product-info-detail_area .review-con>ul>li span{
+    font-size: 15px;
+    box-shadow: 2px 0 0 0 #cccccc;
+  }
+  .container .root .product-info_section .product-info-detail_area .review-con .review-write{
+    padding: 10px;
+  }
+  .container .root .product-info_section .product-info-detail_area .review-con .review-write form>ul>li.Btn{
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    height: 44px;
+    width: 420px;
+    background-color: #7286d3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 3px 0px #b1b1b1;
+    border-radius: 8px;
+  }
+  .container .root .product-info_section .product-info-detail_area .review-con .review-write form>ul>li.Btn input.reviewBtn{
+    font-weight: bold;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+}
+<<<<<<< HEAD
+.container .root .product-info_section .product-info-detail_area .review-con .review-write form>ul>li.Btn input:hover{
+    box-sizing: border-box;
+    background: #4b66c7;
+    box-shadow: 0 10px 10px 0 #cccccc;
+}
+
+.container .root .product-info_section .product-info-detail_area .review-con .reviewList{
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0px -2px 4px -1px #8c9cdb;
+    display: flex;
+    width: 500px;
+=======
+.container .root .product-info_section .product-info-detail_area .review-con .reviewList{
+    border: 2px solid #c5c5c5;
+>>>>>>> dev
+}
+.container .root .product-info_section .product-info-detail_area .review-con .reviewList .reviewCon{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.container .root .product-info_section .product-info-detail_area .review-con .reviewList .reviewCon>ul{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.container .root .product-info_section .product-info-detail_area .review-con .reviewList .reviewCon>ul>li:nth-last-child(1){
+    display: flex;
+    justify-content: center;
+}
+.container .root .product-info_section .product-info-detail_area .review-con .reviewList .reviewCon>ul .reCon{
+    width: 400px;
+    padding: 10px;
+    border-top: 2px solid #c5c5c5;
+    border-bottom: 2px solid black;
+}
+.container .root .product-info_section .product-info-detail_area .review-con .reviewList .reviewCon>ul .reCon .Btn{
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+.container .root .product-info_section .product-info-detail_area .review-con .reviewList .reviewCon>ul .reCon .Btn input{
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    height: 22px;
+    width: 210px;
+    background-color: #7286d3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+<<<<<<< Updated upstream
+    border-radius: 8px;
+    color: white;
+<<<<<<< HEAD
+    background: #7285d3;
+}
+
+.container .root .product-info_section .product-info-detail_area .review-con .reviewList .reviewCon>ul .show textarea{
+    width: 90px;
+    min-height: 100px;
+    padding: 0 0 30px 0;
+    font-size: 18px;
+}
+.container .root .product-info_section .product-info-detail_area .review-con .reviewList .reviewCon>ul .show input{
+    width: 25px;
+    height: 25px;
+    font-size: 16px;
+    background: none;
+    border-radius: 10px;
+    border: 2px solid #7285d3;
+}
+.container .root .product-info_section .product-info-detail_area .review-con .reviewList .reviewCon>ul .show input:hover{
+    color: white;
+    background: #7285d3;
+} */
+
+
+/* 예진 */
+/* .product-info-detail_area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0 20px 0;
+  } */
+
+  .container .root .product-info_section .product-info-detail_area .review-con{
+    border: 2px red;
+  }
+    cursor: pointer;
+}
+
+    padding: 40px 0 20px 0;
+  } */
+
+  .container .root .product-info_section .product-info-detail_area .review-con{
+    padding: 20px 0 0 0px;
+    width: 100%;
+  }
+  .container .root .product-info_section .product-info-detail_area .review-con .review-title{
+    text-align: center;
+  }
+  .container .root .product-info_section .product-info-detail_area .review-con .review-title h3{
+    padding: 10px;
+    font-size: 20px;
+    border-bottom: 2px solid #7286d3;
+  }
+  .container .root .product-info_section .product-info-detail_area .review-con .review-write form>ul>li textarea{
+    resize: none;
+    width: 420px;
+    height: 300px;
+  }
+  .container .root .product-info_section .product-info-detail_area .review-con .review-write form>ul>li.Btn{
+    display: flex;
+    justify-content: flex-end;
+  }
+  .container .root .product-info_section .product-info-detail_area .review-con .review-write form>ul>li.Btn input{
+    height: 44px;
+    width: 210px;
+    background-color: #7286d3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 3px 0px #b1b1b1;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    border: none;
+  }
+  .container .root .product-info_section .product-info-detail_area .review-con .review-write .reviewList{
+    
+  }

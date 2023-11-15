@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+      
+<div id="header" class="header" th:fragment="headerFragment">
+    <div class="nav">
+        <div class="top-nav">
+            <div class="top-menu">
+                <ul>
+                    <li><a th:href="@{/notice/list(page=0 ,search=${param.search} ,select=${param.select})}">공지사항</a></li>
+                    <th:block sec:authorize="hasAnyRole('ADMIN', 'MEMBER', 'SELLER')">
+                        <li><a th:href="@{/inquiry/write}">문의하기</a></li>
+                    </th:block>
+                    <th:block sec:authorize="hasAnyRole('ADMIN', 'MEMBER', 'SELLER')">
+                        <li><a th:href="@{/inquiry/list(page=0 ,search=${param.search} ,select=${param.select})}">문의사항</a></li>
+                    </th:block>
+<!--                    <th:block sec:authorize="hasAnyRole('MEMBER, 'SEMIMEMBER')">-->
+<!--                        <li><a th:href="@{inquiry/write/{memberId}(memberId=${#authentication.principal.memberEntity.memberId})}">문의하기</a></li>-->
+<!--                    </th:block>-->
+                    <th:block sec:authorize="isAnonymous()">
+                        <li><a th:href="@{/login}">로그인</a></li>
+                        <li><a th:href="@{/join}">회원가입</a></li>
+                    </th:block>
+                    <th:block sec:authorize="hasAnyRole('ADMIN')">
+                        <li><a th:href="@{/admin/index}">관리자페이지</a></li>
+                    </th:block>
+                    <th:block sec:authorize="hasAnyRole('ADMIN', 'MEMBER', 'SELLER')">
+                        <li><a th:href="@{/member/detail/{memberId}(memberId=${#authentication.principal.memberEntity.memberId})}">마이페이지</a></li>
+                        <li><a th:href="@{/cart/member/{memberId}(memberId=${#authentication.principal.memberEntity.memberId})}">장바구니</a></li>
+                    </th:block>
+                    <th:block sec:authorize="hasAnyRole('SEMIMEMBER')">
+                        <li><a th:href="@{/semiMember/detail/{semiMemberId}(semiMemberId=${#authentication.principal.semiMemberEntity.semiMemberId})}">마이페이지</a></li>
+                        <li><a th:href="@{/cart/semiMember/{semiMemberId}(semiMemberId=${#authentication.principal.semiMemberEntity.semiMemberId})}">장바구니</a></li>
+                    </th:block>
+<!--                    <th:block sec:authorize="hasAnyRole('SELLER', 'ADMIN')">-->
+<!--                        <li><a th:href="@{/product/manage}">상품관리</a></li>-->
+<!--                    </th:block>-->
+                    <th:block sec:authorize="hasAnyRole('ADMIN', 'MEMBER', 'SELLER')">
+                        <li><a th:href="@{/member/logout}">로그아웃</a></li>
+<!--                        <li><span th:text="${#authentication.principal.memberEntity.memberNickName}" class="data1 span"></span>님</li> &lt;!&ndash; 일반회원 닉네임 출력 &ndash;&gt;-->
+                        <li><span th:text="${member.memberNickName}" class="data1 span"></span>님</li> <!-- 일반회원 닉네임 출력 -->
+                        <!--프로필 이미지 출력-->
+                        <li><a th:href="@{/member/detail/{memberId}(memberId=${#authentication.principal.memberEntity.memberId})}">
+                            <div id="image-preview">
+<!--                                <img id="preview-image" th:src="${#authentication.principal != null and #authentication.principal.memberEntity.image != null ? #authentication.principal.memberEntity.image.imageUrl : '/profileImages/default.png'}" alt="프로필 이미지" style="width: 35px; height: 35px;">-->
+                                <img id="preview-image" th:src="${memberImageUrl}" alt="프로필 이미지" style="width: 35px; height: 35px;">
+                            </div>
+                        </a>
+                        </li>
+                    </th:block>
+                    <th:block sec:authorize="hasAnyRole('SEMIMEMBER')">
+                        <li><a th:href="@{/member/logout}">로그아웃</a></li>
+                        <span sec:authentication="name" class="data1 span"></span>님 <!-- 간편회원 이메일 출력(간편회원은 닉네임이 없음) -->
+                    </th:block>
+                    <li><a th:href="@{https://team1.ncpworkplace.com}">네이버 API 연동</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="middle-nav">
+                <a th:href="@{/}"><img th:src="@{/images/logo.png}" alt="HOME"></a>
+            <div class="middle-menu">
+                <ul>
+                    <li><a th:href="@{/}">HOME</a></li>
+                    <li><a th:href="@{/product/list}">SHOP</a></li>
+
+                    <li>
+                        <form th:action="@{/}">
+                            <input type="text" name="search" id="search" placeholder="검색어를 입력하세요">
+                            <button type="submit">
+                                <img th:src="@{/images/zoom.png}" alt="검색" class="zoom">
+                            </button>
+<!--                            <input type="submit" value="검색">-->
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="bottom-nav">
+            <div class="gnb">
+                <ul>
+                    <li><a th:href="@{/}" class="main">Cloth Keeper</a></li>
+                    <li><a href="#new">New</a></li>
+                    <!--                    조회순으로-->
+                    <li><a href="#top10">Top 10</a></li>
+                    <!--                    랜덤하게-->
+                    <li><a th:href="@{/}">상의</a></li>
+                    <li><a th:href="@{/}">하의</a></li>
+                    <li><a th:href="@{/}">악세사리</a></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

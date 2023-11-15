@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>회원정보 상세보기</title>
+    <link rel="stylesheet" th:href="@{/css/member/detail.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/member/detail.js}" defer="defer"></script>
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: headerFragment}"></div>
+<div class="container">
+    <div class="nav">
+        <div class="detail-con">
+            <div class="title">
+                <h1><span th:text="${member.memberNickName}" ></span>님 상세정보</h1>
+            </div>
+            <!-- 이미지 미리보기 영역 -->
+            <div id="image-preview"><img id="preview-image" th:src="${memberImageUrl}" alt="프로필 이미지" style="width: 100px; height: 100px;"></div>
+            <th:block th:if="${#authentication.principal.username==member.memberEmail}">
+            <span class="image_btn">
+                <button onclick="redirectToURL()" class="URLBtn">프로필 이미지 수정</button>
+            </span>
+            </th:block>
+            <th:block th:unless="${#authentication.principal.username==member.memberEmail}">
+            <span>
+                본인글이 아닙니다
+            </span>
+            </th:block>
+            <div class="detail">
+                <ul>
+                    <span th:if="${false}" th:text="${member.memberId}"></span> <br> <!-- th:if="${false}" 입력 시 안보이게 처리 -->
+                    <span th:if="${false}" :text="${member.memberPassword}"></span> <br>
+                    <li>
+                        <span>이메일</span>
+                        <span th:text="${member.memberEmail}"></span>
+                    </li>
+                    <li>
+                        <span>이름</span>
+                        <span th:text="${member.memberName}" th:class="${member.memberName == null or member.memberName == '' ? 'error' : ''}"></span>
+                        <span th:if="${member.memberName == null or member.memberName == ''}" style="color: red;">이름을 입력해주세요</span>
+                    </li>
+                    <li>
+                        <span>닉네임</span>
+                        <span th:text="${member.memberNickName}" th:class="${member.memberNickName == null or member.memberNickName == '' ? 'error' : ''}"></span>
+                        <span th:if="${member.memberNickName == null or member.memberNickName == ''}" style="color: red;">닉네임을 입력해주세요</span>
+                    </li>
+                    <li>
+                        <span>휴대전화번호</span>
+                        <span th:text="${member.memberPhone}" th:class="${member.memberPhone == null or member.memberPhone == '' or member.memberPhone.length() >= 12 ? 'error' : ''}"></span>
+                        <span th:if="${member.memberPhone.length() >= 12}" style="color: red;">올바른 휴대전화번호를 입력해주세요</span>
+                    </li>
+                    <li>
+                        <span>생년월일</span>
+                        <span th:text="${member.memberBirth}" id="memberBirthSpan" th:class="${member.memberBirth == null or member.memberBirth == '' ? 'error' : ''}"></span>
+                        <span th:if="${member.memberBirth == null or member.memberBirth == ''}" style="color: red;">생년월일을 입력해주세요</span>
+<!--                        <span id="birthErrorMessage" style="color: red;"></span>-->
+                    </li>
+                    <li>
+                        <span>주소</span>
+                        <span th:text="${member.memberStreetAddress + ', ' + member.memberDetailAddress}" th:class="${member.memberStreetAddress == null ? 'error' : ''}"></span>
+                        <span th:if="${member.memberStreetAddress == null}" style="color: red;">주소를 입력해주세요</span>
+                    </li>
+                    <li>
+                        <span>권한</span>
+                        <span th:text="${member.role}"></span>
+                    </li>
+                    <li>
+                        <span>가입일</span>
+                        <span th:text="${#temporals.format(member.createTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                    </li>
+                        <th:block th:if="${#authentication.principal.username==member.memberEmail}">
+                                <li class="update">
+                                    <span>
+                                        <div class="update-btn">
+                                            <a th:href="@{/member/update/{memberId}(memberId=${member.memberId})}">수정</a>
+                                        </div>
+                                    </span>
+                                </li>
+                                <li class="delete">
+                                    <span>
+                                        <div class="delete-btn">
+                                            <a th:href="@{/member/confirmEmail/{memberId}(memberId=${member.memberId})}">삭제</a>
+                                        </div>
+                                    </span>
+                                </li>
+                                <li class="inquiry">
+                                    <span>
+                                        <div class="inquiry-btn">
+                                            <a th:href="@{/member/inquiry?page=0&select=&search=}">내 문의사항</a>
+                                        </div>
+                                    </span>
+                                </li>
+                        </th:block>
+                    <th:block th:unless="${#authentication.principal.username==member.memberEmail}">
+                        <span>
+                            본인글이 아닙니다
+                        </span>
+                    </th:block>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Thymeleaf 표현식을 사용하여 memberId를 JavaScript 변수에 할당 -->
+<script th:inline="javascript">
+    var memberId = /*[[${member.memberId}]]*/ null;
+</script>
+<!-- 이동 버튼 클릭 시 지정된 URL로 이동 -->
+<script>
+    function redirectToURL() {
+         if (memberId !== null) {
+           var dynamicURL = "/member/updateImage/" + memberId;
+           window.location.href = dynamicURL;
+         }
+    }
+</script>
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+</body>
+</html>

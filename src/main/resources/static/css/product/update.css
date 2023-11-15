@@ -1,0 +1,635 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/header.css);
+@import url(/css/common/footer.css);
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
+
+*{
+  margin: 0;
+  padding: 0;
+  font-family: Pretendard, 'Malgun Gothic', sans-serif;
+  font-size: 15px;
+}
+
+.--hover{
+  filter: brightness(1.2);
+}
+.--hover2{
+  border: 2px dashed #7286d3;
+}
+.--displayFalse {
+  display: none;
+}
+
+.container {
+  /* background-color: #f0f2f5; */
+}
+
+
+
+/* 공통적으로 사용되는 스타일 */
+.common-input_box {
+  box-sizing: border-box;
+  height: 75px;
+  width: 360px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.product_input {
+  width: 325px;
+  border: 1px solid #dddddd !important;
+  font-size: 1rem;
+  line-height: 1.45;
+  letter-spacing: -0.04rem;
+  border-radius: 8px;
+  padding: 16px;
+}
+.product_input_label {
+  /* display: inline-block; */
+  position: absolute;
+  top: 2px;
+  left: 12px;
+  /* padding: 8px; */
+  /* background: white; */
+  font-size: 14px;
+  color: #888;
+  font-weight: bold;
+  z-index: 1;
+}
+.product_input_label span {
+  color: #da4841;
+  vertical-align: -2px;
+}
+input::placeholder, textarea::placeholder {
+  color: #d9d9d9;
+}
+
+
+
+
+
+
+.root {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 615px 15px 460px 50px 1fr;
+  grid-template-rows: 20px repeat(12, 100px);
+  position: relative;
+  margin-bottom: -43px;
+}
+
+
+
+.image_section {
+  grid-area: 2 / 2 / 13 / 3;
+  position: sticky;
+  top: 65px;
+  height: 635px;
+  padding: 20px 20px 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* .imagePreviewExpand-wrapper {
+  display: flex;
+  justify-content: center;
+} */
+.image-expand_area{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* position: relative; */
+  /* top: 30px; */
+  width: 500px;
+  height: 500px;
+  box-shadow: 0px 0px 3px 0px #b1b1b1;
+}
+.imagePreviewExpand{
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+}
+.image-expand__img-alt{
+  width: 200px;
+  height: 200px;
+  filter: 
+    invert(96%) 
+    sepia(0%) 
+    saturate(2405%) 
+    hue-rotate(71deg) 
+    brightness(89%) 
+    contrast(102%);
+}
+
+
+.division_section {
+  grid-area: 1 / 3 / 14 / 4;
+  box-shadow: -10px 0px 10px -5px #f1f1f1;
+}
+
+
+/* .imageDrop-wrapper {
+  margin: 20px 0 20px 0;
+} */
+.image-preview_area {
+  margin: 0 auto;
+  margin-top: 20px;
+  /* margin-bottom: 20px; */
+  width: 520px;
+  min-height: 104px;
+  border: 1px dashed #dddddd;
+  border-radius: 8px;
+  text-align: center;
+  padding: 5px;
+  background-image: url("/images/product/iconmonstr-picture-5-120.png");
+  background-position: center 25px;
+	background-repeat: no-repeat;
+  background-size: 50px;
+  position: relative;
+  z-index: 0;
+}
+.image-upload-instruction_box{
+  position: absolute;
+  z-index: 1;
+  width: inherit;
+}
+.image-upload-instruction_text{
+  position: relative;
+  top: 72px;
+  font-size: 10px; /* 텍스트 크기 설정 */
+  font-weight: normal;
+  color: #8c8c8c;
+}
+.image-preview_ul{
+  width: 520px;
+  min-height: 104px;
+  display: flex;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+.image-preview-box {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 2px;
+}
+
+.delete-img {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  top: -3px;
+  right: -3px;
+  filter: invert(57%) 
+          sepia(20%) 
+          saturate(1233%) 
+          hue-rotate(191deg) 
+          brightness(90%) 
+          contrast(81%);
+  z-index: 1;
+}
+.delete-background{
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  top: 1px;
+  right: 1px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  z-index: 0;
+}
+.image-preview{
+  width: 100px;
+  height: 100px;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+
+
+
+/* category와 brand에서 공통적으로 사용되는 autocomplete 스타일 */
+#autocomplete_div__category, #autocomplete_div__brand {
+  position: absolute;
+  top: 64px;  
+  width: 357px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #ffffff;
+  z-index: 2;
+}
+#autocomplete_ul__category, #autocomplete_ul__brand {
+  padding: 10px;
+}
+.autocomplete-text-li {
+  font-size: 8px;
+  /* left: 8px; */
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.autocomplete-active{
+  background-color: #7286d3;
+  color: #ffffff;
+}
+
+
+
+.category_area {
+  grid-area: 2 / 4 / 3 / 5;
+  margin: auto;
+}
+.product_input_hole__category {
+  position: absolute;
+  height: 3px;
+  width: 82px;
+  top: 9px;
+  left: 6px;
+  background-color: #ffffff;
+  z-index: 0;
+}
+
+
+
+.brand_area {
+  grid-area: 3 / 4 / 4 / 5;
+  margin: auto;
+}
+.product_input_hole__brand {
+  position: absolute;
+  height: 3px;
+  width: 70px;
+  top: 9px;
+  left: 6px;
+  background-color: #ffffff;
+  z-index: 0;
+}
+
+
+
+.product-name_area {
+  grid-area: 4 / 4 / 5 / 5;
+  margin: auto;
+}
+.product_input_hole__product-name {
+  position: absolute;
+  height: 3px;
+  width: 59px;
+  top: 9px;
+  left: 6px;
+  background-color: #ffffff;
+  z-index: 0;
+}
+
+
+
+.color_area {
+  grid-area: 5 / 4 / 6 / 5;
+  margin: auto;
+}
+.color-input_box {
+  position: relative;
+  width: 300px;
+  height: 75px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.color-input_box input[type=radio]{
+  display: none;
+}
+.color-input_box input[type=radio]+label{
+  display: inline-block;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%; /* 원형으로 만들기 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+  line-height: 100px; /* 텍스트 수직 중앙 정렬 */
+  position: inherit;
+  top: 8px;
+}
+.color-input_box input[type=radio]:checked+label{
+  display: inline-block;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%; /* 원형으로 만들기 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+  line-height: 100px; /* 텍스트 수직 중앙 정렬 */
+  position: inherit;
+  top: 8px;
+  background-image: url("/images/product/iconmonstr-check-mark-17-24.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 70%;
+}
+.color-input_box input[type=radio]:checked+.--white{
+  display: inline-block;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%; /* 원형으로 만들기 */
+  position: inherit;
+  top: 8px;
+  background-image: url("/images/product/iconmonstr-check-mark-17-24-black.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 70%;
+}
+.color_radio-btn_label{
+  box-shadow: 0px 0px 3px 0px #b1b1b1;
+}
+.--black{
+  background-color: #41444B;
+}
+.--red{
+  background-color: #EF4B4B;
+}
+.--pink{
+  background-color: #E97777;
+}
+.--orange{
+  background-color: #EC8F6A;
+}
+.--yellow{
+  background-color: #FFD966;
+}
+.--green{
+  background-color: #89e28f;
+}
+.--skyblue{
+  background-color: #AEE2FF;
+}
+.--navy{
+  background-color: #6E85B7;
+}
+.--purple{
+  background-color: #BEADFA;
+}
+.--white{
+  background-color: #ffffff;
+}
+
+
+
+.size_area {
+  grid-area: 6 / 4 / 7 / 5;
+  margin: auto;
+}
+.product_input_hole__size {
+  position: absolute;
+  height: 3px;
+  width: 83px;
+  top: 9px;
+  left: 6px;
+  background-color: #ffffff;
+  z-index: 0;
+}
+
+
+
+.price_area {
+  grid-area: 7 / 4 / 8 / 5;
+  margin: auto;
+}
+.product_input_hole__price {
+  position: absolute;
+  height: 3px;
+  width: 71px;
+  top: 9px;
+  left: 6px;
+  background-color: #ffffff;
+  z-index: 0;
+}
+
+
+
+.stock_area {
+  grid-area: 8 / 4 / 9 / 5;
+  margin: auto;
+}
+.product_input_hole__stock {
+  position: absolute;
+  height: 3px;
+  width: 71px;
+  top: 9px;
+  left: 6px;
+  background-color: #ffffff;
+  z-index: 0;
+}
+
+
+
+.display_area {
+  grid-area: 9 / 4 / 10 / 5;
+  margin: auto;
+}
+.display-input_box {
+  position: relative;
+  width: 300px;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.display-input_box input[type=radio]{
+  display: none;
+}
+.display-input_box input[type=radio]+label{
+  background-color: #ffffff;
+  color: #888;
+}
+.display-input_box input[type=radio]:checked+label{
+  background-color: #7286d3;
+  color: #ffffff;
+}
+.displayBtn1{
+  position: relative;
+  top: 8px;
+  width: 100px;
+  height: 33px;
+  text-align: center;
+  line-height: 32px;
+  font-size: 14px;
+  font-weight:bold;
+  border-radius: 8px 0 0 8px;
+  box-shadow: 0px 0px 3px 0px #b1b1b1;
+  cursor: pointer;
+}
+.displayBtn2{
+  position: relative;
+  top: 8px;
+  width: 100px;
+  height: 33px;
+  text-align: center;
+  line-height: 32px;
+  font-size: 14px;
+  font-weight:bold;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 0px 0px 3px 0px #b1b1b1;
+  cursor: pointer;
+}
+
+
+
+.description_area {
+  grid-area: 10 / 4 / 13 / 5;
+  margin: auto;
+}
+.description-input_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 360px;
+  height: 300px;
+}
+.description-input_box textarea {
+  width: 325px;
+  height: 247px;
+  resize: none;
+  border: 1px solid #dddddd !important;
+  font-size: 1rem;
+  line-height: 1.45;
+  letter-spacing: -0.04rem;
+  border-radius: 8px;
+  padding: 16px;
+}
+.product_input_hole__description {
+  position: absolute;
+  height: 3px;
+  width: 71px;
+  top: 9px;
+  left: 6px;
+  background-color: #ffffff;
+  z-index: 0;
+}
+
+
+
+.submit_area {
+  grid-area: 13 / 4 / 14 / 5;
+  margin: auto;
+}
+.submit-input_box{
+  height: 75px;
+  width: 360px;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+.submit_input{
+  cursor: pointer;
+  display: none;
+}
+.delete_btn {
+  display: inline-block;
+  cursor: pointer;
+  width: 50%;
+  height: 34px;
+  /* background-color: #952323; */
+  text-align: center; 
+  line-height: 32px;
+  position: relative;
+  top: 13px;
+  border-radius: 8px 8px 8px 8px;
+  box-shadow: 0px 0px 3px 0px #b1b1b1;
+  color: #41444B;
+  font-size: 14px;
+  font-weight:bold;
+}
+.submit_input_label {
+  display: inline-block;
+  cursor: pointer;
+  width: 50%;
+  height: 34px;
+  background-color: #7286d3;
+  text-align: center; /* 텍스트 중앙 정렬 */
+  line-height: 32px; /* 텍스트 수직 중앙 정렬 */
+  position: relative;
+  top: 13px;
+  border-radius: 8px 8px 8px 8px;
+  box-shadow: 0px 0px 3px 0px #b1b1b1;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight:bold;
+}
+
+
+
+
+
+/* 모달 */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+}
+.modal-content {
+  height: 200px;
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.modal-content p{
+  font-size: 20px;
+  font-weight: bold;
+}
+.modal-content img{
+ height: 50px;
+ width: 50px;
+ filter: invert(67%) 
+         sepia(81%) 
+         saturate(4410%) 
+         hue-rotate(323deg) 
+         brightness(109%) 
+         contrast(110%);
+}
+.confirmation {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.confirmation button {
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  height: 40px;
+  width: 80px;
+  margin: 0 4px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 3px 0px #b1b1b1;
+}
+.confirmation button:nth-child(1) {
+  color: #41444B;
+}
+.confirmation button:nth-child(2) {
+  color: #ffffff;
+  background-color: #7286d3;
+}
+
+
+
+
+
+
+
