@@ -24,10 +24,11 @@
 ### 김예진✨
 - 게시판 CRUD
 - 페이지 디자인
-- <details>
+<details>
   <summary>📝 게시판</summary>
   
 </details>
+
 ### 이**
 - 관리자페이지
 - 결제
