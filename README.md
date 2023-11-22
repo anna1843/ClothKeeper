@@ -36,6 +36,7 @@
     <li>목록보기</li>
     <img width="612" alt="image" src="https://github.com/anna1843/ClothKeeper_TeamProject/assets/133622218/1480fce9-6953-4102-bcac-be90f0fd31d4">
     <li>공지사항 카테고리 목록</li>
+    <img width="642" alt="스크린샷 2023-11-22 오전 11 25 38" src="https://github.com/anna1843/ClothKeeper_TeamProject/assets/133622218/a0db160e-c0a7-49b9-b107-3a34975e7d7a">
 </details>
 
 ### 이**
