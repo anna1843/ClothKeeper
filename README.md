@@ -1,7 +1,7 @@
 # 쇼핑몰 프로젝트
 | SpringBoot 쇼핑몰 & 관리자모드 기반 챗봇 구현 Project
 
-#Cloth Keeper👔
+# Cloth Keeper👔
 | kream페이지를 밴치마킹한 쇼핑몰 프로젝트입니다.
 
 ## ⌛️개발기간
