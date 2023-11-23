@@ -20,9 +20,11 @@
 
 ## 🛠️개발환경
 ![개발환경](techskill.png)
+<br>
 
 ## ⚙️ DB 구성
-<img width="608" alt="1차 DB" src="https://github.com/anna1843/ClothKeeper/assets/133622218/ba7213ca-d8fa-4757-8203-1c51a8918652">
+![개발환경](DB.png)
+<br>
 
 ## 🏃‍♀️ 맴버 구성
 #### 김예진 : 게시판CRUD, 상품 제외 디자인
