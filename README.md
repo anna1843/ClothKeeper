@@ -1,29 +1,31 @@
 # 쇼핑몰 프로젝트
-| SpringBoot 쇼핑몰 & 관리자모드 기반 챗봇 구현 Project
+> SpringBoot 쇼핑몰 & 관리자모드 기반 챗봇 구현 Project
+<br>
 
-# Cloth Keeper👔
-| kream페이지를 밴치마킹한 쇼핑몰 프로젝트입니다.
+# 📍 목차
+1. 프로젝트 소개
+2. 개발기간
+3. 개발환경
+4. DB구성
+5. 멤버구성 및 기능
+<br>
+
+## 🖥️ 프로젝트 소개
+> kream페이지를 밴치마킹한 쇼핑몰 프로젝트입니다.
 
 ## ⌛️개발기간
-| 23.08.25 ~ 23.09.25
+* 23.08.25 ~ 23.09.25 (약 1개월 소요)
+<br>
 
 ## 🛠️개발환경
-* MacOS
-* SpringBoot
-* java
-* jpa
-* javascript
-* html
-* css
-* mySQL
+![개발환경](techskill.png)
 
-## ⚙️ ERD
+## ⚙️ DB 구성
 <img width="608" alt="1차 DB" src="https://github.com/anna1843/ClothKeeper/assets/133622218/ba7213ca-d8fa-4757-8203-1c51a8918652">
 
-## 팀원 역할
-### 김예진✨
-* 게시판 CRUD
-* 상품 제외 Front
+## 🏃‍♀️ 맴버 구성
+#### 김예진 : 게시판CRUD, 상품 제외 디자인
+
 <details>
 <summary>📝 게시판</summary>
   <ul>
@@ -39,16 +41,11 @@
     <img width="642" alt="스크린샷 2023-11-22 오전 11 25 38" src="https://github.com/anna1843/ClothKeeper_TeamProject/assets/133622218/a0db160e-c0a7-49b9-b107-3a34975e7d7a">
 </details>
 
-### 이**
-* 관리자페이지
-* 결제
-
-### 송**
-* 회원 CRUD
-
-### 방**
-* 댓글
-
-### 박**
-* 상품 CRUD
-* 상품 Front
+<br>
+이** : 관리자페이지, 결제
+<br>
+송** : 회원 CRUD
+<br>
+방** : 댓글
+<br>
+박** : 상품 CRUD, 상품 Front
