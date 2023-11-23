@@ -38,9 +38,53 @@
 
   > Controller
   
+  ```java
+  @GetMapping("/write")
+  public String getInquiryWrite(InquiryDto inquiryDto, @AuthenticationPrincipal MyUserDetails myUserDetails, @AuthenticationPrincipal SemiMyUserDetails semiMyUserDetails, Model model){
+    if(myUserDetails != null) {
+      MemberDto member = memberService.detailMember(myUserDetails.getMemberEntity().getMemberId());
+      String memberImageUrl = imageService.findImage(member.getMemberEmail()).getImageUrl();
+      model.addAttribute("member", member);
+      model.addAttribute("memberImageUrl", memberImageUrl);
+    } else {
+      log.info("member is null");
+      log.info("semiMemberId : " + semiMyUserDetails.getSemiMemberEntity().getSemiMemberId());
+    }
+    return "inquiry/write";
+  }
+  @PostMapping("/write")
+  public String postInquiryWrite(@Validated InquiryDto inquiryDto, BindingResult bindingResult, Model model, @AuthenticationPrincipal MyUserDetails myUserDetails) throws IOException {
+    if(bindingResult.hasErrors()){
+      return "inquiry/write";
+    }
+    MemberEntity member = myUserDetails.getMemberEntity(); // 현재 로그인한 사용자의 MemberEntity 가져오기
+    int rs = inquiryService.InquiryInsert(inquiryDto, member);
+    if(rs==1){
+      return "redirect:/inquiry/list?page=0&select=&search=";
+    }
+    return "index";
+  }
+  ```
+  
   <br>
   
   > Service
+
+  ```java
+  @Transactional
+  public int InquiryInsert(InquiryDto inquiryDto, MemberEntity memberEntity) throws IOException {
+    InquiryEntity inquiryEntity = InquiryEntity.toInquiryEntityInsert(inquiryDto);
+    inquiryEntity.setMember(memberEntity); // 현재 로그인한 사용자의 MemberEntity 설정
+    Long inquiryId = inquiryRepository.save(inquiryEntity).getInqId();
+    Optional<InquiryEntity> optionalInquiryEntity = Optional.ofNullable(inquiryRepository.findById(inquiryId).orElseThrow(() ->{
+      return new IllegalArgumentException("문의사항을 찾을 수 없습니다.");
+    }));
+    if(!optionalInquiryEntity.isPresent()){
+      return 0;
+    }
+    return 1;
+  }
+  ```
   
   > 게시판 수정하기
 
@@ -48,10 +92,60 @@
 
   > Controller
 
+  ```java
+  @GetMapping("/update/{id}")
+  public String getInquiryUpdate(@PathVariable("id") Long id, Model model, @AuthenticationPrincipal MyUserDetails myUserDetails){
+    myUserDetails.getMemberEntity();
+    MemberDto member = memberService.detailMember(myUserDetails.getMemberEntity().getMemberId());
+    String memberImageUrl = imageService.findImage(member.getMemberEmail()).getImageUrl();
+    InquiryDto inquiryDto = inquiryService.InquiryUpdate(id);
+    if(inquiryDto != null){
+      model.addAttribute("inquiryDto",inquiryDto);
+      model.addAttribute("member", member);
+      model.addAttribute("memberImageUrl", memberImageUrl);
+      return "inquiry/update";
+    }
+    model.addAttribute("member", member);
+    model.addAttribute("memberImageUrl", memberImageUrl);
+    return "redirect:/inquiry/list?page=0&select=&search=";
+  }
+  @PostMapping("/update/{id}")
+  public String postInquiryUpdate(@PathVariable("id") Long id, InquiryDto inquiryDto, Model model, @AuthenticationPrincipal MyUserDetails myUserDetails){
+    myUserDetails.getMemberEntity();
+    MemberDto member = memberService.detailMember(myUserDetails.getMemberEntity().getMemberId());
+    String memberImageUrl = imageService.findImage(member.getMemberEmail()).getImageUrl();
+    InquiryDto inquiryDto1 = inquiryService.inquiryUpdateOk(inquiryDto,id);
+    model.addAttribute("inquiryDto", inquiryDto1);
+    model.addAttribute("member", member);
+    model.addAttribute("memberImageUrl", memberImageUrl);
+    return "inquiry/detail";
+  }
+  ```
+
   <br>
 
   > Service
 
+  ```java
+  @Transactional
+  public InquiryDto inquiryUpdateOk(InquiryDto inquiryDto, Long id) { 
+    InquiryEntity inquiryEntity = inquiryRepository.findById(id).orElseThrow(()->{
+      throw new IllegalArgumentException("수정할 공지사항이 존재하지 않습니다.");
+    });
+    // InquiryEntity를 업데이트
+    InquiryEntity updatedInquiryEntity = InquiryEntity.toInquiryEntityUpdate(inquiryDto);
+    updatedInquiryEntity.setMember(inquiryEntity.getMember()); // member 정보 유지
+    // 업데이트된 InquiryEntity를 저장
+    Long inquiryId = inquiryRepository.save(updatedInquiryEntity).getInqId();
+    InquiryEntity inquiryEntity1 = inquiryRepository.findById(inquiryId).orElseThrow(() -> {
+      throw new IllegalArgumentException("수정한 공지사항이 존재하지 않습니다.");
+    });
+    // 업데이트된 InquiryEntity를 사용하여 InquiryDto를 생성하고 반환
+    InquiryDto updatedInquiryDto = InquiryDto.toinquiryDto(inquiryEntity1);
+      return updatedInquiryDto;
+  }
+  ```
+  
   > 게시판 상세보기
 
   ![상세보기](inquiry_detail.png)
