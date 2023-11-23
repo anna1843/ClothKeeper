@@ -65,8 +65,9 @@
   > 게시판 목록보기
   
   <br>
-  
-  |---|---|
+
+  |전체보기|상품보기|
+  |----|----|
   |![작성하기](notice_all.png)|![작성하기](notice_product.png)|
 
   > Controller
