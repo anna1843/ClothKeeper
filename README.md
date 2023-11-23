@@ -127,6 +127,16 @@
   > Service
 
   ```java
+  public InquiryDto InquiryUpdate(Long id) {
+    Optional<InquiryEntity> optionalInquiryEntity = Optional.ofNullable(inquiryRepository.findById(id).orElseThrow(() ->{
+      return new IllegalArgumentException("수정할 문의사항이 없습니다.");
+    }));
+    if(optionalInquiryEntity.isPresent()){
+      InquiryDto inquiryDto = InquiryDto.toinquiryDto(optionalInquiryEntity.get());
+      return inquiryDto;
+    }
+    return null;
+  }
   @Transactional
   public InquiryDto inquiryUpdateOk(InquiryDto inquiryDto, Long id) { 
     InquiryEntity inquiryEntity = inquiryRepository.findById(id).orElseThrow(()->{
@@ -151,10 +161,44 @@
   ![상세보기](inquiry_detail.png)
 
   > Controller
+
+  ```java
+  @GetMapping("/detail/{id}")
+  public String getInquiryDetail(@PathVariable("id") Long id, Model model, @AuthenticationPrincipal MyUserDetails myUserDetails){
+    MemberDto member = memberService.detailMember(myUserDetails.getMemberEntity().getMemberId());
+    String memberImageUrl = imageService.findImage(member.getMemberEmail()).getImageUrl();
+    InquiryDto inquiryDto = inquiryService.InquiryDetail(id);
+    if(inquiryDto != null){
+      model.addAttribute("inquiryDto", inquiryDto);
+      model.addAttribute("member", member);
+      model.addAttribute("memberImageUrl", memberImageUrl);
+      return "inquiry/detail";
+    }
+    return "redirect:/inquiry/list?page=0&select=&search=";
+  }
+  ```
   
   <br>
   
   > Service
+
+  ```java
+  @Transactional
+  public InquiryDto InquiryDetail(Long id) {
+    InquiryHit(id);
+    InquiryEntity inquiryEntity = inquiryRepository.findById(id).orElseThrow(IllformedLocaleException::new);
+    return InquiryDto.builder()
+          .inqId(inquiryEntity.getInqId())
+          .inquiryTitle(inquiryEntity.getInquiryTitle())
+          .inquiryContent(inquiryEntity.getInquiryContent())
+          .inqType(inquiryEntity.getInqType())
+          .CreateTime(inquiryEntity.getCreateTime())
+          .UpdateTime(inquiryEntity.getUpdateTime())
+          .inqHit(inquiryEntity.getInqHit())
+          .memberEmail(inquiryEntity.getMember().getMemberEmail()) // 송원철 / memberEmail 추가
+          .build();
+  }
+  ```
 
   > 게시판 목록보기
   
@@ -165,10 +209,88 @@
   |![작성하기](notice_all.png)|![작성하기](notice_product.png)|
 
   > Controller
+
+  ```java
+  @GetMapping("/list/{type}")
+  public String getNoticeLis( @PageableDefault(page = 0, size = 10, sort = "notId",direction = Sort.Direction.DESC)Pageable pageable, Model model, @PathVariable("type") String type,
+            @AuthenticationPrincipal MyUserDetails myUserDetails){
+    if (myUserDetails != null) {
+      MemberDto member = memberService.detailMember(myUserDetails.getMemberEntity().getMemberId());
+      String memberImageUrl = imageService.findImage(member.getMemberEmail()).getImageUrl();
+      model.addAttribute("member", member);
+      model.addAttribute("memberImageUrl", memberImageUrl);
+    }
+    // type을 가져오고 페이징
+    Page<NoticeDto> noticeList = noticeService.noticeList(type, pageable);
+    if (noticeList==null) {
+      throw new RuntimeException("list none");
+    }
+    Long totalCount = noticeList.getTotalElements();
+    int totalPage = noticeList.getTotalPages();
+    int pageSize = noticeList.getSize();
+    int nowPage = noticeList.getNumber();
+    int blockNum = 10;
+    int startPage = (int)((Math.floor(nowPage/blockNum)*blockNum) + 1 <= totalPage ? (Math.floor(nowPage/blockNum)*blockNum) + 1 : totalPage);
+    int endPage = (startPage + blockNum - 1 < totalPage ? startPage + blockNum - 1 : totalPage);
+    model.addAttribute("noticeList", noticeList);
+    model.addAttribute("startPage", startPage);
+    model.addAttribute("endPage", endPage);
+    return "notice/list";
+  }
+  ```
   
   <br>
   
   > Service
+
+  ```java
+  @Transactional
+  public Page<NoticeDto> noticeList(String type, Pageable pageable) {
+    Page<NoticeEntity> noticeEntities = noticeRepository.findByNotType(type, pageable); // not_type에 해당하는 값만 출력
+    noticeEntities.getNumber();
+    noticeEntities.getTotalElements();
+    noticeEntities.getTotalPages();
+    noticeEntities.getSize();
+    Page<NoticeDto> noticeDtoPage = noticeEntities.map(NoticeDto::tonoticeDto);
+    return noticeDtoPage;
+  }
+  ```
+
+  <br>
+
+  > Html
+  
+  ```html
+  <div class="type">
+                <ul>
+                    <li>
+                        <span>
+                            <a th:href="@{/notice/list(page=0 ,search=${param.search} ,select=${param.select})}">전체</a>
+                        </span>
+                    </li>
+                    <li>
+                        <span>
+                            <a th:href="@{/notice/list/{type}(type='product')}">상품</a>
+                        </span>
+                    </li>
+                    <li>
+                        <span>
+                            <a th:href="@{/notice/list/{type}(type='delivery')}">배송</a>
+                        </span>
+                    </li>
+                    <li>
+                       <span>
+                            <a th:href="@{/notice/list/{type}(type='event')}">이벤트</a>
+                        </span>
+                    </li>
+                    <li>
+                        <span>
+                            <a th:href="@{/notice/list/{type}(type='holiday')}">공휴일</a>
+                        </span>
+                    </li>
+                </ul>
+        </div>
+  ```
 
 </details>
 
