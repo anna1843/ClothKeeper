@@ -34,7 +34,7 @@
 
   > 게시판 작성하기
 
-  ![작성하기](notice_write.png)
+  ![작성하기](inquiry_write.png)
 
   > Controller
   <br>
@@ -42,7 +42,7 @@
  
   > 게시판 수정하기
 
-  ![수정하기](notice_update.png)
+  ![수정하기](inquiry_update.png)
 
   > Controller
   <br>
@@ -50,7 +50,7 @@
 
   > 게시판 상세보기
 
-  ![상세보기](notice_detail.png)
+  ![상세보기](inquiry_detail.png)
 
   > Controller
   <br>
@@ -58,7 +58,7 @@
 
   > 게시판 목록보기
   <br>
-  |![작성하기](notice_all.png)|![작성하기](notice_product.png)|
+  | ![작성하기](notice_all.png) | ![작성하기](notice_product.png) |
 
   > Controller
   <br>
