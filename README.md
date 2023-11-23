@@ -30,18 +30,35 @@
 #### 김예진 : 게시판CRUD, 상품 제외 디자인
 
 <details>
-<summary>📝 게시판</summary>
-  <ul>
-    <li>작성하기</li>
-    <img width="439" alt="image" src="https://github.com/anna1843/ClothKeeper_TeamProject/assets/133622218/4ca985ef-8b54-4cb0-9a8e-0b807922249c">
-    <li>수정하기</li>
-    <img width="439" alt="image" src="https://github.com/anna1843/ClothKeeper_TeamProject/assets/133622218/371e8a5b-0548-410c-b650-328aad9d95d7">
-    <li>상세보기</li>
-    <img width="510" alt="image" src="https://github.com/anna1843/ClothKeeper_TeamProject/assets/133622218/f6493851-dd31-4a30-bd54-2bfb9b9a452c">
-    <li>목록보기</li>
-    <img width="612" alt="image" src="https://github.com/anna1843/ClothKeeper_TeamProject/assets/133622218/1480fce9-6953-4102-bcac-be90f0fd31d4">
-    <li>공지사항 카테고리 목록</li>
-    <img width="642" alt="스크린샷 2023-11-22 오전 11 25 38" src="https://github.com/anna1843/ClothKeeper_TeamProject/assets/133622218/a0db160e-c0a7-49b9-b107-3a34975e7d7a">
+  <summary>📝 게시판</summary>
+
+  > 게시판 작성하기
+
+  ![작성하기](notice_write.png)
+
+  > Controller
+  > Service
+ 
+  > 게시판 수정하기
+
+  ![수정하기](notice_update.png)
+
+  > Controller
+  > Service
+
+  > 게시판 상세보기
+
+  ![상세보기](notice_detail.png)
+
+  > Controller
+  > Service
+
+  > 게시판 목록보기
+  |![작성하기](notice_all.png)|![작성하기](notice_product.png)|
+
+  > Controller
+  > Service
+
 </details>
 
 <br>
